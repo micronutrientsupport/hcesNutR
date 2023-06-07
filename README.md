@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# hcesR2
+# hcesR
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of hcesR2 is to create a package that will help with the
+The goal of hcesR is to create a package that will help with the
 analysis of the Household Consumption Expenditure Survey (HCES) data.
 The package will contain functions that will help with the analysis of
 the data. The package will also contain a dataset that will be used to
@@ -21,7 +21,7 @@ You can install the development version of hcesR2 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("dzvoti/hcesR2")
+devtools::install_github("dzvoti/hcesR")
 ```
 
 ## Example
@@ -29,5 +29,5 @@ devtools::install_github("dzvoti/hcesR2")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(hcesR2)
+library(hcesR)
 ```
