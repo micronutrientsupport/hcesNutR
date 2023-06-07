@@ -14,6 +14,7 @@ get_hces_mappings <- function(country_name, survey_name) {
 
     return(column_mapping)
 }
+
 check_hces_names <- function(data, original_data_df) {
     #' Compare column names in HCES data
     #'
@@ -43,5 +44,35 @@ check_hces_names <- function(data, original_data_df) {
     } else {
         message(cat("No columns were renamed."))
     }
+    return(data)
+}
+
+rename_hces <- function(data,country_name,survey_name) {
+    #' Rename data columns in HCES data
+    #'
+    #' @description This function renames the columns in the hces data file to the standard MAPS column names.
+    #' @param data dataframe . The data file as a dataframe.
+    #' @param column_mapping dataframe . The column mapping file as a dataframe.
+    #' @note the read_in_data() function should be used first to import and format the required data.
+    #' @return dataframe: The data file with renamed columns.
+    #' @export
+
+    # Extraxt column mappings from the internal database
+    column_mapping <- hcesR::get_hces_mappings(country_name,survey_name) |>
+        # Remove rows with no standard name
+        dplyr::filter(hces_standard_name != "") |>
+        # Remove rows with no survey variable name in the original data
+        dplyr::filter(survey_variable_names %in% colnames(data))
+
+    # Create a copy of the data
+    original_data_df <- data
+
+    for (i in 1:nrow(column_mapping)) {
+        data <- dplyr::rename(data, !!rlang::sym(column_mapping$hces_standard_name[i]) := !!rlang::sym(column_mapping$survey_variable_names[i]))
+    }
+
+    # Check for columns that have been renamed
+    data <- hcesR::check_hces_names(data, original_data_df)
+
     return(data)
 }
