@@ -181,3 +181,32 @@ which_labelled <- function(data)
   message("The following variables are labelled: Use `hcesR::split_dta()` to split the data into two separate columns.")
   return(labelled_variables)
 }
+
+
+#' Replace values in a column of a dataframe
+#'
+#' @description This function replaces values in a column of a dataframe with a new value.
+#'
+#' @param data The dataframe to modify.
+#' @param targetColumn The name of the column to modify.
+#' @param secondaryColumn The name of the column to extract values from and replace in targetColumn.
+#' @param string2search The value to search. It can be the whole string or a part of it.
+#'
+#' @return The modified dataframe.
+#'
+#' @examples
+#' data <- data.frame(x = c("a", "b", "c"), y = c("d", "e", "f"))
+#' replace_values(data, "x", "y", "b")
+replace_values <- function(data, targetColumn, secondaryColumn, string2search) {
+  if (!is.data.frame(data)) {
+    stop("data must be a data frame")
+  }
+  if (!is.character(targetColumn) || !is.character(secondaryColumn) || !is.character(string2search)) {
+    stop("targetColumn, secondaryColumn, and string2search must be character strings")
+  }
+  if (!(targetColumn %in% names(data)) || !(secondaryColumn %in% names(data))) {
+    stop("targetColumn and secondaryColumn must be valid column names in data")
+  }
+  data[[targetColumn]] <- ifelse(grepl(string2search, data[[targetColumn]]), data[[secondaryColumn]], data[[targetColumn]])
+  return(data)
+}
