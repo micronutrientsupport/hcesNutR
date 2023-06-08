@@ -137,3 +137,47 @@ split_dta <- function(data, split_var, val_to, lab_to, drop_split_var = TRUE) {
   }
   return(data)
 }
+
+
+#' Identify labelled variables in a data frame
+#'
+#' This function takes a data frame as input and returns a character vector of the names of the variables in the data frame that are labelled using the `haven` package.
+#'
+#' @param data A data frame to check for labelled variables.
+#'
+#' @return A character vector of the names of the labelled variables in the input data frame.
+#'
+#' @examples
+#' library(haven)
+# Create dummy data frame
+#' df <- data.frame(
+#'   HHID = c(rep("hh01",5),rep("hh02",5)),
+#'   food_item = (rep(101:105,2)),
+#'   consYN = sample(1:2,10,replace = TRUE)
+#' ) 
+#' 
+#' # Add value labels
+#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+#' df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
+#' 
+#' # Print data frame
+#' df
+#' 
+#' # Check for labelled variables
+#' which_labelled(df)
+#'
+#'
+#' @export
+which_labelled <- function(data)
+{
+  labelled_variables <- c()
+  for (x in names(data))
+  {
+    if (haven::is.labelled(data[[x]]))
+    {
+      labelled_variables <- c(labelled_variables, x)
+    }
+  }
+  message("The following variables are labelled: Use `hcesR::split_dta()` to split the data into two separate columns.")
+  return(labelled_variables)
+}
