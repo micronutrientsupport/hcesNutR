@@ -76,3 +76,64 @@ rename_hces <- function(data,country_name,survey_name) {
 
     return(data)
 }
+
+#' Split a labelled variable into two new variables
+#'
+#' This function splits a labelled variable into two new variables: one containing
+#' the numeric values and one containing the character labels. The new variables
+#' are added to the input data frame and the original variable is dropped by default.
+#'
+#' @param data A data frame containing the input variable.
+#' @param split_var A character string specifying the name of labelled the input variable to split.
+#' @param val_to A character string specifying the name of the new variable to contain the numeric values.
+#' @param lab_to A character string specifying the name of the new variable to contain the character labels.
+#' @param drop_split_var A logical value indicating whether to drop the original variable (default is TRUE).
+#'
+#' @return A data frame with the new variables added and the original variable dropped (if specified).
+#'
+#' @examples
+#' library(haven)
+# Create dummy data frame
+#' df <- data.frame(
+#'   HHID = c(rep("hh01",5),rep("hh02",5)),
+#'   food_item = (rep(101:105,2)),
+#'   consYN = sample(1:2,10,replace = TRUE)
+#' ) 
+#' 
+#' # Add value labels
+#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+#' df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
+#' 
+#' # Print data frame
+#' df
+#' 
+#' # Split the food_item column into two new columns
+#' split_dta(df, "food_item", "food_item_id", "food_item_lab")
+#'
+split_dta <- function(data, split_var, val_to, lab_to, drop_split_var = TRUE) {
+  if (!is.data.frame(data)) {
+    stop("Input data is not a data frame.")
+  }
+  if (!is.character(split_var) || !is.character(val_to) || !is.character(lab_to)) {
+    stop("Input variable names must be character strings.")
+  }
+  if (!split_var %in% names(data)) {
+    stop("Split variable not found in data.")
+  }
+  if (haven::is.labelled(data[[split_var]])) {
+    data[[val_to]] <- as.numeric(data[[split_var]])
+    data[[lab_to]] <- as.character(forcats::as_factor(data[[split_var]]))
+    message("Variable ", split_var, " has been split into ", val_to, " and ", lab_to, ".")
+    if (drop_split_var) {
+      data <- data |> dplyr::select(-!!rlang::sym(split_var))
+      message("Variable ", split_var, " has been dropped.")
+    }
+    # if (split_var != lab_to) {
+    #   data <- data |> dplyr::relocate(val_to, .before = split_var)
+    #   data <- data |> dplyr::relocate(lab_to, .after = val_to)
+    # }
+  } else {
+    message("Variable ", split_var, " is not labelled.")
+  }
+  return(data)
+}
