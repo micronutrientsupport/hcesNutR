@@ -11,3 +11,9 @@
 #' @description A data frame containing food names and codes of surveys supported by this package.
 "standard_food_list" <- readr:::read_csv(here::here("data","standard_food_list.csv"))
 
+
+#' @docType data
+#' @name non_standard_food_list
+#' @title Non Standard Food Names and Codes
+#' @description A data frame containing non-standard food names and codes of surveys supported by this package.
+"non_standard_food_list" <- readr:::read_csv(here::here("data","non_standard_food_list.csv"))
