@@ -5,7 +5,7 @@
 \alias{standard_name_mappings_pairs}
 \title{Standard HCES Variable Name Mappings}
 \format{
-An object of class \code{data.frame} with 32 rows and 5 columns.
+An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 32 rows and 5 columns.
 }
 \usage{
 standard_name_mappings_pairs
