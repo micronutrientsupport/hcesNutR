@@ -234,5 +234,49 @@ remove_unconsumed <- function(data, consCol= "consYN", consVal = "YES") {
     data <- filtered_data
     return(data)
 }
-  return(data)
+
+# NOTE: This function is not currently used in the cleaning script. It is included here for future use.
+create_dta_labels <- function(data) {
+    #' Create labels for Stata data
+    #' @description This function creates labels for all <dbl+lbl> columns in data imported from Stata data.
+    #' @param data dataframe . The data file as a dataframe.
+    #' @return dataframe: The data file with labels for all <dbl+lbl> columns.
+    #' @note The function uses the haven package to create the labels and values columns.
+    #' @note The function will only create the labels and values columns if they do not already exist. It will not overwrite existing columns.
+
+    # Get the names of all the columns in the dataframe
+    data_names <- names(data)
+
+    # exclude columns with "label" in the name
+    data_names <- data_names[!grepl("label", data_names)]
+
+    # Loop through all the columns
+    for (x in data_names) {
+        # Check if the column is labelled
+        if (haven::is.labelled(data[[x]])) {
+            # Check if the column already has the labels and values columns
+            if ("label" %in% x | paste0(x, "_code") %in% data_names) {
+                # If it does, move to the next column
+                next
+            } else {
+                # Create the column with the values
+                data[[paste0(x, "_code")]] <- as.numeric(data[[x]])
+                # overwrite the column with the labels
+                data[[paste0(x,"_name")]] <- as.character(forcats::as_factor(data[[x]]))
+                # If it doesn't, create the column with the labels
+                # TODO: Decide if we want to overwrite the original column with the labels or create a new column with the labels
+                # data[[paste0(x, "_label")]] <- as.character(as_factor(data[[x]]))
+
+                # Move the labels and values columns to the right of the original column
+                # data <- data |>
+                #     relocate(paste0(x, "_id"), .after = x) |>
+                #     relocate(paste0(x, "_label"), .after = paste0(x, "_id"))
+                # TODO: Enable the option that works best between these two options
+                data <- data |> dplyr::relocate(paste0(x, "_name"), .after = x)
+                data <- data |> dplyr::relocate(paste0(x, "_code"), .after = x)
+                data  <- data |> dplyr::select(-x)
+            }
+        }
+    }
+    return(data)
 }
