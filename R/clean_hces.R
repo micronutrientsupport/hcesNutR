@@ -207,6 +207,8 @@ replace_values <- function(data, targetColumn, secondaryColumn, string2search) {
   if (!(targetColumn %in% names(data)) || !(secondaryColumn %in% names(data))) {
     stop("targetColumn and secondaryColumn must be valid column names in data")
   }
-  data[[targetColumn]] <- ifelse(grepl(string2search, data[[targetColumn]]), data[[secondaryColumn]], data[[targetColumn]])
+  data[[targetColumn]] <- ifelse(grepl(string2search, data[[targetColumn]], ignore.case=TRUE), ifelse(data[[secondaryColumn]]!= "",data[[secondaryColumn]],data[[targetColumn]]), data[[targetColumn]])
+  return(data)
+}
   return(data)
 }
