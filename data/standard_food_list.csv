@@ -1,0 +1,143 @@
+country,survey_name,standard_original_food_id,standard_original_food_name
+MWI,IHS5,101,Maize ufa mgaiwa (normal flour)
+MWI,IHS5,203,White sweet potato
+MWI,IHS5,207,"Plantain, cooking banana"
+MWI,IHS5,311,Groundnut (Shelled)
+MWI,IHS5,401,Onion
+MWI,IHS5,405,Chinese cabbage
+MWI,IHS5,406,Other cultivated green leafy vegetables
+MWI,IHS5,408,Tomato
+MWI,IHS5,411,Okra / Therere
+MWI,IHS5,506,Pork
+MWI,IHS5,522,Chicken - Pieces
+MWI,IHS5,602,Banana
+MWI,IHS5,801,Sugar
+MWI,IHS5,803,Cooking oil
+MWI,IHS5,810,Salt
+MWI,IHS5,821,Chips (vendor)
+MWI,IHS5,835,Popcorn
+MWI,IHS5,901,Tea
+MWI,IHS5,912,Thobwa
+MWI,IHS5,102,Maize ufa refined (fine flour)
+MWI,IHS5,301,"Bean, white"
+MWI,IHS5,303,Pigeon pea (nandolo)
+MWI,IHS5,305,Groundnut flour
+MWI,IHS5,306,Soyabean flour
+MWI,IHS5,308,Cowpea (khobwe)
+MWI,IHS5,402,Cabbage
+MWI,IHS5,403,Tanaposi/Rape
+MWI,IHS5,407,Gathered wild green leaves
+MWI,IHS5,812,"Yeast, baking powder, bicarbonate of soda"
+MWI,IHS5,5023,Sun Dried fish (Small Variety)
+MWI,IHS5,104,Maize grain (not as ufa)
+MWI,IHS5,106,Rice
+MWI,IHS5,302,"Bean, brown"
+MWI,IHS5,404,Nkhwani
+MWI,IHS5,501,Eggs
+MWI,IHS5,107,Finger millet (mawere)
+MWI,IHS5,201,Cassava tubers
+MWI,IHS5,202,Cassava flour
+MWI,IHS5,205,Irish Potato
+MWI,IHS5,504,Beef
+MWI,IHS5,505,Goat
+MWI,IHS5,605,Papaya
+MWI,IHS5,701,Fresh milk
+MWI,IHS5,705,Chambiko - soured milk
+MWI,IHS5,816,"Sweets, candy, chocolates"
+MWI,IHS5,827,"Mandazi, doughnut (vendor)"
+MWI,IHS5,838,Cassava - roasted (vendor)
+MWI,IHS5,905,Fruit juice
+MWI,IHS5,915,Locally brewed liquor (kachasu )
+MWI,IHS5,5123,Smoked fish (Small Variety)
+MWI,IHS5,414,Other (specify)
+MWI,IHS5,508,Chicken - Whole
+MWI,IHS5,5022,Sun Dried fish (Medium Variety)
+MWI,IHS5,914,Wine or commercial liquor
+MWI,IHS5,204,Orange sweet potato
+MWI,IHS5,913,Traditional beer (masese)
+MWI,IHS5,110,Wheat flour
+MWI,IHS5,112,"Buns, scones"
+MWI,IHS5,111,Bread
+MWI,IHS5,606,Guava
+MWI,IHS5,904,Squash (Sobo drink concentrate)
+MWI,IHS5,5122,Smoked fish (Medium Variety)
+MWI,IHS5,603,"Citrus – naartje, orange, etc"
+MWI,IHS5,802,Sugar cane
+MWI,IHS5,105,Green Maize
+MWI,IHS5,410,Pumpkin
+MWI,IHS5,515,Other (specify)
+MWI,IHS5,607,Avocado
+MWI,IHS5,902,Coffee
+MWI,IHS5,312,Groundnut Dried (UnShelled)
+MWI,IHS5,5033,Fresh fish (Small Variety)
+MWI,IHS5,5031,Fresh fish (Large Variety)
+MWI,IHS5,313,Groundnut Fresh (UnShelled)
+MWI,IHS5,834,Roasted groundnuts
+MWI,IHS5,413,Mushroom
+MWI,IHS5,907,"Soft drinks (Coca-cola, Fanta, Sprite, etc)"
+MWI,IHS5,702,Powdered milk
+MWI,IHS5,703,Margarine - Blue band
+MWI,IHS5,813,Tomato sauce (bottle)
+MWI,IHS5,5032,Fresh fish (Medium Variety)
+MWI,IHS5,307,Ground bean (nzama)
+MWI,IHS5,833,Boiled groundnuts
+MWI,IHS5,5121,Smoked fish (Large Variety)
+MWI,IHS5,113,Biscuits
+MWI,IHS5,836,Zikondamoyo / Nkate
+MWI,IHS5,825,Meat (vendor)
+MWI,IHS5,114,"Spaghetti, macaroni, pasta"
+MWI,IHS5,609,Apple
+MWI,IHS5,824,Chicken (vendor)
+MWI,IHS5,828,Samosa (vendor)
+MWI,IHS5,910,Maheu
+MWI,IHS5,511,"Termites, other insects (eg Ngumbi, caterpillar)"
+MWI,IHS5,601,Mango
+MWI,IHS5,820,Maize - boiled or roasted (vendor)
+MWI,IHS5,117,Other (specify)
+MWI,IHS5,5021,Sun Dried fish (Large Variety)
+MWI,IHS5,208,Cocoyam (masimbi)
+MWI,IHS5,509,"Other poultry - guinea fowl, doves, etc"
+MWI,IHS5,830,Other (specify)
+MWI,IHS5,310,Other (specify)
+MWI,IHS5,911,"Bottled / canned beer (Carlsberg, etc)"
+MWI,IHS5,822,Cassava - boiled (vendor)
+MWI,IHS5,817,Honey
+MWI,IHS5,115,Breakfast cereals
+MWI,IHS5,909,Bottled water
+MWI,IHS5,811,Spices
+MWI,IHS5,608,"Wild fruit (masau, malambe, etc)"
+MWI,IHS5,109,Pearl millet (mchewere)
+MWI,IHS5,704,Butter
+MWI,IHS5,829,Meal eaten at restaurant
+MWI,IHS5,116,Infant feeding cereals
+MWI,IHS5,708,Infant feeding formula (for bottle)
+MWI,IHS5,814,"Hot sauce (Nali, etc)"
+MWI,IHS5,103,Maize ufa processed madeya (bran flour - processed)
+MWI,IHS5,412,Tinned vegetables (specify)
+MWI,IHS5,906,Freezes (flavoured ice)
+MWI,IHS5,610,Other fruits (specify)
+MWI,IHS5,837,KALONGONDA (Mucuna)
+MWI,IHS5,908,Chibuku(commercial traditional-style beer)
+MWI,IHS5,916,Other (specify)
+MWI,IHS5,823,Eggs - boiled (vendor)
+MWI,IHS5,706,Yoghurt
+MWI,IHS5,108,Sorghum (mapira)
+MWI,IHS5,604,Pineapple
+MWI,IHS5,707,Cheese
+MWI,IHS5,903,"Cocoa, milo"
+MWI,IHS5,409,Cucumber
+MWI,IHS5,815,"Jam, jelly"
+MWI,IHS5,507,Mutton
+MWI,IHS5,510,"Small animal – rabbit, mice, etc"
+MWI,IHS5,309,Macademia nuts
+MWI,IHS5,206,Potato crisps
+MWI,IHS5,209,Other (specify)
+MWI,IHS5,832,Roasted sweet potatoes
+MWI,IHS5,826,Fish (vendor)
+MWI,IHS5,709,Other (specify)
+MWI,IHS5,831,Boiled sweet potatoes
+MWI,IHS5,512,Tinned meat or fish
+MWI,IHS5,118,Maize ufa raw madeya (bran flour - unprocessed)
+MWI,IHS5,818,Other (specify)
+MWI,IHS5,804,Other (specify)
+MWI,IHS5,514,Fish Soup/Sauce
