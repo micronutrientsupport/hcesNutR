@@ -210,5 +210,29 @@ replace_values <- function(data, targetColumn, secondaryColumn, string2search) {
   data[[targetColumn]] <- ifelse(grepl(string2search, data[[targetColumn]], ignore.case=TRUE), ifelse(data[[secondaryColumn]]!= "",data[[secondaryColumn]],data[[targetColumn]]), data[[targetColumn]])
   return(data)
 }
+
+
+remove_unconsumed <- function(data, consCol= "consYN", consVal = "YES") {
+    #' Remove unconsumed food item records
+    #' @description This function removes the unconsumed food item records from the data file.
+    #' @param data dataframe . The data file as a dataframe.
+    #' @param consCol character . The name of the column that indicates whether the food item was consumed or not.
+    #' @note the read_in_data() function should be used first to import and format the required data.
+    
+    message("Removing unconsumed food item records...\n")
+    # Remove consYN == "NO" and consYN == "NA"
+    filtered_data <- data |> dplyr::filter(!!rlang::sym(consCol) == consVal)
+    # Count the number of removed records and print to console
+    removed_records <- nrow(data) - nrow(filtered_data)
+    cat("Unconsumed food item records removed succesfully\n")
+    cat(paste0("Number of records removed : ", removed_records, "\n"))
+    # Count the number of remaining records and print to screen
+    remaining_records <- nrow(filtered_data)
+    cat(paste0("Number of records remaining : ", remaining_records, "\n"))
+    # Return the data, removed_records and remaining_records
+    cat("\n...\n...\n")
+    data <- filtered_data
+    return(data)
+}
   return(data)
 }
