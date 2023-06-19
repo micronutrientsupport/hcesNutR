@@ -2,8 +2,29 @@ Package: hcesR
 Type: Package
 Title: Households Consumption Expenditure Survey (HCES) Data Analysis
 Version: 0.1.0
-Author: Liberty Mlambo
-Maintainer: The package maintainer <libertydzvotimlambo@gmail.com>
+Authors@R:   c(person(given = "Liberty",
+                       family = "Mlambo",
+                       role = c("aut", "cre"),
+                       email = "liberty.mlambo@nottingham.ac.uk",
+                       comment = c(ORCID = "0000-0003-3740-1345")),
+                  person(given = "Gareth",
+                       family = "Osman",
+                       role = c("aut","ctb"),
+                       comment = c(ORCID = "-")),
+                  person(given = "Kevin",
+                       family = "Tang",
+                       role = c("aut","ctb"),
+                       comment = c(ORCID = "-")),
+                person(given = "Lucia",
+                       family = "Segovia de la Revilla",
+                       role = c("aut","ctb"),
+                       comment = c(ORCID = "-")),    
+                  person(given = "Louise E.",
+                       family = "Ander",
+                       role = c("aut","ctb"),
+                       comment = c(ORCID = "-")),
+                  person("Micronutrient Action Policy Support Project", role = c("cph", "fnd")))
+Maintainer: The package maintainer <liberty.mlambo@nottingham.ac.uk>
 Description: Functions for analysing HCES data. 
     The package contains functions for data cleaning, data manipulation, data visualisation and data analysis. The package also contains a dataset of the standard units and names of food items.
 License: MIT + file LICENSE
@@ -16,6 +37,7 @@ Imports:
     base,
     dplyr,
     forcats,
+    fuzzyjoin,
     haven,
     here,
     rlang
