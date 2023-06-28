@@ -8,7 +8,7 @@ get_hces_mappings <- function(country_name, survey_name) {
     #' @export
 
     # Extract column mappings from the internal database
-    column_mapping <- hcesR::standard_name_mappings_pairs |>
+    column_mapping <- hcesNutR::standard_name_mappings_pairs |>
         dplyr::filter(country == country_name & survey == survey_name) |>
         dplyr::filter(!is.na(hces_standard_name))
 
@@ -58,7 +58,7 @@ rename_hces <- function(data,country_name,survey_name) {
     #' @export
 
     # Extraxt column mappings from the internal database
-    column_mapping <- hcesR::get_hces_mappings(country_name,survey_name) |>
+    column_mapping <- hcesNutR::get_hces_mappings(country_name,survey_name) |>
         # Remove rows with no standard name
         dplyr::filter(hces_standard_name != "") |>
         # Remove rows with no survey variable name in the original data
@@ -72,7 +72,7 @@ rename_hces <- function(data,country_name,survey_name) {
     }
 
     # Check for columns that have been renamed
-    data <- hcesR::check_hces_names(data, original_data_df)
+    data <- hcesNutR::check_hces_names(data, original_data_df)
 
     return(data)
 }
@@ -178,7 +178,7 @@ which_labelled <- function(data)
       labelled_variables <- c(labelled_variables, x)
     }
   }
-  message("The following variables are labelled: Use `hcesR::split_dta()` to split the data into two separate columns.")
+  message("The following variables are labelled: Use `hcesNutR::split_dta()` to split the data into two separate columns.")
   return(labelled_variables)
 }
 
