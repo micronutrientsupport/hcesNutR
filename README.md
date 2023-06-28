@@ -21,7 +21,7 @@ You can install the development version of hcesR2 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("dzvoti/hcesR")
+devtools::install_github("dzvoti/hcesNutR")
 ```
 
 ## Example
@@ -29,5 +29,5 @@ devtools::install_github("dzvoti/hcesR")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(hcesR)
+library(hcesNutR)
 ```
