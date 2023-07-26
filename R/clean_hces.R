@@ -280,3 +280,73 @@ create_dta_labels <- function(data) {
     }
     return(data)
 }
+
+# NOTE: All function above where developed before the ANH2023 conference. The functions below were developed after the conference.
+
+#' Concatenate values in multiple columns into a single column
+#'
+#' This function concatenates the values in multiple columns of a data frame into a single column. It filters out blank, NA, and excluded values before concatenating the remaining values with a space in between. 
+#' It also removes parenthesis and extra spaces from the concatenated string, unless specified otherwise.
+#'
+#' @param data A data frame containing the columns to concatenate
+#' @param columns A character vector of column names to concatenate
+#' @param exclude_value A character vector of strings to exclude from the concatenated values
+#' @param new_column_name A character string of the name of the new column to create. This column can be one of the existing columns used to concatenate.
+#' @param keep_parenthesis A boolean indicating whether to keep parenthesis in the concatenated string (default is TRUE)
+#'
+#' @return A modified data frame with a new column containing the concatenated values
+#'
+#' @examples
+#' # Concatenate consumption unit columns in IHS5 data
+#' hces_data <- data.frame(
+#' food_item_code = c(101, 102, 103, 104),
+#' cons_unit_name = c("OTHER (SPECIFY)", "BASIN", "PIECE", "OTHER (SPECIFY)"),
+#' cons_unit_oth = c("HEAP", NA, "Soy", "TUBE"),
+#' cons_unit_size_name = c("SMALL", "HEAPED", NA, "LARGE")
+#' )
+#'
+#' # Concatenate food item columns in HCES data
+#' hces_data <- concatenate_columns(data = hces_data, columns = c("cons_unit_name", "cons_unit_oth","cons_unit_size_name"), exclude_value = c("SPECIFY", "OTHER"), new_column_name="survey_food_item", keep_parenthesis = FALSE)
+#'
+#' @import stringr
+#' @importFrom dplyr select mutate
+#' @importFrom haven read_dta
+#' @importFrom readr read_csv
+#' @importFrom here here
+#' @export
+concatenate_columns <- function(data, columns, exclude_value, new_column_name, keep_parenthesis = TRUE) {
+    # Check if all input columns exist
+    if (!all(columns %in% names(data))) {
+        stop("One or more input columns do not exist in the data frame.")
+    }
+    # Define a function to concatenate the values in a row
+    concatenate_row <- function(row) {
+        # Filter out blank, NA, and excluded values
+        filtered_values <- row[!is.na(row) & row != "" & !grepl(paste(exclude_value, collapse = "|"), row, ignore.case = TRUE)]
+        # Concatenate the filtered values with a space in between
+        concatenated_string <- paste(filtered_values, collapse = " ")
+        # Add spaces before "("
+        concatenated_string <- gsub("\\(", " (", concatenated_string)
+        # Add a . after NO if it is a whole word (i.e. not part of another word) and not already follwed by a . Ignore case.
+        concatenated_string <- gsub("\\bNO\\b", "NO.", concatenated_string, ignore.case = TRUE)
+        # Remove parenthesis and extra spaces, if specified
+        if (!keep_parenthesis) {
+          # Remove all parenthesis
+          concatenated_string <- gsub("\\(|\\)", " ", concatenated_string)
+        }
+        # Remove extra spaces
+        concatenated_string <- gsub("\\s+", " ", concatenated_string)
+        # Return the concatenated string
+        return(concatenated_string)
+    }
+    # Apply the concatenate_row function to each row of the specified columns
+    concatenated_values <- apply(data[, columns], 1, concatenate_row)
+    # Drop the specified columns from the data frame
+    data <- data |> dplyr::select(-columns)
+    # Assign the concatenated values to a new column in the data frame
+    data[[new_column_name]] <- stringr::str_to_upper(concatenated_values)
+    # Return the modified data frame
+    return(data)
+}
+
+
