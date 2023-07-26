@@ -17,3 +17,9 @@
 #' @title Non Standard Food Names and Codes
 #' @description A data frame containing non-standard food names and codes of surveys supported by this package.
 "non_standard_food_list" <- suppressMessages(readr:::read_csv(here::here("data","non_standard_food_list.csv")))
+
+#' @docType data
+#' @name combined_food_list
+#' @title Food Names and Codes Supported by this Package
+#' @description A data frame containing both standard and non-standard food names and codes of surveys supported by this package.
+"combined_food_list" <- suppressMessages(readr:::read_csv(here::here("data","combined_food_list_v26072023.csv")))
