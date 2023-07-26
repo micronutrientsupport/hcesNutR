@@ -1,0 +1,293 @@
+country,survey_name,survey_food_item_name,standard_original_food_id,standard_original_food_name,source
+MWI,IHS5,MAIZE UFA MGAIWA (NORMAL FLOUR),101,MAIZE UFA MGAIWA (NORMAL FLOUR),mwi-ihs5-standard_food_list
+MWI,IHS5,MAIZE UFA REFINED (FINE FLOUR),102,MAIZE UFA REFINED (FINE FLOUR),mwi-ihs5-standard_food_list
+MWI,IHS5,MAIZE UFA PROCESSED MADEYA (BRAN FLOUR - PROCESSED),103,MAIZE UFA PROCESSED MADEYA (BRAN FLOUR - PROCESSED),mwi-ihs5-standard_food_list
+MWI,IHS5,MAIZE GRAIN (NOT AS UFA),104,MAIZE GRAIN (NOT AS UFA),mwi-ihs5-standard_food_list
+MWI,IHS5,GREEN MAIZE,105,GREEN MAIZE,mwi-ihs5-standard_food_list
+MWI,IHS5,RICE,106,RICE,mwi-ihs5-standard_food_list
+MWI,IHS5,FINGER MILLET (MAWERE),107,FINGER MILLET (MAWERE),mwi-ihs5-standard_food_list
+MWI,IHS5,DORGHUM FLOUR,108,SORGHUM (MAPIRA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAPIRA,108,SORGHUM (MAPIRA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,MISALE,108,SORGHUM (MAPIRA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,SOHGUM FLOUR (UFA),108,SORGHUM (MAPIRA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,SORGHUM (MAPIRA),108,SORGHUM (MAPIRA),mwi-ihs5-standard_food_list
+MWI,IHS5,SORGHUM FLOUR,108,SORGHUM (MAPIRA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,PEARL MILLET (MCHEWERE),109,PEARL MILLET (MCHEWERE),mwi-ihs5-standard_food_list
+MWI,IHS5,WHEAT FLOUR,110,WHEAT FLOUR,mwi-ihs5-standard_food_list
+MWI,IHS5,BREAD,111,BREAD,mwi-ihs5-standard_food_list
+MWI,IHS5,"BUNS, SCONES",112,"BUNS, SCONES",mwi-ihs5-standard_food_list
+MWI,IHS5,BISCUITS,113,BISCUITS,mwi-ihs5-standard_food_list
+MWI,IHS5,"SPAGHETTI, MACARONI, PASTA",114,"SPAGHETTI, MACARONI, PASTA",mwi-ihs5-standard_food_list
+MWI,IHS5,BREAKFAST CEREALS,115,BREAKFAST CEREALS,mwi-ihs5-standard_food_list
+MWI,IHS5,INFANT FEEDING CEREALS,116,INFANT FEEDING CEREALS,mwi-ihs5-standard_food_list
+MWI,IHS5,MAIZE UFA RAW MADEYA (BRAN FLOUR - UNPROCESSED),118,MAIZE UFA RAW MADEYA (BRAN FLOUR - UNPROCESSED),mwi-ihs5-standard_food_list
+MWI,IHS5,CASSAVA TUBERS,201,CASSAVA TUBERS,mwi-ihs5-standard_food_list
+MWI,IHS5,CASSAVA FLOUR,202,CASSAVA FLOUR,mwi-ihs5-standard_food_list
+MWI,IHS5,WHITE SWEET POTATO,203,WHITE SWEET POTATO,mwi-ihs5-standard_food_list
+MWI,IHS5,ORANGE SWEET POTATO,204,ORANGE SWEET POTATO,mwi-ihs5-standard_food_list
+MWI,IHS5,IRISH POTATO,205,IRISH POTATO,mwi-ihs5-standard_food_list
+MWI,IHS5,IRISH POTATOES,205,IRISH POTATO,mwi-ihs5-non_standard_food_list
+MWI,IHS5,POTATO CRISPS,206,POTATO CRISPS,mwi-ihs5-standard_food_list
+MWI,IHS5,"PLANTAIN, COOKING BANANA",207,"PLANTAIN, COOKING BANANA",mwi-ihs5-standard_food_list
+MWI,IHS5,COCOYAM (MASIMBI),208,COCOYAM (MASIMBI),mwi-ihs5-standard_food_list
+MWI,IHS5,COCOYAMS,208,COCOYAM (MASIMBI),mwi-ihs5-non_standard_food_list
+MWI,IHS5,YAMS,208,COCOYAM (MASIMBI),mwi-ihs5-non_standard_food_list
+MWI,IHS5,"BEAN, WHITE",301,"BEAN, WHITE",mwi-ihs5-standard_food_list
+MWI,IHS5,BUTTER BEANS,301,"BEAN, WHITE",mwi-ihs5-non_standard_food_list
+MWI,IHS5,SOYA,301,"BEAN, WHITE",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"BEAN, BROWN",302,"BEAN, BROWN",mwi-ihs5-standard_food_list
+MWI,IHS5,GROUND AND COOKED BEANS,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,KHUNGUZU,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,MIXED BEANS,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,NKHUNGUZU,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,RED BEANS,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,YELLOW BEANS,302,"BEAN, BROWN",mwi-ihs5-non_standard_food_list
+MWI,IHS5,PEAGION PEAS,303,PIGEON PEA (NANDOLO),mwi-ihs5-non_standard_food_list
+MWI,IHS5,PIGEON PEA (NANDOLO),303,PIGEON PEA (NANDOLO),mwi-ihs5-standard_food_list
+MWI,IHS5,GROUNDNUT FLOUR,305,GROUNDNUT FLOUR,mwi-ihs5-standard_food_list
+MWI,IHS5,SOYABEAN FLOUR,306,SOYABEAN FLOUR,mwi-ihs5-standard_food_list
+MWI,IHS5,GROUND BEAN (NZAMA),307,GROUND BEAN (NZAMA),mwi-ihs5-standard_food_list
+MWI,IHS5,COW PEAS,308,COWPEA (KHOBWE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,COWPEA (KHOBWE),308,COWPEA (KHOBWE),mwi-ihs5-standard_food_list
+MWI,IHS5,KHOBWE,308,COWPEA (KHOBWE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,MACADEMIA NUTS,309,MACADEMIA NUTS,mwi-ihs5-standard_food_list
+MWI,IHS5,GROUNDNUT (SHELLED),311,GROUNDNUT (SHELLED),mwi-ihs5-standard_food_list
+MWI,IHS5,GROUNDNUT DRIED (UNSHELLED),312,GROUNDNUT DRIED (UNSHELLED),mwi-ihs5-standard_food_list
+MWI,IHS5,GROUNDNUT FRESH (UNSHELLED),313,GROUNDNUT FRESH (UNSHELLED),mwi-ihs5-standard_food_list
+MWI,IHS5,ONION,401,ONION,mwi-ihs5-standard_food_list
+MWI,IHS5,CABBAGE,402,CABBAGE,mwi-ihs5-standard_food_list
+MWI,IHS5,EGG PLANT,402,CABBAGE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,EGGS PLANTS,402,CABBAGE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MABILINGANO,402,CABBAGE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MPILU,403,TANAPOSI/RAPE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,RAPE,403,TANAPOSI/RAPE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,TANAPOSI/RAPE,403,TANAPOSI/RAPE,mwi-ihs5-standard_food_list
+MWI,IHS5,BONONGWE,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CASSAVA LEAVES,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHISOSO,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHITAMBE,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KHOLOWA,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KHWANYA,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KWANYA,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,LUNI,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MTAMBE,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NKHWANI,404,NKHWANI,mwi-ihs5-standard_food_list
+MWI,IHS5,NTAPASHA,404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NTAPASHA (CASSAVA LEAVES),404,NKHWANI,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHINESE CABBAGE,405,CHINESE CABBAGE,mwi-ihs5-standard_food_list
+MWI,IHS5,OTHER CULTIVATED GREEN LEAFY VEGETABLES,406,OTHER CULTIVATED GREEN LEAFY VEGETABLES,mwi-ihs5-standard_food_list
+MWI,IHS5,GATHERED WILD GREEN LEAVES,407,GATHERED WILD GREEN LEAVES,mwi-ihs5-standard_food_list
+MWI,IHS5,TOMATO,408,TOMATO,mwi-ihs5-standard_food_list
+MWI,IHS5,CUCUMBER,409,CUCUMBER,mwi-ihs5-standard_food_list
+MWI,IHS5,MKHAKA,409,CUCUMBER,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MPHONDA,410,PUMPKIN,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PUMPKIN,410,PUMPKIN,mwi-ihs5-standard_food_list
+MWI,IHS5,PUMPKINS,410,PUMPKIN,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHAMWAMBA,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,GATHERED THERERE,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KATATA,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,OKRA / THERERE,411,OKRA / THERERE,mwi-ihs5-standard_food_list
+MWI,IHS5,THERERE,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,THERERE WACHINYOLOMONYA,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,THERERE WAMASAMBA,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,WILD THERERE,411,OKRA / THERERE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,TINNED VEGETABLES (SPECIFY),412,TINNED VEGETABLES (SPECIFY),mwi-ihs5-standard_food_list
+MWI,IHS5,MUSHROOM,413,MUSHROOM,mwi-ihs5-standard_food_list
+MWI,IHS5,EGGS,501,EGGS,mwi-ihs5-standard_food_list
+MWI,IHS5,BEEF,504,BEEF,mwi-ihs5-standard_food_list
+MWI,IHS5,ANTELOPE,505,GOAT,mwi-ihs5-non_standard_food_list
+MWI,IHS5,GOAT,505,GOAT,mwi-ihs5-standard_food_list
+MWI,IHS5,PORK,506,PORK,mwi-ihs5-standard_food_list
+MWI,IHS5,MUTTON,507,MUTTON,mwi-ihs5-standard_food_list
+MWI,IHS5,CHICKEN - WHOLE,508,CHICKEN - WHOLE,mwi-ihs5-standard_food_list
+MWI,IHS5,BIRD,509,"OTHER POULTRY - GUINEA FOWL, DOVES, ETC",mwi-ihs5-non_standard_food_list
+MWI,IHS5,DUCK,509,"OTHER POULTRY - GUINEA FOWL, DOVES, ETC",mwi-ihs5-non_standard_food_list
+MWI,IHS5,NKHWALI,509,"OTHER POULTRY - GUINEA FOWL, DOVES, ETC",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"OTHER POULTRY - GUINEA FOWL, DOVES, ETC",509,"OTHER POULTRY - GUINEA FOWL, DOVES, ETC",mwi-ihs5-standard_food_list
+MWI,IHS5,"SMALL ANIMAL – RABBIT, MICE, ETC",510,"SMALL ANIMAL – RABBIT, MICE, ETC",mwi-ihs5-standard_food_list
+MWI,IHS5,GRASSHOPPER,511,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,LOCUST,511,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",511,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",mwi-ihs5-standard_food_list
+MWI,IHS5,TSETSENYA (LOOKS LIKE IMSECTS,511,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIWALA,511,"TERMITES, OTHER INSECTS (EG NGUMBI, CATERPILLAR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,TINNED MEAT OR FISH,512,TINNED MEAT OR FISH,mwi-ihs5-standard_food_list
+MWI,IHS5,FISH SOUP/SAUCE,514,FISH SOUP/SAUCE,mwi-ihs5-standard_food_list
+MWI,IHS5,CHICKEN - PIECES,522,CHICKEN - PIECES,mwi-ihs5-standard_food_list
+MWI,IHS5,MANGO,601,MANGO,mwi-ihs5-standard_food_list
+MWI,IHS5,PEACHES,601,MANGO,mwi-ihs5-non_standard_food_list
+MWI,IHS5,BANANA,602,BANANA,mwi-ihs5-standard_food_list
+MWI,IHS5,"CITRUS – NAARTJE, ORANGE, ETC",603,"CITRUS – NAARTJE, ORANGE, ETC",mwi-ihs5-standard_food_list
+MWI,IHS5,LEMON,603,"CITRUS – NAARTJE, ORANGE, ETC",mwi-ihs5-non_standard_food_list
+MWI,IHS5,NANAZI,604,PINEAPPLE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PINEAPPLE,604,PINEAPPLE,mwi-ihs5-standard_food_list
+MWI,IHS5,PAPAYA,605,PAPAYA,mwi-ihs5-standard_food_list
+MWI,IHS5,GUAVA,606,GUAVA,mwi-ihs5-standard_food_list
+MWI,IHS5,GUAVAS,606,GUAVA,mwi-ihs5-non_standard_food_list
+MWI,IHS5,AVOCADO,607,AVOCADO,mwi-ihs5-standard_food_list
+MWI,IHS5,WILD FRUIT,608,"WILD FRUIT (MASAU, MALAMBE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"WILD FRUIT (MASAU, MALAMBE, ETC)",608,"WILD FRUIT (MASAU, MALAMBE, ETC)",mwi-ihs5-standard_food_list
+MWI,IHS5,WILD LOQUAT,608,"WILD FRUIT (MASAU, MALAMBE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,WILD PASSION FRUIT,608,"WILD FRUIT (MASAU, MALAMBE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,APPLE,609,APPLE,mwi-ihs5-standard_food_list
+MWI,IHS5,CUSTARD APPLE,609,APPLE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAXICAN APPLE,609,APPLE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MEAN APPLE,609,APPLE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MEXICAN APPLE,609,APPLE,mwi-ihs5-non_standard_food_list
+MWI,IHS5,OTHER FRUITS (SPECIFY),610,OTHER FRUITS (SPECIFY),mwi-ihs5-standard_food_list
+MWI,IHS5,FIRST CHOICE MILK,701,FRESH MILK,mwi-ihs5-non_standard_food_list
+MWI,IHS5,FRESH MILK,701,FRESH MILK,mwi-ihs5-standard_food_list
+MWI,IHS5,POWDERED MILK,702,POWDERED MILK,mwi-ihs5-standard_food_list
+MWI,IHS5,MARGARINE - BLUE BAND,703,MARGARINE - BLUE BAND,mwi-ihs5-standard_food_list
+MWI,IHS5,BUTTER,704,BUTTER,mwi-ihs5-standard_food_list
+MWI,IHS5,CHAMBIKO - SOURED MILK,705,CHAMBIKO - SOURED MILK,mwi-ihs5-standard_food_list
+MWI,IHS5,YOGHURT,706,YOGHURT,mwi-ihs5-standard_food_list
+MWI,IHS5,CHEESE,707,CHEESE,mwi-ihs5-standard_food_list
+MWI,IHS5,INFANT FEEDING FORMULA (FOR BOTTLE),708,INFANT FEEDING FORMULA (FOR BOTTLE),mwi-ihs5-standard_food_list
+MWI,IHS5,SUGAR,801,SUGAR,mwi-ihs5-standard_food_list
+MWI,IHS5,SUGAR CANE,802,SUGAR CANE,mwi-ihs5-standard_food_list
+MWI,IHS5,COOKING OIL,803,COOKING OIL,mwi-ihs5-standard_food_list
+MWI,IHS5,SALT,810,SALT,mwi-ihs5-standard_food_list
+MWI,IHS5,PEPPER,811,SPICES,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ROYCO,811,SPICES,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SPICES,811,SPICES,mwi-ihs5-standard_food_list
+MWI,IHS5,SODA,812,"YEAST, BAKING POWDER, BICARBONATE OF SODA",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"YEAST, BAKING POWDER, BICARBONATE OF SODA",812,"YEAST, BAKING POWDER, BICARBONATE OF SODA",mwi-ihs5-standard_food_list
+MWI,IHS5,TOMATO SAUCE (BOTTLE),813,TOMATO SAUCE (BOTTLE),mwi-ihs5-standard_food_list
+MWI,IHS5,"HOT SAUCE (NALI, ETC)",814,"HOT SAUCE (NALI, ETC)",mwi-ihs5-standard_food_list
+MWI,IHS5,"JAM, JELLY",815,"JAM, JELLY",mwi-ihs5-standard_food_list
+MWI,IHS5,"SWEETS, CANDY, CHOCOLATES",816,"SWEETS, CANDY, CHOCOLATES",mwi-ihs5-standard_food_list
+MWI,IHS5,HONEY,817,HONEY,mwi-ihs5-standard_food_list
+MWI,IHS5,MAIZE - BOILED OR ROASTED (VENDOR),820,MAIZE - BOILED OR ROASTED (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,CHIGEGE,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHIPS (VENDOR),821,CHIPS (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,IRISH POTATOES AND FLOUR,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIBHWENTE,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIBWEMPWE,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIBWENTE,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIGEDE,821,CHIPS (VENDOR),mwi-ihs5-non_standard_food_list
+MWI,IHS5,CASSAVA - BOILED (VENDOR),822,CASSAVA - BOILED (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,EGGS - BOILED (VENDOR),823,EGGS - BOILED (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,CHICKEN (VENDOR),824,CHICKEN (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,MEAT (VENDOR),825,MEAT (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,FISH (VENDOR),826,FISH (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,FRIED MIXTURE OF MAIZE FLOUR/BANANA AND SODA,827,"MANDAZI, DOUGHNUT (VENDOR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"MANDAZI, DOUGHNUT (VENDOR)",827,"MANDAZI, DOUGHNUT (VENDOR)",mwi-ihs5-standard_food_list
+MWI,IHS5,MIXTURE OF MAIZE FLOUR/BANANA/SUGAR,827,"MANDAZI, DOUGHNUT (VENDOR)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,SAMOSA (VENDOR),828,SAMOSA (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,MEAL EATEN AT RESTAURANT,829,MEAL EATEN AT RESTAURANT,mwi-ihs5-standard_food_list
+MWI,IHS5,BOILED SWEET POTATOES,831,BOILED SWEET POTATOES,mwi-ihs5-standard_food_list
+MWI,IHS5,COOKED SWEET POTATOES (VENDORS),831,BOILED SWEET POTATOES,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ROASTED SWEET POTATO,832,ROASTED SWEET POTATOES,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ROASTED SWEET POTATOES,832,ROASTED SWEET POTATOES,mwi-ihs5-standard_food_list
+MWI,IHS5,BOILED GROUNDNUTS,833,BOILED GROUNDNUTS,mwi-ihs5-standard_food_list
+MWI,IHS5,ROASTED GROUNDNUTS,834,ROASTED GROUNDNUTS,mwi-ihs5-standard_food_list
+MWI,IHS5,POPCORN,835,POPCORN,mwi-ihs5-standard_food_list
+MWI,IHS5,ZIKONDAMOYO / NKATE,836,ZIKONDAMOYO / NKATE,mwi-ihs5-standard_food_list
+MWI,IHS5,KALONGONDA (MUCUNA),837,KALONGONDA (MUCUNA),mwi-ihs5-standard_food_list
+MWI,IHS5,MUCUNA,837,KALONGONDA (MUCUNA),mwi-ihs5-non_standard_food_list
+MWI,IHS5,CASSAVA - ROASTED (VENDOR),838,CASSAVA - ROASTED (VENDOR),mwi-ihs5-standard_food_list
+MWI,IHS5,TEA,901,TEA,mwi-ihs5-standard_food_list
+MWI,IHS5,COFFEE,902,COFFEE,mwi-ihs5-standard_food_list
+MWI,IHS5,"COCOA, MILO",903,"COCOA, MILO",mwi-ihs5-standard_food_list
+MWI,IHS5,SQUASH (SOBO DRINK CONCENTRATE),904,SQUASH (SOBO DRINK CONCENTRATE),mwi-ihs5-standard_food_list
+MWI,IHS5,FRUIT JUICE,905,FRUIT JUICE,mwi-ihs5-standard_food_list
+MWI,IHS5,BAKES,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,BAKES JUICE,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,FREEZES (FLAVOURED ICE),906,FREEZES (FLAVOURED ICE),mwi-ihs5-standard_food_list
+MWI,IHS5,JOLKY JUS,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,JOLLY JAS JUICE,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,POWDERED JUICE,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,WAKA JUICE,906,FREEZES (FLAVOURED ICE),mwi-ihs5-non_standard_food_list
+MWI,IHS5,DRAGON FROZY,907,"SOFT DRINKS (COCA-COLA, FANTA, SPRITE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,FROZY,907,"SOFT DRINKS (COCA-COLA, FANTA, SPRITE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,"SOFT DRINKS (COCA-COLA, FANTA, SPRITE, ETC)",907,"SOFT DRINKS (COCA-COLA, FANTA, SPRITE, ETC)",mwi-ihs5-standard_food_list
+MWI,IHS5,THUMPS UP,907,"SOFT DRINKS (COCA-COLA, FANTA, SPRITE, ETC)",mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHIBUKU (COMMERCIAL TRADITIONAL-STYLE BEER),908,CHIBUKU (COMMERCIAL TRADITIONAL-STYLE BEER),mwi-ihs5-standard_food_list
+MWI,IHS5,CHIBUKU BEER,908,CHIBUKU (COMMERCIAL TRADITIONAL-STYLE BEER),mwi-ihs5-non_standard_food_list
+MWI,IHS5,BOTTLED WATER,909,BOTTLED WATER,mwi-ihs5-standard_food_list
+MWI,IHS5,MAHEU,910,MAHEU,mwi-ihs5-standard_food_list
+MWI,IHS5,"BOTTLED / CANNED BEER (CARLSBERG, ETC)",911,"BOTTLED / CANNED BEER (CARLSBERG, ETC)",mwi-ihs5-standard_food_list
+MWI,IHS5,THOBWA,912,THOBWA,mwi-ihs5-standard_food_list
+MWI,IHS5,TRADITIONAL BEER (MASESE),913,TRADITIONAL BEER (MASESE),mwi-ihs5-standard_food_list
+MWI,IHS5,WINE,914,WINE OR COMMERCIAL LIQUOR,mwi-ihs5-non_standard_food_list
+MWI,IHS5,WINE OR COMMERCIAL LIQUOR,914,WINE OR COMMERCIAL LIQUOR,mwi-ihs5-standard_food_list
+MWI,IHS5,LOCALLY BREWED LIQUOR (KACHASU ),915,LOCALLY BREWED LIQUOR (KACHASU ),mwi-ihs5-standard_food_list
+MWI,IHS5,SUN DRIED FISH (LARGE VARIETY),5021,SUN DRIED FISH (LARGE VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,SUN DRIED FISH (MEDIUM VARIETY),5022,SUN DRIED FISH (MEDIUM VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,SUN DRIED FISH (SMALL VARIETY),5023,SUN DRIED FISH (SMALL VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,FRESH FISH (LARGE VARIETY),5031,FRESH FISH (LARGE VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,FRESH FISH (MEDIUM VARIETY),5032,FRESH FISH (MEDIUM VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,FRESH FISH (SMALL VARIETY),5033,FRESH FISH (SMALL VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,SMOKED FISH (LARGE VARIETY),5121,SMOKED FISH (LARGE VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,SMOKED FISH (MEDIUM VARIETY),5122,SMOKED FISH (MEDIUM VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,SMOKED FISH (SMALL VARIETY),5123,SMOKED FISH (SMALL VARIETY),mwi-ihs5-standard_food_list
+MWI,IHS5,CARROT,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHAFUTSA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHICK PEA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHIGWADWA (CASSAVA LEAVES),NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHIKANDE/ CHINAKA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHILAZI,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHIMIMINA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CHITAMBE (MFUTSO),NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CONDENSED MILK,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,CRABS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,DRIED CASSAVA (MAKAKA),NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ENERGY DRINK,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,FROZY DRINK,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,GRAPES,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,GREENPAPER,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,JIGGS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KAMBA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KANYENYA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KHALE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,KINDI,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,LABLAB,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,LAMBS PUFFS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAGAGADEYA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAGHOKOLO,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAHAWADI AND BUTTER BEANS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MANDALENA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MATEMBA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MATOKOLO,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MATOWO,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MAYONNAISE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MBALAGA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MBALAGA (FRIED SWEETPOTATOES),NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MCHERENJE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MFUTSO,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MINCE MEAT,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MIPOZA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MOLINA LEAVES,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MORINGA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MPAMA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MPIRU,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MSAWAWA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,MUSHROOM SOUP,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NGWIME,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NKHANO,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NKHOWE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NSAULA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NSAWAWA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NTHUDZA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NUTS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,NYENJE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,OLIVE OIL,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PEANUT,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PEANUT BUTTER,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PEAS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,PUPWE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,"RASPBERRIES,STRAWBERRIES",NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SAUSAGE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SAWAWA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SAYA PIECES,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SNACKS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SOA PIECES,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,SOAP PIECE,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,TCHANA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,TIGER PUFF SNACKS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,TINNED BEANS,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,WATER HYACINTH,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,WATER MELON,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,WATERMELON,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZIMBAMBA/MAKWERA,NA,,mwi-ihs5-non_standard_food_list
+MWI,IHS5,ZINYANYA,NA,,mwi-ihs5-non_standard_food_list
