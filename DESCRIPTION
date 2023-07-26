@@ -1,8 +1,8 @@
 Package: hcesNutR
 Type: Package
-Title: Households Consumption Expenditure Survey (HCES) Data Analysis
-Version: 0.0.001
-Authors@R:   c(person(given = "Liberty",
+Title: Households Consumption Expenditure Survey (HCES) Nutrition Data Analysis
+Version: 0.1.0
+Authors@R: c(person(given = "Liberty",
                        family = "Mlambo",
                        role = c("aut", "cre"),
                        email = "liberty.mlambo@nottingham.ac.uk",
@@ -25,7 +25,7 @@ Authors@R:   c(person(given = "Liberty",
                        comment = c(ORCID = "-")),
                   person("Micronutrient Action Policy Support (MAPS) Project", role = c("cph", "fnd")))
 Maintainer: The package maintainer <liberty.mlambo@nottingham.ac.uk>
-Description: Functions for analysing HCES data. 
+Description: Functions for analysing Nutrition analysis of HCES data. 
     The package contains functions for data cleaning, data manipulation, data visualisation and data analysis. The package also contains a dataset of the standard units and names of food items.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -40,9 +40,5 @@ Imports:
     fuzzyjoin,
     haven,
     here,
-    rlang
-    
-    
-    
-
-
+    rlang,
+    stringdist
