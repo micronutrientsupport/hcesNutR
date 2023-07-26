@@ -350,3 +350,79 @@ concatenate_columns <- function(data, columns, exclude_value, new_column_name, k
 }
 
 
+#' Match food names in a dataset to an internal standard food list
+#'
+#' This function matches food names in a dataset to a standard food list based on the closest string distance match. It then appends the food item code, standard food name, source and match confidence level to the dataset.
+#'
+#' @param data A data frame containing the food names to be matched.
+#' @param country A character string specifying the country for which the food list should be generated.
+#' @param survey A character string specifying the survey for which the food list should be generated.
+#' @param food_name_col A character string specifying the name of the column in \code{data} that contains the food names to be matched.
+#' @param match_confidence A numeric value specifying the minimum match confidence level required for a match to be considered valid. Defaults to 90.
+#'
+#' @return A data frame with the following columns:
+#' \item{food_item_code}{A character string containing the standard food item code for the matched food item.}
+#' \item{standard_original_food_name}{A character string containing the standard food name for the matched food item.}
+#' \item{food_match_source}{A character string containing the source of the matched food item.}
+#' \item{food_match_confidence}{A numeric value containing the match confidence level for the matched food item.}
+#'
+#' @importFrom dplyr filter mutate select slice_min ungroup group_by left_join
+#' @importFrom stringdist stringdistmatrix
+#' @importFrom tidyselect sym
+#' @import hcesNutR
+#'
+#' @examples
+#' data <- data.frame(food_name = c("EGGS", "SALT", "PUPWE"))
+#' match_food_names(data, "MWI, "IHS5", "food_name",99)
+#'
+#' @export
+match_food_names <- function(data, country, survey, food_name_col, match_confidence = 90) {
+  # Create a food list of food items corresponding to the selected country.
+  # Include only items with standard_original_food_name.
+  food_list <- hcesNutR::combined_food_list |>
+    dplyr::filter(country == country, survey == survey) |>
+    dplyr::filter(!is.na(standard_original_food_name))
+
+  # Initialise the food_item_code, standard_original_food_name and match_source columns
+  data$standard_original_food_name <- NA
+  data$food_item_code <- NA
+  data$food_match_source <- NA
+  data$food_match_confidence <- NA
+
+  # Cycle through each unique food item in data and find the closest match in the internal food_list generated above.
+  for(i in dplyr::pull(unique(data[food_name_col]))){
+    # Calculate the string distances between the target character and each element in the vector
+    string_distances <- stringdist::stringdistmatrix(toupper(i), toupper(food_list$survey_food_item_name))
+
+    # Calculate the match confidence
+    match_confidence_level <- round((1 - min(string_distances) / max(string_distances))*100,2)
+
+    # If the closest match is below the match_confidence threshold, then add the food_item_code to data
+    if(match_confidence_level >= match_confidence){
+      # Add the food_item_code to data
+      data$food_item_code[data[food_name_col] == i] <- food_list$standard_original_food_id[which.min(string_distances)]
+
+      # Add standard_original_food_name to data
+      data$standard_original_food_name[data[food_name_col] == i] <- food_list$standard_original_food_name[which.min(string_distances)]
+
+      # Add source to data
+      data$food_match_source[data[food_name_col] == i] <- food_list$source[which.min(string_distances)]
+
+      # Add match confidence to data
+      data$food_match_confidence[data[food_name_col] == i] <- match_confidence_level
+    }else{
+      # Add the food_item_code to data
+      data$food_item_code[data[food_name_col] == i] <- "NO MATCH"
+
+      # Add standard_original_food_name to data
+      data$standard_original_food_name[data[food_name_col] == i] <- "NO MATCH"
+
+      # Add source to data
+      data$food_match_source[data[food_name_col] == i] <- "NO MATCH"
+
+        # Add match confidence to data. This will allows users to adjust the match_confidence threshold to see if there are any matches that are just below the threshold.
+      data$food_match_confidence[data[food_name_col] == i] <- match_confidence_level
+    }
+  }
+  return(data)
+}
