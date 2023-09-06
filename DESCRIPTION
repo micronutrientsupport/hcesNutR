@@ -40,5 +40,10 @@ Imports:
     fuzzyjoin,
     haven,
     here,
+    hexSticker,
+    lintr,
+    magick,
+    pkgdown,
     rlang,
-    stringdist
+    stringdist,
+    sysfonts
