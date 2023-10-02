@@ -376,7 +376,7 @@ concatenate_columns <- function(data, columns, exclude_value, new_column_name, k
 #' match_food_names(data, "MWI, "IHS5", "food_name",99)
 #'
 #' @export
-match_food_names <- function(data, country, survey, food_name_col, match_confidence = 90) {
+match_food_names_v1 <- function(data, country, survey, food_name_col, match_confidence = 90) {
   # Create a food list of food items corresponding to the selected country.
   # Include only items with standard_original_food_name.
   food_list <- hcesNutR::combined_food_list |>
