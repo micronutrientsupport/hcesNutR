@@ -6,3 +6,4 @@ README copy.Rmd
 data-ignore/
 R-ignore/
 data/old_files
+data/sample_data/hh_mod_a_filt.dta
