@@ -47,6 +47,7 @@ check_hces_names <- function(data, original_data_df) {
     return(data)
 }
 
+# TODO: Add external csv support
 rename_hces <- function(data,country_name,survey_name) {
     #' Rename data columns in HCES data
     #'
@@ -231,7 +232,7 @@ remove_unconsumed <- function(data, consCol= "consYN", consVal = "YES") {
     cat(paste0("Number of records remaining : ", remaining_records, "\n"))
     # Return the data, removed_records and remaining_records
     cat("\n...\n...\n")
-    data <- filtered_data
+    data <- filtered_data |> dplyr::select(-!!rlang::sym(consCol))
     return(data)
 }
 
@@ -435,7 +436,7 @@ match_food_names_v1 <- function(data, country, survey, food_name_col, match_conf
 #' @return dataframe. The modified dataframe.
 #' @examples
 #' data <- data.frame(x = c("NO", "YES (maybe)", "NO (definitely)"))
-#' remove_spec_char(data, "x", FALSE)
+#' remove_spec_char_v1(data, "x", FALSE)
 #' @export
 remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
     # Check if the input column exists
@@ -492,8 +493,6 @@ remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
 #' @param unit_name_col A character string specifying the name of the column in the data frame to match the unit names.
 #' @return A modified data frame with unit codes assigned.
 #' @examples
-#' data <- data.frame(cons_unit_name = c("kg", "g", "lb", "oz"))
-#' assign_unit_codes(data, "USA", "NHANES", NULL, "unit_code", "cons_unit_name")
 #' @export
 match_unit_names_v1 <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
     # Import csv file from parameters and check if the unit_name and unit_code columns exists, else throw an error.
@@ -714,7 +713,7 @@ match_food_names_v2 <- function(data, country, survey, food_name_col, food_code_
 #' @return A vector of strings where each string is collapsed into one string and capitalized
 #'
 #' @examples
-#' rm_special_chars(c("PACKET (LARGE)", "BAG (SMALL)", "BOX (MEDIUM)"))
+#' rm_special_chars_v2(c("PACKET (LARGE)", "BAG (SMALL)", "BOX (MEDIUM)"))
 #'
 #' @export
 #' @importFrom stringr str_to_upper
@@ -750,7 +749,7 @@ rm_special_chars_v2 <- function(str_vec) {
 #' @examples
 #' # Match food units in a data frame to a standard list of units
 #' data <- data.frame(food = c("apple", "banana", "orange"), unit = c("kg", "lb", "g"))
-#' match_food_units_v2(data, "USA", "NHANES", "food", "unit")
+#' match_food_units_v2(data, "MWI", "IHS5", "food", "unit")
 #'
 #' @importFrom dplyr mutate filter select distinct arrange
 #' @importFrom readr read_csv
@@ -780,7 +779,7 @@ match_food_units_v2 <- function(data, country, survey, unit_name_col, unit_code_
       # Remove any rows with NA in standard_original_food_name
       dplyr::filter(!is.na(unit_code)) |>
       # Create a unit_key column to be used for matching
-      dplyr::mutate(unit_key = rm_special_chars(unit_name)) |>
+      dplyr::mutate(unit_key = rm_special_chars_v2(unit_name)) |>
       # Remove duplicate unit keys
       dplyr::distinct(unit_key, .keep_all = TRUE)
   } else {
@@ -795,7 +794,7 @@ match_food_units_v2 <- function(data, country, survey, unit_name_col, unit_code_
   }
 
   # Create unit key column in the data
-  data <- dplyr::mutate(data,unit_key = rm_special_chars(!!rlang::sym(unit_name_col)))
+  data <- dplyr::mutate(data,unit_key = rm_special_chars_v2(!!rlang::sym(unit_name_col)))
 
   # Assign the unit_key column to a variable
   unit_key <- "unit_key"
