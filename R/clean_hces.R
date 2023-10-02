@@ -476,3 +476,48 @@ remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
     # Return the modified data frame
     return(data)
 }
+
+#' Assign unit codes to a data frame based on a unit codes CSV file
+#'
+#' This function assigns unit codes to a data frame based on a unit codes CSV file. 
+#' The CSV file must contain a column with unit names and a column with corresponding unit codes.
+#' The function removes special characters from the unit names before matching them to the data frame.
+#' 
+#' @param data A data frame to modify.
+#' @param country A character string specifying the country of the data.
+#' @param survey A character string specifying the survey of the data.
+#' @param unit_codes_csv A character string specifying the file path of the unit codes CSV file.
+#' If NULL, the internal data hcesNutR::unit_codes will be used.
+#' @param unit_code_col A character string specifying the name of the column in the data frame to store the unit codes.
+#' @param unit_name_col A character string specifying the name of the column in the data frame to match the unit names.
+#' @return A modified data frame with unit codes assigned.
+#' @examples
+#' data <- data.frame(cons_unit_name = c("kg", "g", "lb", "oz"))
+#' assign_unit_codes(data, "USA", "NHANES", NULL, "unit_code", "cons_unit_name")
+#' @export
+assign_unit_codes <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
+    # Import csv file from parameters and check if the unit_name and unit_code columns exists, else throw an error.
+    
+    # If no unit_codes_csv file is passed, use the internal data
+    if (is.null(unit_codes_csv)) {
+        unit_codes_df <- hcesNutR::unit_names_n_codes_df |> dplyr::filter(country == country, survey == survey)
+    } else {
+        # Import the unit_codes_csv file
+        unit_codes_df <- readr::read_csv(unit_codes_csv)
+        if (!("unit_name" %in% colnames(unit_codes_df))) {
+            stop("unit_name column does not exist in the unit_codes_csv file.")
+        }
+        if (!("unit_code" %in% colnames(unit_codes_df))) {
+            stop("unit_code column does not exist in the unit_codes_csv file.")
+        }
+        # Remove special characters from the unit_name column
+        unit_codes_df <- remove_spec_char(unit_codes_df, "unit_name", FALSE)
+    }
+    
+    # Assign unit codes to the data
+    for (i in 1:nrow(unit_codes_df)) {
+        row <- unit_codes_df[i, ]
+        data[[unit_code_col]][data[[unit_name_col]] == row$unit_name] <- row$unit_code
+    }
+    return(data)
+}
