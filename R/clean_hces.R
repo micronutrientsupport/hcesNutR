@@ -703,3 +703,26 @@ match_food_names_v2 <- function(data, country, survey, food_name_col, food_code_
 
     return(data)
 }
+
+
+#' Remove special characters and spaces from a string vector and capitalize the result
+#'
+#' This function takes a vector of strings as input, removes all special characters and spaces from each string, and returns a new vector of strings where each string is collapsed into one string and capitalized.
+#'
+#' @param str_vec A vector of strings to be processed
+#'
+#' @return A vector of strings where each string is collapsed into one string and capitalized
+#'
+#' @examples
+#' rm_special_chars(c("PACKET (LARGE)", "BAG (SMALL)", "BOX (MEDIUM)"))
+#'
+#' @export
+#' @importFrom stringr str_to_upper
+#' @importFrom base gsub
+rm_special_chars_v2 <- function(str_vec) {
+  # Remove special characters and spaces
+  str_vec <- gsub("[^[:alnum:]]", "", str_vec)
+  # Collapse into one string and capitalize
+  str_vec <- sapply(str_vec, function(x) toupper(paste(x, collapse = "")))
+  return(str_vec)
+}
