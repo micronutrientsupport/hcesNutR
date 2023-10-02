@@ -426,3 +426,53 @@ match_food_names_v1 <- function(data, country, survey, food_name_col, match_conf
   }
   return(data)
 }
+
+#' Remove special characters from a column in a dataframe
+#' @description This function removes special characters from a specified column in a dataframe. It also adds a period after 'NO' if it is a whole word and not already followed by a period.
+#' @param data dataframe. The dataframe to modify.
+#' @param column character. The name of the column to modify.
+#' @param keep_parenthesis logical. If TRUE, parenthesis are kept in the column. If FALSE, parenthesis are removed. Default is TRUE.
+#' @return dataframe. The modified dataframe.
+#' @examples
+#' data <- data.frame(x = c("NO", "YES (maybe)", "NO (definitely)"))
+#' remove_spec_char(data, "x", FALSE)
+#' @export
+remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
+    # Check if the input column exists
+    if (!column %in% names(data)) {
+        stop("The input column does not exist in the data frame.")
+    }
+    # Define a function to process the values in a column
+    process_column <- function(col) {
+        
+        # Add a . after NO if it is a whole word (i.e. not part of another word) and not already followed by a . Ignore case.
+        processed_string <- gsub("\\bNO\\b", "NO.", col, ignore.case = TRUE)
+        # Remove extra periods
+        processed_string <- gsub("(\\.)\\1+", ".", processed_string)
+        # Remove parenthesis and extra spaces, if specified
+        if (!keep_parenthesis) {
+          # Replace all opening parenthesis with -
+          processed_string <- gsub("\\(", "-", processed_string)
+
+          # Replace all closing parenthesis with " "
+          processed_string <- gsub("\\)", " ", processed_string)
+
+          # processed_string <- gsub("\\(|\\)", " ", processed_string)
+        }
+        # Remove all extra spaces
+        processed_string <- gsub("\\s+", " ", processed_string)
+
+        # Remove spaces at the end of the string
+        processed_string <- gsub("\\s+$", "", processed_string)
+
+        # Upper case the string
+        processed_string <- stringr::str_to_upper(processed_string)
+
+        # Return the processed string
+        return(processed_string)
+    }
+    # Apply the process_column function to the specified column
+    data[[column]] <- sapply(data[[column]], process_column)
+    # Return the modified data frame
+    return(data)
+}
