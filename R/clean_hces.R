@@ -861,3 +861,42 @@ match_food_units_v2 <- function(data, country, survey, unit_name_col, unit_code_
   # Return the data frame with the matched units and a column indicating the source of the match
   return(data)
 }
+
+#' Check for missing conversion factors
+#'
+#' This function checks if the `measure_id` column is present in both input dataframes `hces_df` and `conv_fct_df`. If `measure_id` is not present in either of the dataframes, the function throws an error. The function then filters out rows in `hces_df` that are not in `conv_fct_df` based on the `measure_id` column. It returns a dataframe `missing_conv_fct_df` that contains the missing `measure_id` values.
+#'
+#' @param hces_df A dataframe containing the `measure_id` column.
+#' @param conv_fct_df A dataframe containing the `measure_id` column.
+#'
+#' @return A dataframe `missing_conv_fct_df` containing the missing `measure_id` values.
+#'
+#' @note Use `View()` to see the missing conversion factors.
+#'
+#' @examples
+#' check_conv_fct(hces_df, conv_fct_df)
+#'
+#' @importFrom dplyr filter distinct arrange
+#' @importFrom crayon red
+#' @importFrom stats round
+#' @importFrom utils View
+#'
+#' @export
+check_conv_fct <- function(hces_df, conv_fct_df) {
+  # Check if measure_id is present in both dataframes
+  if (!("measure_id" %in% names(hces_df))) {
+    stop("measure_id not in hces_df")
+  }
+  if (!("measure_id" %in% names(conv_fct_df))) {
+    stop("measure_id not in conv_fct_df")
+  }
+  # filter out rows in the hces_df that are not in the conv_fct_df
+  missing_conv_fct_df <- hces_df |>
+    dplyr::filter(!measure_id %in% conv_fct_df$measure_id) |>
+    dplyr::distinct(measure_id,.keep_all = TRUE) |>
+    dplyr::arrange(measure_id)
+
+  # Count the missing data
+  cat(crayon::red(paste0("There are ", length(unique(missing_conv_fct_df$measure_id)), " out of ", length(unique(hces_df$measure_id)), " have missing conversion factors.\nThis represents ", round(length(unique(missing_conv_fct_df$measure_id))/length(unique(hces_df$measure_id))*100,2), "% of the data.\nPlease fix your conversion factors file before trying again.\nNOTE: Use View() to see the missing conversion factors.\n")))
+  return(missing_conv_fct_df)
+}
