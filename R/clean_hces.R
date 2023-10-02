@@ -900,3 +900,55 @@ check_conv_fct <- function(hces_df, conv_fct_df) {
   cat(crayon::red(paste0("There are ", length(unique(missing_conv_fct_df$measure_id)), " out of ", length(unique(hces_df$measure_id)), " have missing conversion factors.\nThis represents ", round(length(unique(missing_conv_fct_df$measure_id))/length(unique(hces_df$measure_id))*100,2), "% of the data.\nPlease fix your conversion factors file before trying again.\nNOTE: Use View() to see the missing conversion factors.\n")))
   return(missing_conv_fct_df)
 }
+
+#' Apply weight conversion factors to HCES data
+#'
+#' This function applies weight conversion factors to the HCES data based on the conversion factors dataframe. It merges the HCES data and conversion factors dataframe on the `measure_id` column, and calculates the weight in kg for each food item using the conversion factor and consumption quantity. The resulting dataframe contains the original HCES data with additional columns for the conversion factor and weight in kg.
+#'
+#' @param hces_df A dataframe containing the HCES data.
+#' @param conv_fct_df A dataframe containing the conversion factors.
+#' @param factor_col The name of the column in `conv_fct_df` containing the conversion factors.
+#' @param measure_id_col The name of the column in both dataframes containing the measure IDs.
+#' @param wt_kg_col The name of the column to store the weight in kg.
+#' @param cons_qnty_col The name of the column in `hces_df` containing the consumption quantity.
+#' @param allowDuplicates A logical value indicating whether to allow duplicates in the measure_id column of the conversion factors dataframe. Default is FALSE.
+#'
+#' @return A dataframe containing the original HCES data with additional columns for the conversion factor and weight in kg.
+#'
+#' @note The function checks if the required columns are present in the dataframes and throws an error if they are not. It also checks if there are duplicates in the measure_id column of the conversion factors dataframe and throws an error if there are any.
+#'
+#' @examples
+#' apply_wght_conv_fct(hces_df, conv_fct_df, factor_col = "factor", measure_id_col = "measure_id", wt_kg_col = "wt_kg", cons_qnty_col = "cons_quant", allowDuplicates = FALSE)
+#'
+#' @importFrom dplyr left_join distinct mutate
+#' @importFrom rlang sym
+#'
+#' @export
+apply_wght_conv_fct <- function(hces_df, conv_fct_df,
+                                factor_col = "factor",
+                                measure_id_col = "measure_id",
+                                wt_kg_col = "wt_kg",
+                                cons_qnty_col = "cons_quant",
+                                allowDuplicates = FALSE) {
+  
+  # Check if required columns are present in dataframes
+  required_cols <- c(measure_id_col, factor_col)
+  stopifnot(all(required_cols %in% names(conv_fct_df)))
+  stopifnot(measure_id_col %in% names(hces_df))
+  stopifnot(cons_qnty_col %in% names(hces_df))
+  #  Check if there are duplicates in the measure_id column
+  if(!allowDuplicates){
+    if (any(duplicated(conv_fct_df[[measure_id_col]]))) {
+      stop("There are duplicates in the measure_id column of the conversion factors dataframe. Please remove them.")
+    }
+  }
+  # Merge dataframes on measure_id
+  merged_df <- hces_df |>
+    dplyr::left_join(dplyr::distinct(conv_fct_df[, c(measure_id_col, factor_col)]), by = measure_id_col)
+  
+  # Calculate the weight in kg
+  merged_df <- merged_df |>
+    dplyr::mutate(!!rlang::sym(wt_kg_col) := !!rlang::sym(cons_qnty_col) * !!rlang::sym(factor_col))
+  
+  return(merged_df)
+}
