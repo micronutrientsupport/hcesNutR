@@ -22,12 +22,21 @@
 #' @name combined_food_list
 #' @title Food Names and Codes Supported by this Package
 #' @description A data frame containing both standard and non-standard food names and codes of surveys supported by this package.
+"combined_food_list" <- suppressMessages(readRDS(here::here("data", "combined_food_list_v26072023.rds")))
+
+#' @docType data
+#' @name unit_names_n_codes_df
+#' @title Food Unit Names and Unit Codes Supported by this Package
+#' @description A data frame containing both standard and non-standard food unit names and unit codes of surveys supported by this package.
+"unit_names_n_codes_df" <- suppressMessages(readRDS(here::here("data", "consumption_unit_matches_v4_20092023.rds")))
+
 #' @docType data
 #' @name food_list_df
 #' @title Food Item Names and Codes Supported by this Package
 #' @description A data frame containing both standard and non-standard food item names and codes of surveys supported by this package.
 "food_list_df" <- suppressMessages(readRDS(here::here("data", "matched_food_items_and_codes_v2_0_1_26092023.rds")))
 # TODO: Change the way this is handled so that the rds file is created once unlike the current situation where three files are used to create the rds file.
+
 
 #' @docType data
 #' @name unit_names_n_codes_df
