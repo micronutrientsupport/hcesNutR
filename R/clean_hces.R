@@ -637,15 +637,15 @@ match_food_names_v2 <- function(data, country, survey, food_name_col, food_code_
         food_name_col <- "matched_food_name"
         food_code_col <- "matched_food_code"
 
-        # Move the original columns to after hhid for easy diagnostics
-        data <- data |> dplyr::relocate(food_code_col, .after = hhid)
-        data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
-        data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
+        # # Move the original columns to after hhid for easy diagnostics
+        # data <- data |> dplyr::relocate(food_code_col, .after = hhid)
+        # data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
+        # data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
 
-        # Move the new columns to after the ones they are replacing for easy diagnostics
-        data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
-        data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
-        data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
+        # # Move the new columns to after the ones they are replacing for easy diagnostics
+        # data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
+        # data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
+        # data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
 
         # perform matches
         for (i in dplyr::pull(unique(data[food_name_col]))) {
@@ -666,15 +666,15 @@ match_food_names_v2 <- function(data, country, survey, food_name_col, food_code_
         data$matched_food_code <- NA_character_
         data$food_match_source <- "NO-MATCH"
 
-        # Move the original columns to after hhid for easy diagnostics
-        data <- data |> dplyr::relocate(food_code_col, .after = hhid)
-        data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
-        data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
+        # # Move the original columns to after hhid for easy diagnostics
+        # data <- data |> dplyr::relocate(food_code_col, .after = hhid)
+        # data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
+        # data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
 
-        # Move the new columns to after the ones they are replacing for easy diagnostics
-        data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
-        data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
-        data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
+        # # Move the new columns to after the ones they are replacing for easy diagnostics
+        # data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
+        # data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
+        # data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
 
         # Cycle through each unique food item in data and find the closest match in the internal food_list generated above.
         for (i in dplyr::pull(unique(data[food_name_col]))) {
