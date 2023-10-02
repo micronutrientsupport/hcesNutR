@@ -495,7 +495,7 @@ remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
 #' data <- data.frame(cons_unit_name = c("kg", "g", "lb", "oz"))
 #' assign_unit_codes(data, "USA", "NHANES", NULL, "unit_code", "cons_unit_name")
 #' @export
-match_food_units_v1 <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
+match_unit_names_v1 <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
     # Import csv file from parameters and check if the unit_name and unit_code columns exists, else throw an error.
     
     # If no unit_codes_csv file is passed, use the internal data
@@ -725,4 +725,140 @@ rm_special_chars_v2 <- function(str_vec) {
   # Collapse into one string and capitalize
   str_vec <- sapply(str_vec, function(x) toupper(paste(x, collapse = "")))
   return(str_vec)
+}
+
+#' Match food units to a standard list of units
+#'
+#' This function matches food units in a data frame to a standard list of units.
+#' The function creates a unit key column in the data frame and uses it to match
+#' the food units to the standard list of units. The function can use an internal
+#' list of units or a user-provided list of units. The function can overwrite the
+#' original columns with the matched columns or create new columns for the matched
+#' units. The function returns the data frame with the matched units and a column
+#' indicating the source of the match.
+#'
+#' @param data A data frame containing the food units to be matched.
+#' @param country A character string indicating the country for which the food units are being matched.
+#' @param survey A character string indicating the survey for which the food units are being matched.
+#' @param unit_name_col A character string indicating the name of the column containing the food unit names in the data frame.
+#' @param unit_code_col A character string indicating the name of the column containing the food unit codes in the data frame.
+#' @param matches_csv A character string indicating the path to a CSV file containing the standard list of units. If NULL, the function uses an internal list of units.
+#' @param overwrite A logical value indicating whether to overwrite the original columns with the matched columns (TRUE) or create new columns for the matched units (FALSE).
+#'
+#' @return A data frame with the matched units and a column indicating the source of the match.
+#'
+#' @examples
+#' # Match food units in a data frame to a standard list of units
+#' data <- data.frame(food = c("apple", "banana", "orange"), unit = c("kg", "lb", "g"))
+#' match_food_units_v2(data, "USA", "NHANES", "food", "unit")
+#'
+#' @importFrom dplyr mutate filter select distinct arrange
+#' @importFrom readr read_csv
+#' @importFrom crayon red
+#' @importFrom rlang sym
+#' @importFrom utils View
+match_food_units_v2 <- function(data, country, survey, unit_name_col, unit_code_col, matches_csv = NULL, overwrite = FALSE){
+  # Check if the unit_name_col and unit_code_col are in the data. Throw error and stop processing if not.
+  if (!(unit_name_col %in% names(data))) {
+    stop("unit_name_col not in data")
+  }
+  if (!(unit_code_col %in% names(data))) {
+    stop("unit_code_col not in data")
+  }
+
+  # Check if country and survey are supported by the package. If not suggest that they use their own csv file for the matches.
+  if (is.null(matches_csv)) {
+    if (!(country %in% hcesNutR::unit_names_n_codes_df$country)) {
+      stop("Country not supported by the package. Please use your own csv file for the matches.")
+    }
+    if (!(survey %in% hcesNutR::unit_names_n_codes_df$survey)) {
+      stop("Survey not supported by the package. Please use your own csv file for the matches.")
+    }
+    # Use internal food list
+    unit_list <- hcesNutR::unit_names_n_codes_df |>
+      dplyr::filter(country == country, survey == survey) |>
+      # Remove any rows with NA in standard_original_food_name
+      dplyr::filter(!is.na(unit_code)) |>
+      # Create a unit_key column to be used for matching
+      dplyr::mutate(unit_key = rm_special_chars(unit_name)) |>
+      # Remove duplicate unit keys
+      dplyr::distinct(unit_key, .keep_all = TRUE)
+  } else {
+    # Use user provided food list and check that it has the required columns
+    unit_list <- read_csv(matches_csv)
+    if (!("unit_name" %in% names(unit_list))) {
+      stop("unit_name not in food_list")
+    }
+    if (!("unit_code" %in% names(unit_list))) {
+      stop("unit_code not in food_list")
+    }
+  }
+
+  # Create unit key column in the data
+  data <- dplyr::mutate(data,unit_key = rm_special_chars(!!rlang::sym(unit_name_col)))
+
+  # Assign the unit_key column to a variable
+  unit_key <- "unit_key"
+
+  if (overwrite) {
+    # Create column to store source
+    data[[paste0(unit_code_col, "_source")]] <- "NO-MATCH"
+
+    # Rename the columns to be overwriten
+    names(data)[names(data) == unit_name_col] <- paste0("matched_", unit_name_col)
+    names(data)[names(data) == unit_code_col] <- paste0("matched_", unit_code_col)
+
+    # Assing the new columns to the original column names for downstream processing
+    unit_code_source_col <- paste0(unit_code_col,"_source")
+    unit_name_col <- paste0("matched_",unit_name_col)
+    unit_code_col <- paste0("matched_",unit_code_col)
+
+    # Perform matches
+    for (i in (unique(data$unit_key))) {
+      if (i %in% (unique(unit_list$unit_key))) {
+        # Make sure that data[unit_code_col] is a character vector
+        data[[unit_code_col]] <- as.character(data[[unit_code_col]])
+        # Add the matched food item name to data
+        data[unit_code_col][data[unit_key] == i] <- unit_list$unit_code[unit_list$unit_key == i]
+
+        # Add source to data
+        data[unit_code_source_col][data[unit_key] == i] <- as.character(unit_list$priority[unit_list$unit_key == i])
+      }
+    }
+  } else {
+    # Initialise the food_item_code, standard_original_food_name and match_source columns
+    unit_code_source_col <- paste0(unit_code_col,"_source")
+    unit_name_col_new <- paste0("matched_",unit_name_col)
+    unit_code_col_new <- paste0("matched_",unit_code_col)
+
+    data[unit_name_col_new] <- NA_character_
+    data[unit_code_col_new] <- NA_character_
+    data[unit_code_source_col] <- "NO-MATCH"
+
+    # Cycle through each unique food item in data and find the closest match in the internal food_list generated above.
+    for (i in (unique(data$unit_key))) {
+      if (i %in% (unique(unit_list$unit_key))) {
+        # Add the matched food item name to data
+        data[unit_name_col_new][data[unit_key] == i] <- unit_list$unit_name[unit_list$unit_key == i]
+        # Add the matched food item code to data
+        data[unit_code_col_new][data[unit_key] == i] <- unit_list$unit_code[unit_list$unit_key == i]
+        # Add source to data
+        data[unit_code_source_col][data[unit_key] == i] <- as.character(unit_list$priority[unit_list$unit_key == i])
+      }
+    }
+  }
+
+  # Print to the console the number of rows with no match found
+  cat(crayon::red(paste0("\n There are ",
+    sum(data[unit_code_source_col] == "NO-MATCH"), 
+    " out of ", nrow(data), 
+    " rows with unmatched units, which represents ", 
+    round(sum(data[unit_code_source_col] == "NO-MATCH")/nrow(data)*100, 2), 
+    "% of the data. The missing values are shown in the pop up view: \n")))
+
+  # Drop unit_key column from the data
+  data <- dplyr::select(data, -unit_key)
+
+  # Return the data frame with the matched units and a column indicating the source of the match
+  return(data)
 }
