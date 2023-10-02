@@ -495,7 +495,7 @@ remove_spec_char_v1 <- function(data, column, keep_parenthesis = TRUE) {
 #' data <- data.frame(cons_unit_name = c("kg", "g", "lb", "oz"))
 #' assign_unit_codes(data, "USA", "NHANES", NULL, "unit_code", "cons_unit_name")
 #' @export
-assign_unit_codes <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
+match_food_units_v1 <- function(data, country, survey, unit_code_col, unit_name_col,unit_codes_csv=NULL) {
     # Import csv file from parameters and check if the unit_name and unit_code columns exists, else throw an error.
     
     # If no unit_codes_csv file is passed, use the internal data
