@@ -22,4 +22,20 @@
 #' @name combined_food_list
 #' @title Food Names and Codes Supported by this Package
 #' @description A data frame containing both standard and non-standard food names and codes of surveys supported by this package.
-"combined_food_list" <- suppressMessages(readRDS(here::here("data","combined_food_list_v26072023.rds")))
+#' @docType data
+#' @name unit_names_n_codes_df
+#' @title Food Unit Names and Unit Codes Supported by this Package
+#' @description A data frame containing both standard and non-standard food unit names and unit codes of surveys supported by this package.
+#' @examples
+#' unit_names_n_codes_df
+#' @export
+#' @keywords datasets
+#' @format A data frame with 3 columns and 4 rows
+#' \describe{
+#' \item{country}{Country name}
+#' \item{survey}{Survey name}
+#' \item{unit_name}{Name of the food unit}
+#' \item{unit_code}{Code of the food unit}
+#' \entries_count{Number of survey responses with this unit name}
+#' \priority{Priority of the unit name (1 being the highest)}}
+"unit_names_n_codes_df" <- suppressMessages(readRDS(here::here("data", "consumption_unit_matches_v4_20092023.rds")))
