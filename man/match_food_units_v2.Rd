@@ -44,6 +44,6 @@ indicating the source of the match.
 \examples{
 # Match food units in a data frame to a standard list of units
 data <- data.frame(food = c("apple", "banana", "orange"), unit = c("kg", "lb", "g"))
-match_food_units_v2(data, "USA", "NHANES", "food", "unit")
+match_food_units_v2(data, "MWI", "IHS5", "food", "unit")
 
 }
