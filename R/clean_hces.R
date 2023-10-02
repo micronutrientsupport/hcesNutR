@@ -547,3 +547,159 @@ create_measure_id <- function(data, country, survey, cols, include_ISOs = FALSE)
     }
     return(data)
 }
+
+
+#' Match food names to a standard list of food items
+#'
+#' This function matches food names to a standard list of food items and returns a data frame with the matched food names and codes. The function can use an internal food list or a user-provided food list to perform the matching. The function also provides diagnostics on the number of rows with no matches found and the list of foods with no matches found.
+#'
+#' @param data A data frame containing the food names and codes to be matched.
+#' @param country A character string specifying the country for which the food items should be matched.
+#' @param survey A character string specifying the survey for which the food items should be matched.
+#' @param food_name_col A character string specifying the name of the column in \code{data} containing the food names.
+#' @param food_code_col A character string specifying the name of the column in \code{data} containing the food codes.
+#' @param matches_csv A character string specifying the path to a user-provided CSV file containing the food list to be used for matching. If \code{NULL}, the function uses an internal food list.
+#' @param overwrite A logical value indicating whether to overwrite the original food name and code columns in \code{data} with the matched food names and codes. If \code{TRUE}, the original columns are overwritten. If \code{FALSE}, new columns are created for the matched food names and codes.
+#'
+#' @return A data frame with the matched food names and codes.
+#'
+#' @examples
+#' \dontrun{
+#' # Load the MWI data
+#' data("mwi_data", package = "hcesNutR")
+#'
+#' # Match the food names to the standard list of food items
+#' matched_data <- match_food_names_v2(data = mwi_data, 
+#'                                     country = "MWI", 
+#'                                     survey = "IHS5", 
+#'                                     food_name_col = "food_item_name", 
+#'                                     food_code_col = "food_item_code")
+#' }
+#'
+#' @importFrom dplyr filter distinct arrange relocate pull
+#' @importFrom here here
+#' @importFrom hcesNutR food_list_df
+#' @importFrom readr read_csv
+#' @importFrom utils head
+#' @importFrom crayon red
+#' @importFrom stats round
+#' @importFrom base sum nrow is.na stop
+#' @importFrom base %in%
+#'
+#' @export
+#' @aliases match_food_names_v2
+match_food_names_v2 <- function(data, country, survey, food_name_col, food_code_col, matches_csv = NULL, overwrite = FALSE) {
+    # Create a food list of food items corresponding to the selected country.
+    # Include only items with standard_original_food_name.
+    # Check if the food_name_col and food_code_col are in the data. Throw error and stop processing if not.
+    if (!(food_name_col %in% names(data))) {
+        stop("food_name_col not in data")
+    }
+    if (!(food_code_col %in% names(data))) {
+        stop("food_code_col not in data")
+    }
+    # Check if country and survey are supported by the package. If not suggest that they use their own csv file for the matches.
+    if (is.null(matches_csv)) {
+        if (!(country %in% hcesNutR::food_list_df$country)) {
+            stop("Country not supported by the package. Please use your own csv file for the matches.")
+        }
+        if (!(survey %in% hcesNutR::food_list_df$survey)) {
+            stop("Survey not supported by the package. Please use your own csv file for the matches.")
+        }
+        # Use internal food list
+        food_list <- hcesNutR::food_list_df |>
+            dplyr::filter(country == country, survey == survey) |>
+            # Remove any rows with NA in standard_original_food_name
+            dplyr::filter(!is.na(standard_food_name))
+    } else {
+        # Use user provided food list and check that it has the required columns
+        food_list <- read_csv(matches_csv)
+        if (!("standard_food_name" %in% names(food_list))) {
+            stop("standard_food_name not in food_list")
+        }
+        if (!("standard_food_code" %in% names(food_list))) {
+            stop("standard_food_code not in food_list")
+        }
+        if (!("item_code_name" %in% names(food_list))) {
+            stop("item_code_name not in food_list")
+        }
+        if (!("source" %in% names(food_list))) {
+            stop("source not in food_list")
+        }
+    }
+
+    if (overwrite) {
+        # Create column to store source
+        data <- data |> dplyr::mutate(food_match_source = "NO-MATCH") 
+        # Rename the columns to be overwriten
+        data <- data |> dplyr::rename(matched_food_name = {{food_name_col}}, matched_food_code = {{food_code_col}})
+
+        # Assing the new columns to the original column names for downstream processing
+        food_name_col <- "matched_food_name"
+        food_code_col <- "matched_food_code"
+
+        # Move the original columns to after hhid for easy diagnostics
+        data <- data |> dplyr::relocate(food_code_col, .after = hhid)
+        data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
+        data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
+
+        # Move the new columns to after the ones they are replacing for easy diagnostics
+        data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
+        data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
+        data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
+
+        # perform matches
+        for (i in dplyr::pull(unique(data[food_name_col]))) {
+            if (i %in% (unique(food_list$item_code_name))) {
+                # Add the food_item_code to data
+                data$matched_food_code[data[food_name_col] == i] <- food_list$standard_food_code[food_list$item_code_name == i]
+
+                # Add standard_original_food_name to data
+                data$matched_food_name[data[food_name_col] == i] <- food_list$standard_food_name[food_list$item_code_name == i]
+
+                # Add source to data
+                data$food_match_source[data[food_name_col] == i] <- food_list$source[food_list$item_code_name == i]
+            }
+        }
+    } else {
+        # Initialise the food_item_code, standard_original_food_name and match_source columns
+        data$matched_food_name <- NA_character_
+        data$matched_food_code <- NA_character_
+        data$food_match_source <- "NO-MATCH"
+
+        # Move the original columns to after hhid for easy diagnostics
+        data <- data |> dplyr::relocate(food_code_col, .after = hhid)
+        data <- data |> dplyr::relocate(food_name_col, .after = food_code_col)
+        data <- data |> dplyr::relocate(cons_unit_name, .after = food_name_col)
+
+        # Move the new columns to after the ones they are replacing for easy diagnostics
+        data <- data |> dplyr::relocate(matched_food_name, .after = food_name_col) 
+        data <- data |> dplyr::relocate(matched_food_code, .after = food_code_col) 
+        data <- data |> dplyr::relocate(food_match_source, .after = matched_food_name)
+
+        # Cycle through each unique food item in data and find the closest match in the internal food_list generated above.
+        for (i in dplyr::pull(unique(data[food_name_col]))) {
+            if (i %in% (unique(food_list$item_code_name))) {
+                # Add the food_item_code to data
+                data$matched_food_code[data[food_name_col] == i] <- food_list$standard_food_code[food_list$item_code_name == i]
+
+                # Add standard_original_food_name to data
+                data$matched_food_name[data[food_name_col] == i] <- food_list$standard_food_name[food_list$item_code_name == i]
+
+                # Add source to data
+                data$food_match_source[data[food_name_col] == i] <- food_list$source[food_list$item_code_name == i]
+            }
+        }
+    }
+    # Print to the console the number of rows with no match found
+    cat(crayon::red(paste0("\n There are ",
+    sum(data$food_match_source == "NO-MATCH"), 
+    " out of ", nrow(data), 
+    " rows, which represents ", 
+    round(sum(data$food_match_source == "NO-MATCH")/nrow(data)*100, 2), 
+    "% of the data. The missing values are shown in the pop up view: \n")))
+
+    data |> dplyr::filter(food_match_source == "NO-MATCH") |> dplyr::select({{food_name_col}}, {{food_code_col}}) |> dplyr::distinct() |> dplyr::arrange({{food_name_col}}) |> View()
+
+    return(data)
+}
