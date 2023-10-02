@@ -874,8 +874,9 @@ match_food_units_v2 <- function(data, country, survey, unit_name_col, unit_code_
 #' @note Use `View()` to see the missing conversion factors.
 #'
 #' @examples
+#' \dontrun{
 #' check_conv_fct(hces_df, conv_fct_df)
-#'
+#' }
 #' @importFrom dplyr filter distinct arrange
 #' @importFrom crayon red
 #' @importFrom stats round
@@ -918,8 +919,9 @@ check_conv_fct <- function(hces_df, conv_fct_df) {
 #' @note The function checks if the required columns are present in the dataframes and throws an error if they are not. It also checks if there are duplicates in the measure_id column of the conversion factors dataframe and throws an error if there are any.
 #'
 #' @examples
+#' \dontrun{
 #' apply_wght_conv_fct(hces_df, conv_fct_df, factor_col = "factor", measure_id_col = "measure_id", wt_kg_col = "wt_kg", cons_qnty_col = "cons_quant", allowDuplicates = FALSE)
-#'
+#' }
 #' @importFrom dplyr left_join distinct mutate
 #' @importFrom rlang sym
 #'
