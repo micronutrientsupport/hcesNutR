@@ -2,28 +2,51 @@
 % Please edit documentation in R/clean_hces.R
 \name{match_food_names}
 \alias{match_food_names}
-\title{Match food names in a dataset to an internal standard food list}
+\alias{match_food_names_v2}
+\title{Match food names to a standard list of food items}
 \usage{
-match_food_names(data, country, survey, food_name_col, match_confidence = 90)
+match_food_names(
+  data,
+  country,
+  survey,
+  food_name_col,
+  food_code_col,
+  matches_csv = NULL,
+  overwrite = FALSE
+)
 }
 \arguments{
-\item{data}{A data frame containing the food names to be matched.}
+\item{data}{A data frame containing the food names and codes to be matched.}
 
-\item{country}{A character string specifying the country for which the food list should be generated.}
+\item{country}{A character string specifying the country for which the food items should be matched.}
 
-\item{survey}{A character string specifying the survey for which the food list should be generated.}
+\item{survey}{A character string specifying the survey for which the food items should be matched.}
 
-\item{food_name_col}{A character string specifying the name of the column in \code{data} that contains the food names to be matched.}
+\item{food_name_col}{A character string specifying the name of the column in \code{data} containing the food names.}
 
-\item{match_confidence}{A numeric value specifying the minimum match confidence level required for a match to be considered valid. Defaults to 90.}
+\item{food_code_col}{A character string specifying the name of the column in \code{data} containing the food codes.}
+
+\item{matches_csv}{A character string specifying the path to a user-provided CSV file containing the food list to be used for matching. If \code{NULL}, the function uses an internal food list.}
+
+\item{overwrite}{A logical value indicating whether to overwrite the original food name and code columns in \code{data} with the matched food names and codes. If \code{TRUE}, the original columns are overwritten. If \code{FALSE}, new columns are created for the matched food names and codes.}
 }
 \value{
-A data frame with the following columns:
-\item{food_item_code}{A character string containing the standard food item code for the matched food item.}
-\item{standard_original_food_name}{A character string containing the standard food name for the matched food item.}
-\item{food_match_source}{A character string containing the source of the matched food item.}
-\item{food_match_confidence}{A numeric value containing the match confidence level for the matched food item.}
+A data frame with the matched food names and codes.
 }
 \description{
-This function matches food names in a dataset to a standard food list based on the closest string distance match. It then appends the food item code, standard food name, source and match confidence level to the dataset.
+This function matches food names to a standard list of food items and returns a data frame with the matched food names and codes. The function can use an internal food list or a user-provided food list to perform the matching. The function also provides diagnostics on the number of rows with no matches found and the list of foods with no matches found.
+}
+\examples{
+\dontrun{
+# Load the MWI data
+data("mwi_data", package = "hcesNutR")
+
+# Match the food names to the standard list of food items
+matched_data <- match_food_names_v2(data = mwi_data, 
+                                    country = "MWI", 
+                                    survey = "IHS5", 
+                                    food_name_col = "food_item_name", 
+                                    food_code_col = "food_item_code")
+}
+
 }

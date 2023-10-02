@@ -5,12 +5,12 @@
 \alias{combined_food_list}
 \title{Food Names and Codes Supported by this Package}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 292 rows and 6 columns.
+An object of class \code{data.frame} with 292 rows and 6 columns.
 }
 \usage{
 combined_food_list
 }
 \description{
-A data frame containing non-standard food names and codes of surveys supported by this package.
+A data frame containing both standard and non-standard food names and codes of surveys supported by this package.
 }
 \keyword{datasets}

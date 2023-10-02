@@ -5,7 +5,7 @@
 \alias{standard_food_list}
 \title{Standard Food Names and Codes}
 \format{
-An object of class \code{spec_tbl_df} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 142 rows and 4 columns.
+An object of class \code{data.frame} with 142 rows and 4 columns.
 }
 \usage{
 standard_food_list
