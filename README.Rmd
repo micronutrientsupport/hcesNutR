@@ -53,7 +53,7 @@ sample_hces <-
 ```{r paged.print=TRUE}
 # Preview first 5 rows
 sample_hces |>
-# head() |>
+head() |>
   knitr::kable()
 ```
 
