@@ -55,3 +55,13 @@
 #' \entries_count{Number of survey responses with this unit name}
 #' \priority{Priority of the unit name (1 being the highest)}}
 "unit_names_n_codes_df" <- suppressMessages(readRDS(here::here("data", "consumption_unit_matches_v4_20092023.rds")))
+
+#' @docType data
+#' @name hh_mod_a_filt_vMAPS
+#' @title Module A: Household Identification (household level data)
+#' @description Randomly Generated Samaple Data Resembling Data collected through Household Questionnaire, Module A: Household Identification (household level data)
+#' - This module household identifiers, the sample weights, information on household location, date of interview, supervisor and enumerator codes. Additionally, this module contains filters for subsequent modules.
+#' @export 
+#' @keywords datasets
+#' @format A data frame 
+"hh_mod_a_filt_vMAPS" <- suppressMessages(haven::read_dta(here::here("data","mwi-ihs5-sample-data","hh_mod_a_filt_vMAPS.dta")))
