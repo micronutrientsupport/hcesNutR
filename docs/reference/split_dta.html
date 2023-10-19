@@ -103,15 +103,15 @@ are added to the input data frame and the original variable is dropped by defaul
 <span class="r-in"><span><span class="va">df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    HHID food_item consYN</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  hh01       101      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  hh01       102      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  hh01       102      2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  hh01       103      1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4  hh01       104      1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  hh01       105      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  hh02       101      2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  hh02       102      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  hh02       101      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  hh02       102      2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  hh02       103      1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  hh02       104      2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 hh02       105      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 hh02       105      2</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Split the food_item column into two new columns</span></span></span>
 <span class="r-in"><span><span class="fu">split_dta</span><span class="op">(</span><span class="va">df</span>, <span class="st">"food_item"</span>, <span class="st">"food_item_id"</span>, <span class="st">"food_item_lab"</span><span class="op">)</span></span></span>
@@ -119,15 +119,15 @@ are added to the input data frame and the original variable is dropped by defaul
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Variable food_item has been dropped.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    HHID consYN food_item_id food_item_lab</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  hh01      1          101         maize</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  hh01      1          102         wheat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  hh01      2          102         wheat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  hh01      1          103          rice</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4  hh01      1          104          meat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5  hh01      1          105          fish</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  hh02      2          101         maize</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  hh02      1          102         wheat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  hh02      1          101         maize</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  hh02      2          102         wheat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  hh02      1          103          rice</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  hh02      2          104          meat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 hh02      1          105          fish</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 hh02      2          105          fish</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
