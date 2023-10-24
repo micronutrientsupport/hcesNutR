@@ -443,4 +443,5 @@ The package is still under development and will be updated regularly.Please repo
 -   Add more functions to the package
 -   Support more surveys (NGA Living Standards Survey 2018-2019)
 -   Add more internal data to the package
+-   Add more documentation to the package
 

@@ -45,39 +45,6 @@ You can install the development version of hcesNutR from
 ``` r
 # install.packages("devtools")
 devtools::install_github("dzvoti/hcesNutR")
-#> magick  (2.8.0 -> 2.8.1) [CRAN]
-#> ggplot2 (3.4.3 -> 3.4.4) [CRAN]
-#> vroom   (1.6.3 -> 1.6.4) [CRAN]
-#> sp      (2.0-0 -> 2.1-1) [CRAN]
-#> package 'magick' successfully unpacked and MD5 sums checked
-#> package 'ggplot2' successfully unpacked and MD5 sums checked
-#> package 'vroom' successfully unpacked and MD5 sums checked
-#> package 'sp' successfully unpacked and MD5 sums checked
-#> 
-#> The downloaded binary packages are in
-#>  C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\downloaded_packages
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' ...     checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' ...   ✔  checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' (512ms)
-#>       ─  preparing 'hcesNutR': (728ms)
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>   Warning:     Warning: unit_names_n_codes_df.Rd:16: unknown macro '\entries'
-#>    Warning: unit_names_n_codes_df.Rd:17: unknown macro '\priority'
-#>       ─  checking for LF line-endings in source and make files and shell scripts
-#>       ─  checking for empty or unneeded directories
-#>      NB: this package now depends on R (>=        NB: this package now depends on R (>= 3.5.0)
-#>        WARNING: Added dependency on R >= 3.5.0 because serialized objects in
-#>      serialize/load version 3 cannot be read in older versions of R.
-#>      File(s) containing such objects:
-#>        'hcesNutR/data/combined_food_list_v26072023.rds'
-#>        'hcesNutR/data/consumption_unit_matches_v4_20092023.rds'
-#>        'hcesNutR/data/matched_food_items_and_codes_v1_0_1_21092023.rds'
-#>        'hcesNutR/data/matched_food_items_and_codes_v2_0_1_26092023.rds'
-#>        'hcesNutR/data/non_standard_food_list.rds'
-#>        'hcesNutR/data/standard_food_list.rds'
-#>        'hcesNutR/data/standard_name_mappings_pairs.rds'
-#>   ─  building 'hcesNutR_0.1.0.tar.gz'
-#>      
-#> 
 ```
 
 As we discussed in previous chapters you need to load the package in
@@ -593,3 +560,4 @@ regularly.Please report any bugs or issues
 -   Add more functions to the package
 -   Support more surveys (NGA Living Standards Survey 2018-2019)
 -   Add more internal data to the package
+-   Add more documentation to the package
