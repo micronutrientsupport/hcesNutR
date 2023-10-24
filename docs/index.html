@@ -77,6 +77,13 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <p>The goal of hcesR is to create a package that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is <a href="https://microdata.worldbank.org/" class="external-link">the world bank microdata repository</a>. The package will contain functions that will help with the analysis of HCES data. The package also contains a <a href="dzvoti.github.io/hcesNutR/data/sample_hces.dta">sample_hces.dta</a> used to demonstrate the use of the functions in the package, you can download this data after installing the package by running <code>hcesNutR::sample_hces()</code> in your R console. The package is still under development and will be updated regularly.</p>
+</div>
+<div class="section level1">
+<h1 id="hcesnutr-package">
+<code>hcesNutR</code> Package<a class="anchor" aria-label="anchor" href="#hcesnutr-package"></a>
+</h1>
+<p>The goal of the hcesNutR project is to create a repository of functions and data that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is <a href="https://microdata.worldbank.org/" class="external-link">the world bank microdata repository</a>.</p>
+<p>The package contain functions that will help with the analysis of HCES data. The package also contains the sample data used in this book i.e. <a href="dzvoti.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We will use this sample data to demonstrate the use of the functions in the package. The package is still under development and will be updated regularly.</p>
 <div class="section level2">
 <h2 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
 </h2>
@@ -85,587 +92,70 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of hcesR2 from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of hcesNutR from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dzvoti/hcesNutR"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading GitHub repo dzvoti/hcesNutR@HEAD</span></span>
-<span><span class="co">#&gt; Warning in untar2(tarfile, files, list, exdir, restore_times): skipping pax</span></span>
-<span><span class="co">#&gt; global extended headers</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in untar2(tarfile, files, list, exdir, restore_times): skipping pax</span></span>
-<span><span class="co">#&gt; global extended headers</span></span>
-<span><span class="co">#&gt; ggplot2 (3.4.3 -&gt; 3.4.4) [CRAN]</span></span>
-<span><span class="co">#&gt; vroom   (1.6.3 -&gt; 1.6.4) [CRAN]</span></span>
-<span><span class="co">#&gt; sp      (2.0-0 -&gt; 2.1-1) [CRAN]</span></span>
-<span><span class="co">#&gt; Installing 3 packages: ggplot2, vroom, sp</span></span>
-<span><span class="co">#&gt; Installing packages into 'C:/Users/sbzlm3/AppData/Local/Temp/RtmpAH5YSo/temp_libpath82ec3fe92a8d'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span>
-<span><span class="co">#&gt; package 'ggplot2' successfully unpacked and MD5 sums checked</span></span>
-<span><span class="co">#&gt; package 'vroom' successfully unpacked and MD5 sums checked</span></span>
-<span><span class="co">#&gt; package 'sp' successfully unpacked and MD5 sums checked</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; The downloaded binary packages are in</span></span>
-<span><span class="co">#&gt;  C:\Users\sbzlm3\AppData\Local\Temp\Rtmp6dTppo\downloaded_packages</span></span>
-<span><span class="co">#&gt; ── R CMD build ─────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt;          checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\Rtmp6dTppo\remotes69a07076509b\dzvoti-hcesNutR-bed3b7f/DESCRIPTION' ...     checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\Rtmp6dTppo\remotes69a07076509b\dzvoti-hcesNutR-bed3b7f/DESCRIPTION' ...   ✔  checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\Rtmp6dTppo\remotes69a07076509b\dzvoti-hcesNutR-bed3b7f/DESCRIPTION' (466ms)</span></span>
-<span><span class="co">#&gt;       ─  preparing 'hcesNutR': (547ms)</span></span>
-<span><span class="co">#&gt;    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information</span></span>
-<span><span class="co">#&gt;   Warning:     Warning: unit_names_n_codes_df.Rd:16: unknown macro '\entries'</span></span>
-<span><span class="co">#&gt;    Warning: unit_names_n_codes_df.Rd:17: unknown macro '\priority'</span></span>
-<span><span class="co">#&gt;       ─  checking for LF line-endings in source and make files and shell scripts</span></span>
-<span><span class="co">#&gt;       ─  checking for empty or unneeded directories</span></span>
-<span><span class="co">#&gt;      NB: this package now depends on R (&gt;=        NB: this package now depends on R (&gt;= 3.5.0)</span></span>
-<span><span class="co">#&gt;        WARNING: Added dependency on R &gt;= 3.5.0 because serialized objects in</span></span>
-<span><span class="co">#&gt;      serialize/load version 3 cannot be read in older versions of R.</span></span>
-<span><span class="co">#&gt;      File(s) containing such objects:</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/combined_food_list_v26072023.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/consumption_unit_matches_v4_20092023.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/matched_food_items_and_codes_v1_0_1_21092023.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/matched_food_items_and_codes_v2_0_1_26092023.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/non_standard_food_list.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/standard_food_list.rds'</span></span>
-<span><span class="co">#&gt;        'hcesNutR/data/standard_name_mappings_pairs.rds'</span></span>
-<span><span class="co">#&gt;   ─  building 'hcesNutR_0.1.0.tar.gz'</span></span>
-<span><span class="co">#&gt;      </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Installing package into 'C:/Users/sbzlm3/AppData/Local/Temp/RtmpAH5YSo/temp_libpath82ec3fe92a8d'</span></span>
-<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dzvoti/hcesNutR"</span><span class="op">)</span></span></code></pre></div>
+<p>As we discussed in previous chapters you need to load the package in your R session before you can use it. You can load the package by running the following code in your R console.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dzvoti/hcesR2" class="external-link">hcesNutR</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="functions-in-the-package">Functions in the package<a class="anchor" aria-label="anchor" href="#functions-in-the-package"></a>
 </h2>
-<p>This is a basic example which shows you the use of the functions in the package. The example uses the <a href="dzvoti.github.io/hcesNutR/data/sample_hces.dta">sample_hces.dta</a> data that is included in the package. You can download the data by running <code>hcesNutR::sample_hces()</code> in your R console. The data is randomly generated to mimic the structure of the <a href="https://microdata.worldbank.org/index.php/catalog/3818/related-materials" class="external-link">Fifth Integrated Household Survey 2019-2020</a> an HCES of Malawi. The variables and structure of this data is found <a href="https://microdata.worldbank.org/index.php/catalog/3818/related-materials" class="external-link">here</a></p>
+<p>You can view the functions in the package by running the following code in your R console.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:hcesNutR"</span><span class="op">)</span></span></code></pre></div>
+<div class="callout-tip">
+<p>You can read the functions and their description on the project website at: <a href="dzvoti.github.io/hcesNutR/reference/index.html">dzvoti.github.io/hcesNutR/reference/index.html</a></p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="import-and-explore-the-sample-data">Import and explore the sample data<a class="anchor" aria-label="anchor" href="#import-and-explore-the-sample-data"></a>
+<h2 id="sample-data">Sample data<a class="anchor" aria-label="anchor" href="#sample-data"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>The data used in this example is randomly generated to mimic the structure of the <a href="https://microdata.worldbank.org/index.php/catalog/3818/related-materials" class="external-link">Fifth Integrated Household Survey 2019-2020</a> an HCES of Malawi. The variables and structure of this data is found <a href="https://microdata.worldbank.org/index.php/catalog/3818/related-materials" class="external-link">here</a></p>
+<div class="callout-tip">
+<p>All functions in this package take a dataframe/tibble as input data. This is by design to allow flexibility on input data. The example used here is for use on stata files with <code>.dta</code> but the functions should work with <code>.csv</code> files as well.</p>
+</div>
+<div class="section level3">
+<h3 id="import-and-explore-the-sample-data">Import and explore the sample data<a class="anchor" aria-label="anchor" href="#import-and-explore-the-sample-data"></a>
+</h3>
+<p>Import the sample data from the <code>r4hces-data/mwi-ihs5-sample-data</code> folder. Use the <code>read_dta</code> function from the <code>haven</code> package to import it.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Import the data using the haven package from the tidyverse</span></span>
 <span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"mwi-ihs5-sample-data"</span>, <span class="st">"HH_MOD_G1_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Preview first 5 rows</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="3%">
-<col width="9%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="4%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="4%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="4%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="2%">
-<col width="4%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">HHID</th>
-<th align="right">hh_g00_1</th>
-<th align="right">hh_g00_2</th>
-<th align="right">hh_g01</th>
-<th align="left">hh_g01_oth</th>
-<th align="right">hh_g02</th>
-<th align="right">hh_g03a</th>
-<th align="left">hh_g03b</th>
-<th align="right">hh_g03b_label</th>
-<th align="left">hh_g03b_oth</th>
-<th align="right">hh_g03c</th>
-<th align="right">hh_g03c_1</th>
-<th align="right">hh_g04a</th>
-<th align="left">hh_g04b</th>
-<th align="right">hh_g04b_label</th>
-<th align="left">hh_g04b_oth</th>
-<th align="right">hh_g04c</th>
-<th align="right">hh_g04c_1</th>
-<th align="right">hh_g05</th>
-<th align="right">hh_g06a</th>
-<th align="left">hh_g06b</th>
-<th align="right">hh_g06b_label</th>
-<th align="left">hh_g06b_oth</th>
-<th align="right">hh_g06c</th>
-<th align="right">hh_g06c_1</th>
-<th align="right">hh_g07a</th>
-<th align="left">hh_g07b</th>
-<th align="right">hh_g07b_label</th>
-<th align="left">hh_g07b_oth</th>
-<th align="right">hh_g07c</th>
-<th align="right">hh_g07c_1</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">101</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">102</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">103</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="left"></td>
-<td align="right">104</td>
-<td align="right">1</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">105</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">106</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, </span>
+<span>                             <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                             <span class="st">"HH_MOD_G1_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level3">
 <h3 id="trim-the-data">Trim the data<a class="anchor" aria-label="anchor" href="#trim-the-data"></a>
 </h3>
-<p>In this example we will use <code>hcesNutR</code> functions to demonstrate processing of <code>total</code> consumption data. The <code>total</code> consumption data is the data that contains the total consumption of each food item by each household. The other consumption columns contain values for consumption from sources i.e. gifted, purchased, ownProduced. The workflow for processing these is the same as demonstrated below.</p>
+<p>In this example we will use <code>hcesNutR</code> functions to demonstrate processing of <code>total</code> consumption data. The <code>total</code> consumption data is the data that contains the total consumption of each food item by each household.</p>
+<p>The other consumption columns contain values for consumption from sources i.e. gifted, purchased, ownProduced. The workflow for processing the “other” consumption data is the same as demonstrated below.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Trim the data to total consumption</span></span>
-<span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
-<span>  <span class="va">sample_hces</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">case_id</span><span class="op">:</span><span class="va">HHID</span>, <span class="va">hh_g01</span><span class="op">:</span><span class="va">hh_g03c_1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="9%">
-<col width="23%">
-<col width="5%">
-<col width="8%">
-<col width="5%">
-<col width="6%">
-<col width="6%">
-<col width="10%">
-<col width="9%">
-<col width="6%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">HHID</th>
-<th align="right">hh_g01</th>
-<th align="left">hh_g01_oth</th>
-<th align="right">hh_g02</th>
-<th align="right">hh_g03a</th>
-<th align="left">hh_g03b</th>
-<th align="right">hh_g03b_label</th>
-<th align="left">hh_g03b_oth</th>
-<th align="right">hh_g03c</th>
-<th align="right">hh_g03c_1</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">101</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">102</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">103</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">1</td>
-<td align="left"></td>
-<td align="right">104</td>
-<td align="right">1</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">105</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">case_id</span><span class="op">:</span><span class="va">HHID</span>,</span>
+<span>                <span class="va">hh_g01</span><span class="op">:</span><span class="va">hh_g03c_1</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
-<h2 id="hcesnutr-workflow">hcesnutR workflow<a class="anchor" aria-label="anchor" href="#hcesnutr-workflow"></a>
+<h2 id="hcesnutr-workflow">
+<code>hcesnutR</code> Workflow<a class="anchor" aria-label="anchor" href="#hcesnutr-workflow"></a>
 </h2>
 <div class="section level3">
 <h3 id="column-naming-conventions-and-renaming">Column Naming Conventions and Renaming<a class="anchor" aria-label="anchor" href="#column-naming-conventions-and-renaming"></a>
 </h3>
-<p>The sample_hces data is in stata format which contains data with short column name codes that have associated “question” labels that explain the contents of the data. To make the column names more interpretable, the package provides the <code>rename_hces</code> function, which can be used to rename the column codes to standard hces names used downstream.</p>
+<p>The <code>sample_hces</code> data is in stata format which contains data with short column name codes that have associated “question” labels that explain the contents of the data. To make the column names more interpretable, the package provides the <code>rename_hces</code> function, which can be used to rename the column codes to standard hces names used downstream.</p>
 <p>The <code>rename_hces</code> function uses column names from the <code>standard_name_mappings_pairs</code> dataset within the package. Alternatively, a user can create their own name pairs or manually rename their columns to the <code>standard</code> names.</p>
 <p>It is important to note that all downstream functions in the <code>hcesNutR</code> package work with standard names and will not work with the short column names. Therefore, it is recommended to use the <code><a href="reference/rename_hces.html">rename_hces()</a></code> function to ensure that the column names are consistent with the package’s naming conventions.</p>
 <p>For more information on how to use the <code>rename_hces</code> function, please refer to the function’s documentation: <a href="https://dzvoti.github.io/hcesNutR/reference/rename_hces.html" class="external-link"><code>rename_hces</code></a>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Rename the variables</span></span>
-<span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/rename_hces.html">rename_hces</a></span><span class="op">(</span><span class="va">sample_hces</span>, country_name <span class="op">=</span> <span class="st">"MWI"</span>, survey_name <span class="op">=</span> <span class="st">"IHS5"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ...</span></span>
-<span><span class="co">#&gt; The following columns were renamed:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;   hces_standard_name survey_variable_names</span></span>
-<span><span class="co">#&gt; 1               hhid                  HHID</span></span>
-<span><span class="co">#&gt; 2             consYN                hh_g01</span></span>
-<span><span class="co">#&gt; 3           item_oth            hh_g01_oth</span></span>
-<span><span class="co">#&gt; 4          item_code                hh_g02</span></span>
-<span><span class="co">#&gt; 5         cons_quant               hh_g03a</span></span>
-<span><span class="co">#&gt; 6         cons_unitA               hh_g03b</span></span>
-<span><span class="co">#&gt; 7          cons_unit         hh_g03b_label</span></span>
-<span><span class="co">#&gt; 8      cons_unit_oth           hh_g03b_oth</span></span>
-<span><span class="co">#&gt; 9     cons_unit_size               hh_g03c</span></span>
-<span></span>
-<span><span class="co"># View the results</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="9%">
-<col width="22%">
-<col width="5%">
-<col width="6%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="9%">
-<col width="10%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="right">consYN</th>
-<th align="left">item_oth</th>
-<th align="right">item_code</th>
-<th align="right">cons_quant</th>
-<th align="left">cons_unitA</th>
-<th align="right">cons_unit</th>
-<th align="left">cons_unit_oth</th>
-<th align="right">cons_unit_size</th>
-<th align="right">hh_g03c_1</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">101</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">102</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">103</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">1</td>
-<td align="left"></td>
-<td align="right">104</td>
-<td align="right">1</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">2</td>
-<td align="left"></td>
-<td align="right">105</td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/rename_hces.html">rename_hces</a></span><span class="op">(</span><span class="va">sample_hces</span>,</span>
+<span>                                     country_name <span class="op">=</span> <span class="st">"MWI"</span>,</span>
+<span>                                     survey_name <span class="op">=</span> <span class="st">"IHS5"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="remove-unconsumed-food-items">Remove unconsumed food items<a class="anchor" aria-label="anchor" href="#remove-unconsumed-food-items"></a>
@@ -673,126 +163,9 @@
 <p>HCES surveys administer a standard questionaire to each household where they are asked to conform whether they consumed the food items on their standard list. If a household did not consume a food item, the value of the ‘consYN’ is set to a constant. The <code>remove_unconsumed</code> function removes all food items that were not consumed by the household. The function takes in a data frame and the name of the column that contains the consumption information. The function also takes in the value that indicates that the food item was consumed.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Remove unconsumed food items</span></span>
-<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/remove_unconsumed.html">remove_unconsumed</a></span><span class="op">(</span><span class="va">sample_hces</span>, consCol <span class="op">=</span> <span class="st">"consYN"</span>, consVal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Removing unconsumed food item records...</span></span>
-<span><span class="co">#&gt; Unconsumed food item records removed succesfully</span></span>
-<span><span class="co">#&gt; Number of records removed : 12488</span></span>
-<span><span class="co">#&gt; Number of records remaining : 1712</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ...</span></span>
-<span><span class="co">#&gt; ...</span></span>
-<span></span>
-<span><span class="co"># Preview the results</span></span>
-<span><span class="va">sample_hces</span></span>
-<span><span class="co">#&gt; # A tibble: 1,712 × 10</span></span>
-<span><span class="co">#&gt;    case_id      hhid          item_oth item_code cons_quant cons_unitA cons_unit</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;    &lt;dbl+lbl&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;dbl+lbl&gt;</span></span>
-<span><span class="co">#&gt;  1 201011000001 ee2d2915a43d… ""       104 [Mai…        1   59         59 [TABL…</span></span>
-<span><span class="co">#&gt;  2 201011000001 ee2d2915a43d… ""       208 [Coc…        8   23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  3 201011000001 ee2d2915a43d… ""       301 [Bea…        2.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  4 201011000001 ee2d2915a43d… ""       307 [Gro…        6   23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  5 201011000001 ee2d2915a43d… ""       311 [Gro…        7.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  6 201011000001 ee2d2915a43d… ""       403 [Tan…        7.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  7 201011000001 ee2d2915a43d… "BIRD"   515 [Oth…        5.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt;  8 201011000001 ee2d2915a43d… ""       602 [Ban…        9   9B          9 [PIEC…</span></span>
-<span><span class="co">#&gt;  9 201011000001 ee2d2915a43d… ""       604 [Pin…        2.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt; 10 201011000001 ee2d2915a43d… ""       701 [Fre…        3.5 23         23 [OTHE…</span></span>
-<span><span class="co">#&gt; # ℹ 1,702 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 3 more variables: cons_unit_oth &lt;chr&gt;, cons_unit_size &lt;dbl+lbl&gt;,</span></span>
-<span><span class="co">#&gt; #   hh_g03c_1 &lt;dbl+lbl&gt;</span></span>
-<span><span class="co"># Preview the results as table</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="9%">
-<col width="22%">
-<col width="6%">
-<col width="7%">
-<col width="8%">
-<col width="8%">
-<col width="7%">
-<col width="11%">
-<col width="10%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">item_oth</th>
-<th align="right">item_code</th>
-<th align="right">cons_quant</th>
-<th align="left">cons_unitA</th>
-<th align="right">cons_unit</th>
-<th align="left">cons_unit_oth</th>
-<th align="right">cons_unit_size</th>
-<th align="right">hh_g03c_1</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">104</td>
-<td align="right">1.0</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">208</td>
-<td align="right">8.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">301</td>
-<td align="right">2.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">TBE</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">307</td>
-<td align="right">6.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">311</td>
-<td align="right">7.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">JAG</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/remove_unconsumed.html">remove_unconsumed</a></span><span class="op">(</span><span class="va">sample_hces</span>,</span>
+<span>                                           consCol <span class="op">=</span> <span class="st">"consYN"</span>, </span>
+<span>                                           consVal <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="create-two-columns-from-each-dbllbl-column">Create two columns from each dbl+lbl column<a class="anchor" aria-label="anchor" href="#create-two-columns-from-each-dbllbl-column"></a>
@@ -800,280 +173,26 @@
 <p>The <code>create_dta_labels</code> function creates two columns from each dbl+lbl (double plus label) column. The first column contains the numeric values and the second column contains the labels. The function takes in a data frame and finds all columns that contains the double plus label column. The function returns a data frame with the new columns.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Split dbl+lbl columns</span></span>
-<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/create_dta_labels.html">create_dta_labels</a></span><span class="op">(</span><span class="va">sample_hces</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview</span></span>
-<span><span class="va">sample_hces</span></span>
-<span><span class="co">#&gt; # A tibble: 1,712 × 14</span></span>
-<span><span class="co">#&gt;    case_id    hhid  item_oth item_code_code item_code_name cons_quant cons_unitA</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt;  1 201011000… ee2d… ""                  104 Maize grain (…        1   59        </span></span>
-<span><span class="co">#&gt;  2 201011000… ee2d… ""                  208 Cocoyam (masi…        8   23        </span></span>
-<span><span class="co">#&gt;  3 201011000… ee2d… ""                  301 Bean, white           2.5 23        </span></span>
-<span><span class="co">#&gt;  4 201011000… ee2d… ""                  307 Ground bean (…        6   23        </span></span>
-<span><span class="co">#&gt;  5 201011000… ee2d… ""                  311 Groundnut (Sh…        7.5 23        </span></span>
-<span><span class="co">#&gt;  6 201011000… ee2d… ""                  403 Tanaposi/Rape         7.5 23        </span></span>
-<span><span class="co">#&gt;  7 201011000… ee2d… "BIRD"              515 Other (specif…        5.5 23        </span></span>
-<span><span class="co">#&gt;  8 201011000… ee2d… ""                  602 Banana                9   9B        </span></span>
-<span><span class="co">#&gt;  9 201011000… ee2d… ""                  604 Pineapple             2.5 23        </span></span>
-<span><span class="co">#&gt; 10 201011000… ee2d… ""                  701 Fresh milk            3.5 23        </span></span>
-<span><span class="co">#&gt; # ℹ 1,702 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 7 more variables: cons_unit_code &lt;dbl&gt;, cons_unit_name &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   cons_unit_oth &lt;chr&gt;, cons_unit_size_code &lt;dbl&gt;, cons_unit_size_name &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   hh_g03c_1_code &lt;dbl&gt;, hh_g03c_1_name &lt;chr&gt;</span></span>
-<span></span>
-<span><span class="co"># Preview the results as table</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="5%">
-<col width="13%">
-<col width="3%">
-<col width="6%">
-<col width="10%">
-<col width="4%">
-<col width="4%">
-<col width="6%">
-<col width="6%">
-<col width="6%">
-<col width="8%">
-<col width="8%">
-<col width="6%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">item_oth</th>
-<th align="right">item_code_code</th>
-<th align="left">item_code_name</th>
-<th align="right">cons_quant</th>
-<th align="left">cons_unitA</th>
-<th align="right">cons_unit_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_oth</th>
-<th align="right">cons_unit_size_code</th>
-<th align="left">cons_unit_size_name</th>
-<th align="right">hh_g03c_1_code</th>
-<th align="left">hh_g03c_1_name</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">104</td>
-<td align="left">Maize grain (not as ufa)</td>
-<td align="right">1.0</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left">TABLESPOON</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">208</td>
-<td align="left">Cocoyam (masimbi)</td>
-<td align="right">8.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">301</td>
-<td align="left">Bean, white</td>
-<td align="right">2.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">TBE</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">307</td>
-<td align="left">Ground bean (nzama)</td>
-<td align="right">6.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left"></td>
-<td align="right">311</td>
-<td align="left">Groundnut (Shelled)</td>
-<td align="right">7.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">JAG</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
+<span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/create_dta_labels.html">create_dta_labels</a></span><span class="op">(</span><span class="va">sample_hces</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="data-cleaning">Data cleaning<a class="anchor" aria-label="anchor" href="#data-cleaning"></a>
+<h3 id="concatenate-columns">Concatenate columns<a class="anchor" aria-label="anchor" href="#concatenate-columns"></a>
 </h3>
-<p>Some HCES data surveys split consumption food item or their consumption units into multiple columns. The <code>concatenate_columns</code> function cleans the data by combining the split columns into one column. The function can exclude values from contatenation by specifying the whole or part of values to be excluded.</p>
+<p>Some HCES data surveys split consumed food items or their consumption units into multiple columns. The <code>concatenate_columns</code> function cleans the data by combining the split columns into one column. The function can exclude values from contatenation by specifying the whole or part of values to be excluded.</p>
 <div class="section level4">
-<h4 id="example-1-concatenate-food-item-names">Example 1: Concatenate food item names<a class="anchor" aria-label="anchor" href="#example-1-concatenate-food-item-names"></a>
+<h4 id="concatenate-food-item-names">Concatenate food item names<a class="anchor" aria-label="anchor" href="#concatenate-food-item-names"></a>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Merge food item names</span></span>
 <span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/concatenate_columns.html">concatenate_columns</a></span><span class="op">(</span><span class="va">sample_hces</span>,</span>
-<span>                                <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"item_code_name"</span>, <span class="st">"item_oth"</span><span class="op">)</span>,</span>
+<span>                                <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"item_code_name"</span>, </span>
+<span>                                  <span class="st">"item_oth"</span><span class="op">)</span>,</span>
 <span>                                <span class="st">"SPECIFY"</span>,</span>
-<span>                                <span class="st">"item_code_name"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview the results as table</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="5%">
-<col width="14%">
-<col width="6%">
-<col width="5%">
-<col width="5%">
-<col width="6%">
-<col width="7%">
-<col width="7%">
-<col width="8%">
-<col width="8%">
-<col width="7%">
-<col width="7%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="right">item_code_code</th>
-<th align="right">cons_quant</th>
-<th align="left">cons_unitA</th>
-<th align="right">cons_unit_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_oth</th>
-<th align="right">cons_unit_size_code</th>
-<th align="left">cons_unit_size_name</th>
-<th align="right">hh_g03c_1_code</th>
-<th align="left">hh_g03c_1_name</th>
-<th align="left">item_code_name</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">104</td>
-<td align="right">1.0</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="left">TABLESPOON</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">208</td>
-<td align="right">8.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">301</td>
-<td align="right">2.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">TBE</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">BEAN, WHITE</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">307</td>
-<td align="right">6.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">311</td>
-<td align="right">7.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="left">OTHER (SPECIFY)</td>
-<td align="left">JAG</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-</tr>
-</tbody>
-</table>
+<span>                                <span class="st">"item_code_name"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="example-2-concatenate-food-item-units">Example 2: Concatenate food item units<a class="anchor" aria-label="anchor" href="#example-2-concatenate-food-item-units"></a>
+<h4 id="concatenate-food-item-units">Concatenate food item units<a class="anchor" aria-label="anchor" href="#concatenate-food-item-units"></a>
 </h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Merge consumption unit names. For units it is essential to remove parentesis as they are the major cause of duplicate units</span></span>
@@ -1089,105 +208,10 @@
 <span>    <span class="st">"SPECIFY"</span>,</span>
 <span>    <span class="st">"cons_unit_name"</span>,</span>
 <span>    <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview the results as table</span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="7%">
-<col width="18%">
-<col width="8%">
-<col width="6%">
-<col width="6%">
-<col width="8%">
-<col width="11%">
-<col width="9%">
-<col width="14%">
-<col width="9%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="right">item_code_code</th>
-<th align="right">cons_quant</th>
-<th align="left">cons_unitA</th>
-<th align="right">cons_unit_code</th>
-<th align="right">cons_unit_size_code</th>
-<th align="right">hh_g03c_1_code</th>
-<th align="left">item_code_name</th>
-<th align="left">cons_unit_name</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">104</td>
-<td align="right">1.0</td>
-<td align="left">59</td>
-<td align="right">59</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">TABLESPOON</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">208</td>
-<td align="right">8.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">MEDIUM PACKET</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">301</td>
-<td align="right">2.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">TBE</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">307</td>
-<td align="right">6.0</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">SMALL TINA FLAT</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="right">311</td>
-<td align="right">7.5</td>
-<td align="left">23</td>
-<td align="right">23</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">JAG</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="op">)</span></span></code></pre></div>
+<div class="callout-tip">
+<p>Use the <code>select</code> and <code>rename</code> functions from the dplyr package to subset the columns containing food item name , food item code, food unit name and food unit code. This is to ensure that the names are meaningful and consistent with the package’s naming conventions.</p>
 </div>
-</div>
-<div class="section level3">
-<h3 id="use-the-select-and-rename-functions-from-the-dplyr-package-to-subset-the-columns-containing-food-item-name--food-item-code-food-unit-name-and-food-unit-code">Use the <code>select</code> and <code>rename</code> functions from the dplyr package to subset the columns containing food item name , food item code, food unit name and food unit code<a class="anchor" aria-label="anchor" href="#use-the-select-and-rename-functions-from-the-dplyr-package-to-subset-the-columns-containing-food-item-name--food-item-code-food-unit-name-and-food-unit-code"></a>
-</h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span></span>
@@ -1201,78 +225,8 @@
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>food_name <span class="op">=</span> <span class="va">item_code_name</span>,</span>
 <span>                food_code <span class="op">=</span> <span class="va">item_code_code</span>,</span>
-<span>                cons_unit_code <span class="op">=</span> <span class="va">cons_unitA</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="10%">
-<col width="26%">
-<col width="20%">
-<col width="8%">
-<col width="13%">
-<col width="12%">
-<col width="9%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-</tr>
-</tbody>
-</table>
+<span>                cons_unit_code <span class="op">=</span> <span class="va">cons_unitA</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="match-survey-food-items-to-standard-food-items">Match survey food items to standard food items<a class="anchor" aria-label="anchor" href="#match-survey-food-items-to-standard-food-items"></a>
@@ -1287,101 +241,7 @@
 <span>    food_name_col <span class="op">=</span> <span class="st">"food_name"</span>,</span>
 <span>    food_code_col <span class="op">=</span> <span class="st">"food_code"</span>,</span>
 <span>    overwrite <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  There are 76 out of 1712 rows, which represents 4.44% of the data. The missing values are shown in the pop up view:</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="7%">
-<col width="17%">
-<col width="13%">
-<col width="5%">
-<col width="8%">
-<col width="8%">
-<col width="6%">
-<col width="13%">
-<col width="9%">
-<col width="12%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="match-survey-consumption-units-to-standard-consumption-units">Match survey consumption units to standard consumption units<a class="anchor" aria-label="anchor" href="#match-survey-consumption-units-to-standard-consumption-units"></a>
@@ -1397,279 +257,35 @@
 <span>    unit_code_col <span class="op">=</span> <span class="st">"cons_unit_code"</span>,</span>
 <span>    matches_csv <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    overwrite <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  There are 15 out of 1712 rows with unmatched units, which represents 0.88% of the data. The missing values are shown in the pop up view:</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="5%">
-<col width="12%">
-<col width="9%">
-<col width="4%">
-<col width="6%">
-<col width="5%">
-<col width="4%">
-<col width="9%">
-<col width="7%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-<th align="left">matched_cons_unit_name</th>
-<th align="left">matched_cons_unit_code</th>
-<th align="left">cons_unit_code_source</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TABLE SPOON</td>
-<td align="left">59</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">51</td>
-<td align="left">2</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TBE</td>
-<td align="left">22</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">25A</td>
-<td align="left">2</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="left">4</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="add-regions-and-districts-to-the-data">Add regions and districts to the data<a class="anchor" aria-label="anchor" href="#add-regions-and-districts-to-the-data"></a>
 </h3>
-<p>Identify the HCES module that contains household identifiers. In some cases this will already be present in the HCES data and should be skipped. From the household identifiers select the ones that are required and add to the data. In this example we will add the region and district identifiers to the data from the hh_mod_a_filt.dta file.</p>
+<p>Identify the HCES module that contains <code>household identifiers</code>. In some cases this will already be present in the HCES data and should be skipped. From the <code>household identifiers</code> select the ones that are required and add to the data. In this example we will add the region and district identifiers to the data from the <code>hh_mod_a_filt.dta</code> file.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Import household identifiers from the hh_mod_a_filt.dta file</span></span>
 <span><span class="va">household_identifiers</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"mwi-ihs5-sample-data"</span>, <span class="st">"hh_mod_a_filt_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,</span>
+<span>                             <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                             <span class="st">"hh_mod_a_filt_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># subset the identifiers and keep only the ones needed.</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">case_id</span>, <span class="va">HHID</span>, <span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">case_id</span>,</span>
+<span>                <span class="va">HHID</span>,</span>
+<span>                <span class="va">region</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>hhid <span class="op">=</span> <span class="va">HHID</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Add the identifiers to the data</span></span>
 <span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">sample_hces</span>, <span class="va">household_identifiers</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hhid"</span>, <span class="st">"case_id"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="5%">
-<col width="12%">
-<col width="9%">
-<col width="3%">
-<col width="6%">
-<col width="5%">
-<col width="4%">
-<col width="9%">
-<col width="6%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="2%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-<th align="left">matched_cons_unit_name</th>
-<th align="left">matched_cons_unit_code</th>
-<th align="left">cons_unit_code_source</th>
-<th align="right">region</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TABLE SPOON</td>
-<td align="left">59</td>
-<td align="left">2</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">51</td>
-<td align="left">2</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TBE</td>
-<td align="left">22</td>
-<td align="left">2</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">25A</td>
-<td align="left">2</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="right">403</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="left">403</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">sample_hces</span>,</span>
+<span>                   <span class="va">household_identifiers</span>,</span>
+<span>                   by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hhid"</span>, <span class="st">"case_id"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="create-a-measure-id-column">Create a measure id column<a class="anchor" aria-label="anchor" href="#create-a-measure-id-column"></a>
+<h3 id="create-a-measure_id-column">Create a <code>measure_id</code> column<a class="anchor" aria-label="anchor" href="#create-a-measure_id-column"></a>
 </h3>
 <p>The <code>create_measure_id</code> function creates a measure id column that is used to identify the consumption measure of each food item. The function takes in a data frame and the name of the column that contains the consumption information. The function also takes in the value that indicates that the food item was consumed.</p>
+<p>The <code>measure_id</code> is a unique identifier that allows us to join the consumption data with the food conversion factors data.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create measure id column</span></span>
 <span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
@@ -1677,136 +293,11 @@
 <span>    <span class="va">sample_hces</span>,</span>
 <span>    country <span class="op">=</span> <span class="st">"MWI"</span>,</span>
 <span>    survey <span class="op">=</span> <span class="st">"IHS5"</span>,</span>
-<span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>, <span class="st">"matched_cons_unit_code"</span>, <span class="st">"matched_food_code"</span><span class="op">)</span>,</span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>,</span>
+<span>             <span class="st">"matched_cons_unit_code"</span>,</span>
+<span>             <span class="st">"matched_food_code"</span><span class="op">)</span>,</span>
 <span>    include_ISOs <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="4%">
-<col width="11%">
-<col width="8%">
-<col width="3%">
-<col width="5%">
-<col width="5%">
-<col width="4%">
-<col width="8%">
-<col width="6%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="7%">
-<col width="2%">
-<col width="4%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-<th align="left">matched_cons_unit_name</th>
-<th align="left">matched_cons_unit_code</th>
-<th align="left">cons_unit_code_source</th>
-<th align="right">region</th>
-<th align="left">measure_id</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TABLE SPOON</td>
-<td align="left">59</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-59-104</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">51</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-51-208</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TBE</td>
-<td align="left">22</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-22-301</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">25A</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-25A-307</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-311</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="import-food-conversion-factors">Import food conversion factors.<a class="anchor" aria-label="anchor" href="#import-food-conversion-factors"></a>
@@ -1815,158 +306,29 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Import food conversion factors file</span></span>
 <span><span class="va">IHS5_conv_fct</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,<span class="st">"mwi-ihs5-sample-data"</span>,<span class="st">"IHS5_UNIT_CONVERSION_FACTORS_vMAPS.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 2391 Columns: 7</span></span>
-<span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; Delimiter: ","</span></span>
-<span><span class="co">#&gt; chr (4): food_item_name, unit_code, unit_name, measure_id</span></span>
-<span><span class="co">#&gt; dbl (3): region, food_item_code, factor</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span></span>
-<span><span class="va">IHS5_conv_fct</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="7%">
-<col width="29%">
-<col width="14%">
-<col width="9%">
-<col width="21%">
-<col width="10%">
-<col width="7%">
-</colgroup>
-<thead><tr class="header">
-<th align="right">region</th>
-<th align="left">food_item_name</th>
-<th align="right">food_item_code</th>
-<th align="left">unit_code</th>
-<th align="left">unit_name</th>
-<th align="left">measure_id</th>
-<th align="right">factor</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">97</td>
-<td align="left">BASIN</td>
-<td align="left">1-97-101</td>
-<td align="right">3.400</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">97</td>
-<td align="left">BASIN</td>
-<td align="left">2-97-101</td>
-<td align="right">3.400</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">97</td>
-<td align="left">BASIN</td>
-<td align="left">3-97-101</td>
-<td align="right">3.400</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">84</td>
-<td align="left">CUP</td>
-<td align="left">3-84-101</td>
-<td align="right">0.445</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">82</td>
-<td align="left">3LITRE BUCKET</td>
-<td align="left">3-82-101</td>
-<td align="right">2.328</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">25</td>
-<td align="left">TINA</td>
-<td align="left">1-25-101</td>
-<td align="right">0.323</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">25</td>
-<td align="left">TINA</td>
-<td align="left">2-25-101</td>
-<td align="right">0.245</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">25</td>
-<td align="left">TINA</td>
-<td align="left">3-25-101</td>
-<td align="right">0.300</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">26</td>
-<td align="left">5 LITRE BUCKET CHIGOBA</td>
-<td align="left">1-26-101</td>
-<td align="right">3.880</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">MAIZE UFA MGAIWA (NORMAL FLOUR)</td>
-<td align="right">101</td>
-<td align="left">26</td>
-<td align="left">5 LITRE BUCKET CHIGOBA</td>
-<td align="left">2-26-101</td>
-<td align="right">3.880</td>
-</tr>
-</tbody>
-</table>
-<p>Check if the conversion factors file contain all the expected conversion factors for the hces data being processed.</p>
+<span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span></span>
+<span>    <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span></span>
+<span>      <span class="st">"data"</span>,</span>
+<span>      <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>      <span class="st">"IHS5_UNIT_CONVERSION_FACTORS_vMAPS.csv"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>We need to check if the conversion factors file contain all the expected conversion factors for the hces data being processed. The <code>check_conv_fct</code> function checks if the conversion factors file contains all the expected conversion factors for the hces data being processed. T</p>
+<div class="callout-warning">
+<p>Remember this data was randomly generated so it is expected that the weights will not be realistic. Also not all food items have conversion factors so the weight of those food items will be <code>NA</code>.</p>
+</div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Check conversion factors </span></span>
-<span><span class="fu"><a href="reference/check_conv_fct.html">check_conv_fct</a></span><span class="op">(</span>hces_df <span class="op">=</span> <span class="va">sample_hces</span>, conv_fct_df <span class="op">=</span> <span class="va">IHS5_conv_fct</span><span class="op">)</span></span>
-<span><span class="co">#&gt; There are 1334 out of 1408 have missing conversion factors.</span></span>
-<span><span class="co">#&gt; This represents 94.74% of the data.</span></span>
-<span><span class="co">#&gt; Please fix your conversion factors file before trying again.</span></span>
-<span><span class="co">#&gt; NOTE: Use View() to see the missing conversion factors.</span></span>
-<span><span class="co">#&gt; # A tibble: 1,334 × 15</span></span>
-<span><span class="co">#&gt;    case_id    hhid  food_name food_code cons_unit_name cons_unit_code cons_quant</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;               &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 201011000… e6ff… MAIZE UF…       103 KILOGRAMME     1                     6  </span></span>
-<span><span class="co">#&gt;  2 201011000… e569… FINGER M…       107 KILOGRAM       23                    2.5</span></span>
-<span><span class="co">#&gt;  3 201011000… aaf8… SPAGHETT…       114 KILOGRAM       23                    6.5</span></span>
-<span><span class="co">#&gt;  4 201011000… 032c… BEAN, BR…       302 KILOGRAM       23                    1  </span></span>
-<span><span class="co">#&gt;  5 201011000… dd9a… FRESH FI…      5031 KILOGRAMME     1                     8.5</span></span>
-<span><span class="co">#&gt;  6 201011000… 6bb7… TINNED M…       512 KILOGRAMME     1                     0.5</span></span>
-<span><span class="co">#&gt;  7 201011000… 23d0… FREEZES …       906 KILOGRAMME     1                     5  </span></span>
-<span><span class="co">#&gt;  8 201011000… e6ff… PEARL MI…       109 HEAP           10                    5  </span></span>
-<span><span class="co">#&gt;  9 201011000… b52b… BREAD           111 HEAP           10                    7  </span></span>
-<span><span class="co">#&gt; 10 201011000… 11bd… INFANT F…       116 HEAP           10                    3  </span></span>
-<span><span class="co">#&gt; # ℹ 1,324 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 8 more variables: matched_food_name &lt;chr&gt;, matched_food_code &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   food_match_source &lt;chr&gt;, matched_cons_unit_name &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   matched_cons_unit_code &lt;chr&gt;, cons_unit_code_source &lt;chr&gt;, region &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   measure_id &lt;chr&gt;</span></span></code></pre></div>
-<p>Calculate weight of food items in kilograms.</p>
+<span><span class="fu"><a href="reference/check_conv_fct.html">check_conv_fct</a></span><span class="op">(</span>hces_df <span class="op">=</span> <span class="va">sample_hces</span>, </span>
+<span>               conv_fct_df <span class="op">=</span> <span class="va">IHS5_conv_fct</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="calculate-weight-of-food-items-in-kilograms">Calculate weight of food items in kilograms.<a class="anchor" aria-label="anchor" href="#calculate-weight-of-food-items-in-kilograms"></a>
+</h3>
+<p>The <code>apply_wght_conv_fct</code> function will take the <code>hces_df</code> and <code>conv_fct_df</code> and calculate the weight of each food item in kilograms.</p>
+<div class="callout-warning">
+<p>Remember this data was randomly generated so it is expected that the weights will not be realistic. Also not all food items have conversion factors so the weight of those food items will be <code>NA</code>.</p>
+</div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_hces</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="reference/apply_wght_conv_fct.html">apply_wght_conv_fct</a></span><span class="op">(</span></span>
@@ -1977,321 +339,77 @@
 <span>    wt_kg_col <span class="op">=</span> <span class="st">"wt_kg"</span>,</span>
 <span>    cons_qnty_col <span class="op">=</span> <span class="st">"cons_quant"</span>,</span>
 <span>    allowDuplicates <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="4%">
-<col width="10%">
-<col width="8%">
-<col width="3%">
-<col width="6%">
-<col width="4%">
-<col width="3%">
-<col width="12%">
-<col width="5%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="7%">
-<col width="2%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-<th align="left">matched_cons_unit_name</th>
-<th align="left">matched_cons_unit_code</th>
-<th align="left">cons_unit_code_source</th>
-<th align="right">region</th>
-<th align="left">measure_id</th>
-<th align="right">factor</th>
-<th align="right">wt_kg</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TABLE SPOON</td>
-<td align="left">59</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-59-104</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">51</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-51-208</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TBE</td>
-<td align="left">22</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-22-301</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">25A</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-25A-307</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-311</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="right">403</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="left">403</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-403</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BIRD</td>
-<td align="right">515</td>
-<td align="left">N/A</td>
-<td align="left">23</td>
-<td align="right">5.5</td>
-<td align="left">OTHER POULTRY - GUINEA FOWL, DOVES, ETC</td>
-<td align="left">509</td>
-<td align="left">maps-team</td>
-<td align="left">N/A</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-509</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BANANA</td>
-<td align="right">602</td>
-<td align="left">PIECE MEDIUM</td>
-<td align="left">9B</td>
-<td align="right">9.0</td>
-<td align="left">BANANA</td>
-<td align="left">602</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">PIECE MEDIUM</td>
-<td align="left">9B</td>
-<td align="left">1</td>
-<td align="right">3</td>
-<td align="left">3-9B-602</td>
-<td align="right">0.08</td>
-<td align="right">0.72</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">PINEAPPLE</td>
-<td align="right">604</td>
-<td align="left">SMALL BOX TEA BAGS</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">PINEAPPLE</td>
-<td align="left">604</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL BOX TEA BAGS</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-604</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">FRESH MILK</td>
-<td align="right">701</td>
-<td align="left">QUARTER</td>
-<td align="left">23</td>
-<td align="right">3.5</td>
-<td align="left">FRESH MILK</td>
-<td align="left">701</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">QUARTER</td>
-<td align="left">80</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-80-701</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="calculate-afeame-and-add-to-the-data">Calculate AFE/AME and add to the data<a class="anchor" aria-label="anchor" href="#calculate-afeame-and-add-to-the-data"></a>
+</h3>
 </div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="calculate-afeame-and-add-to-the-data">Calculate AFE/AME and add to the data<a class="anchor" aria-label="anchor" href="#calculate-afeame-and-add-to-the-data"></a>
-</h1>
-<div class="section level2">
+<div class="section level2 callout-tip">
 <h2 id="assumptions">Assumptions<a class="anchor" aria-label="anchor" href="#assumptions"></a>
 </h2>
-<p>Merge HH demographic data with AME/AFE factors Men’s weight: 65kg (assumption) Women’s weight: 55kg (from DHS) PAL: 1.6X the BMR</p>
+<p>The ame/afe factors are calculated using the following assumptions: - Merge HH demographic data with AME/AFE factors - Men’s weight: 65kg (assumption) - Women’s weight: 55kg (from DHS) - PAL: 1.6X the BMR</p>
 </div>
-<div class="section level2">
-<h2 id="import-data-required">Import data required<a class="anchor" aria-label="anchor" href="#import-data-required"></a>
-</h2>
-<p>In order to calculate the AFE and AME metrics we require the following data: - Household roster with the sex and age of each individual - Household health - AFE and AME factors</p>
+<div class="section level4">
+<h4 id="import-data-required">Import data required<a class="anchor" aria-label="anchor" href="#import-data-required"></a>
+</h4>
+<p>In order to calculate the AFE and AME metrics we require the following data: - Household roster with the sex and age of each individual <code>HH_MOD_B_vMAPS.dta</code> - Household health <code>HH_MOD_D_vMAPS.dta</code> - AFE and AME factors <code>IHS5_AME_FACTORS_vMAPS.csv</code> and <code>IHS5_AME_SPEC_vMAPS.csv</code></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Import data of the roster and health modules of the IHS5 survey</span></span>
 <span><span class="va">ihs5_roster</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"mwi-ihs5-sample-data"</span>, <span class="st">"HH_MOD_B_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,</span>
+<span>                             <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                             <span class="st">"HH_MOD_B_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ihs5_health</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"mwi-ihs5-sample-data"</span>, <span class="st">"HH_MOD_D_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">haven</span><span class="fu">::</span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,</span>
+<span>                             <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                             <span class="st">"HH_MOD_D_vMAPS.dta"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Import data of the AME/AFE factors and specifications</span></span>
 <span><span class="va">ame_factors</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span></span>
-<span>    <span class="st">"data"</span>,</span>
-<span>    <span class="st">"mwi-ihs5-sample-data"</span>,</span>
-<span>    <span class="st">"IHS5_AME_FACTORS_vMAPS.csv"</span></span>
-<span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,</span>
+<span>                      <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                      <span class="st">"IHS5_AME_FACTORS_vMAPS.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ame_spec_factors</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"mwi-ihs5-sample-data"</span>, <span class="st">"IHS5_AME_SPEC_vMAPS.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"data"</span>,</span>
+<span>                      <span class="st">"mwi-ihs5-sample-data"</span>,</span>
+<span>                      <span class="st">"IHS5_AME_SPEC_vMAPS.csv"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Rename the population column to cat and select the relevant columns</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cat</span>, <span class="va">ame_spec</span>, <span class="va">afe_spec</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="extra-energy-requirements-for-pregnancy">Extra energy requirements for pregnancy<a class="anchor" aria-label="anchor" href="#extra-energy-requirements-for-pregnancy"></a>
-</h2>
+<div class="section level4">
+<h4 id="extra-energy-requirements-for-pregnancy">Extra energy requirements for pregnancy<a class="anchor" aria-label="anchor" href="#extra-energy-requirements-for-pregnancy"></a>
+</h4>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># # Extra energy requirements for pregnancy and Illness</span></span>
+<code class="sourceCode R"><span><span class="co"># Extra energy requirements for pregnancy and Illness</span></span>
 <span><span class="va">pregnantPersons</span> <span class="op">&lt;-</span> <span class="va">ihs5_health</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">hh_d05a</span> <span class="op">==</span> <span class="fl">28</span> <span class="op">|</span> <span class="va">hh_d05b</span> <span class="op">==</span> <span class="fl">28</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># NOTE: 28 is the code for pregnancy in this survey</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ame_preg <span class="op">=</span> <span class="fl">0.11</span>, afe_preg <span class="op">=</span> <span class="fl">0.14</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># NOTE: where do these values come from, DHS?</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">HHID</span>, <span class="va">ame_preg</span>, <span class="va">afe_preg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview</span></span>
-<span><span class="va">pregnantPersons</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">HHID</th>
-<th align="right">ame_preg</th>
-<th align="right">afe_preg</th>
-</tr></thead>
-<tbody></tbody>
-</table>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">hh_d05a</span> <span class="op">==</span> <span class="fl">28</span> <span class="op">|</span></span>
+<span>                  <span class="va">hh_d05b</span> <span class="op">==</span> <span class="fl">28</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="co"># NOTE: 28 is the code for pregnancy in this survey</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ame_preg <span class="op">=</span> <span class="fl">0.11</span>, afe_preg <span class="op">=</span> <span class="fl">0.14</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">HHID</span>, <span class="va">ame_preg</span>, <span class="va">afe_preg</span><span class="op">)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="process-hh-roster-data">Process HH roster data<a class="anchor" aria-label="anchor" href="#process-hh-roster-data"></a>
-</h1>
+<div class="section level4">
+<h4 id="process-hh-roster-data">Process HH roster data<a class="anchor" aria-label="anchor" href="#process-hh-roster-data"></a>
+</h4>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Process the roster data and rename variables to be more intuitive</span></span>
 <span><span class="va">aMFe_summaries</span> <span class="op">&lt;-</span> <span class="va">ihs5_roster</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Rename the variables to be more intuitive</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="va">hh_b03</span>, age_y <span class="op">=</span> <span class="va">hh_b05a</span>, age_m <span class="op">=</span> <span class="va">hh_b05b</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>age_m_total <span class="op">=</span> <span class="op">(</span><span class="va">age_y</span> <span class="op">*</span> <span class="fl">12</span> <span class="op">+</span> <span class="va">age_m</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># NOTE: why not just use age as below.</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>age_m_total <span class="op">=</span> <span class="op">(</span><span class="va">age_y</span> <span class="op">*</span> <span class="fl">12</span> <span class="op">+</span> <span class="va">age_m</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="co"># Add the AME/AFE factors to the roster data</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">ame_factors</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age_y"</span> <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># Why use only age here and neglect months e.g 4.9years is close to 5 No??</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">ame_factors</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age_y"</span> <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    ame_base <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="va">ame_m</span>, <span class="va">sex</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="va">ame_f</span><span class="op">)</span>,</span>
 <span>    afe_base <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="va">afe_m</span>, <span class="va">sex</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="va">afe_f</span><span class="op">)</span>,</span>
 <span>    age_u1_cat <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span></span>
-<span>      <span class="co"># NOTE: Round here will ensure that decimals are not ommited in the calculation.</span></span>
+<span>      <span class="co"># NOTE: Round here will ensure that decimals are not omited in the calculation.</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">age_m_total</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">0</span><span class="op">:</span><span class="fl">5</span> <span class="op">~</span> <span class="st">"0-5 months"</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">age_m_total</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">6</span><span class="op">:</span><span class="fl">8</span> <span class="op">~</span> <span class="st">"6-8 months"</span>,</span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">age_m_total</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fl">9</span><span class="op">:</span><span class="fl">11</span> <span class="op">~</span> <span class="st">"9-11 months"</span></span>
@@ -2327,336 +445,37 @@
 <span>    hh_afe <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">hh_persons</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="va">hh_afe</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">HHID</span>, <span class="va">hh_persons</span>, <span class="va">hh_ame</span>, <span class="va">hh_afe</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>hhid <span class="op">=</span> <span class="va">HHID</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Preview</span></span>
-<span><span class="va">aMFe_summaries</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">hhid</th>
-<th align="right">hh_persons</th>
-<th align="right">hh_ame</th>
-<th align="right">hh_afe</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">032c1ecdd61b169337828a2dfea5fe41</td>
-<td align="right">9</td>
-<td align="right">7.13</td>
-<td align="right">9.00</td>
-</tr>
-<tr class="even">
-<td align="left">0407a23ba7a92640fd4a1cac86332930</td>
-<td align="right">3</td>
-<td align="right">2.77</td>
-<td align="right">3.50</td>
-</tr>
-<tr class="odd">
-<td align="left">044f7b15139e65707a4aee879ee3b8c8</td>
-<td align="right">5</td>
-<td align="right">2.95</td>
-<td align="right">3.73</td>
-</tr>
-<tr class="even">
-<td align="left">05149c2e93c758f40e0198a01a80dde1</td>
-<td align="right">5</td>
-<td align="right">3.07</td>
-<td align="right">3.88</td>
-</tr>
-<tr class="odd">
-<td align="left">0703626bfdb45f5269243b2c397309e8</td>
-<td align="right">4</td>
-<td align="right">2.02</td>
-<td align="right">2.55</td>
-</tr>
-<tr class="even">
-<td align="left">0f48328d013904487684c19e56c8f04c</td>
-<td align="right">4</td>
-<td align="right">3.08</td>
-<td align="right">3.90</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>hhid <span class="op">=</span> <span class="va">HHID</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="join-the-afeame-data-to-our-household-consumption-and-expenditure-survey-data">Join the AFE/AME data to our Household Consumption and Expenditure survey data<a class="anchor" aria-label="anchor" href="#join-the-afeame-data-to-our-household-consumption-and-expenditure-survey-data"></a>
-</h1>
+<div class="section level4">
+<h4 id="enrich-consumption-data-with-afeame">Enrich Consumption Data with AFE/AME<a class="anchor" aria-label="anchor" href="#enrich-consumption-data-with-afeame"></a>
+</h4>
+<p>We will use the <code>left_join</code> function from <code>dplyr</code> to join the consumption data with the <code>aMFe_summaries</code> data.</p>
+<p>The <code>left_join</code> function will join the <code>aMFe_summaries</code> data to the <code>sample_hces</code> data by matching the <code>hhid</code> column in both data sets.</p>
+<p>The <code>left_join</code> function will add the <code>hh_persons</code>, <code>hh_ame</code> and <code>hh_afe</code> columns to the <code>sample_hces</code> data.</p>
+<p>The <code>hh_persons</code> column contains the number of people in each household. The <code>hh_ame</code> and <code>hh_afe</code> columns contain the AME and AFE factors for each household.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="va">sample_hces</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aMFe_summaries</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(hhid)`</span></span>
-<span></span>
-<span><span class="va">sample_hces</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="3%">
-<col width="9%">
-<col width="7%">
-<col width="3%">
-<col width="5%">
-<col width="4%">
-<col width="3%">
-<col width="11%">
-<col width="5%">
-<col width="6%">
-<col width="6%">
-<col width="6%">
-<col width="6%">
-<col width="2%">
-<col width="3%">
-<col width="2%">
-<col width="1%">
-<col width="3%">
-<col width="2%">
-<col width="2%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">case_id</th>
-<th align="left">hhid</th>
-<th align="left">food_name</th>
-<th align="right">food_code</th>
-<th align="left">cons_unit_name</th>
-<th align="left">cons_unit_code</th>
-<th align="right">cons_quant</th>
-<th align="left">matched_food_name</th>
-<th align="left">matched_food_code</th>
-<th align="left">food_match_source</th>
-<th align="left">matched_cons_unit_name</th>
-<th align="left">matched_cons_unit_code</th>
-<th align="left">cons_unit_code_source</th>
-<th align="right">region</th>
-<th align="left">measure_id</th>
-<th align="right">factor</th>
-<th align="right">wt_kg</th>
-<th align="right">hh_persons</th>
-<th align="right">hh_ame</th>
-<th align="right">hh_afe</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="right">104</td>
-<td align="left">TABLESPOON</td>
-<td align="left">59</td>
-<td align="right">1.0</td>
-<td align="left">MAIZE GRAIN (NOT AS UFA)</td>
-<td align="left">104</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TABLE SPOON</td>
-<td align="left">59</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-59-104</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="right">208</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">23</td>
-<td align="right">8.0</td>
-<td align="left">COCOYAM (MASIMBI)</td>
-<td align="left">208</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">MEDIUM PACKET</td>
-<td align="left">51</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-51-208</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BEAN, WHITE</td>
-<td align="right">301</td>
-<td align="left">TBE</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">BEAN, WHITE</td>
-<td align="left">301</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">TBE</td>
-<td align="left">22</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-22-301</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="right">307</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">23</td>
-<td align="right">6.0</td>
-<td align="left">GROUND BEAN (NZAMA)</td>
-<td align="left">307</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL TINA FLAT</td>
-<td align="left">25A</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-25A-307</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="right">311</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">GROUNDNUT (SHELLED)</td>
-<td align="left">311</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">JAG</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-311</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="right">403</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="right">7.5</td>
-<td align="left">TANAPOSI/RAPE</td>
-<td align="left">403</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">BAKERY DONAS</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-403</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BIRD</td>
-<td align="right">515</td>
-<td align="left">N/A</td>
-<td align="left">23</td>
-<td align="right">5.5</td>
-<td align="left">OTHER POULTRY - GUINEA FOWL, DOVES, ETC</td>
-<td align="left">509</td>
-<td align="left">maps-team</td>
-<td align="left">N/A</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-509</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">BANANA</td>
-<td align="right">602</td>
-<td align="left">PIECE MEDIUM</td>
-<td align="left">9B</td>
-<td align="right">9.0</td>
-<td align="left">BANANA</td>
-<td align="left">602</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">PIECE MEDIUM</td>
-<td align="left">9B</td>
-<td align="left">1</td>
-<td align="right">3</td>
-<td align="left">3-9B-602</td>
-<td align="right">0.08</td>
-<td align="right">0.72</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="odd">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">PINEAPPLE</td>
-<td align="right">604</td>
-<td align="left">SMALL BOX TEA BAGS</td>
-<td align="left">23</td>
-<td align="right">2.5</td>
-<td align="left">PINEAPPLE</td>
-<td align="left">604</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">SMALL BOX TEA BAGS</td>
-<td align="left">23</td>
-<td align="left">4</td>
-<td align="right">3</td>
-<td align="left">3-23-604</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-<tr class="even">
-<td align="left">201011000001</td>
-<td align="left">ee2d2915a43d589af42a8b88c279698d</td>
-<td align="left">FRESH MILK</td>
-<td align="right">701</td>
-<td align="left">QUARTER</td>
-<td align="left">23</td>
-<td align="right">3.5</td>
-<td align="left">FRESH MILK</td>
-<td align="left">701</td>
-<td align="left">MWI-IHS5-standard-list</td>
-<td align="left">QUARTER</td>
-<td align="left">80</td>
-<td align="left">2</td>
-<td align="right">3</td>
-<td align="left">3-80-701</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">10</td>
-<td align="right">9</td>
-<td align="right">11.39</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">aMFe_summaries</span><span class="op">)</span></span></code></pre></div>
+<p>Now we have a “clean” data set that we can use for analysis.</p>
+</div>
+<div class="section level2">
+<h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<p>This chapter demonstrated the use of the <code>hcesNutR</code> package to process HCES data. The package contains functions that will help with the analysis of HCES data.</p>
+<p>The package also contains the sample data used in this book i.e. <a href="dzvoti.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We used this sample data to demonstrate the use of the functions in the package.</p>
+<p>The package is still under development and will be updated regularly.Please report any bugs or issues <a href="www.github.com/dzvoti/hcesNutR/issues">here</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="future-work">Future work<a class="anchor" aria-label="anchor" href="#future-work"></a>
+</h2>
+<ul>
+<li>Add more functions to the package</li>
+<li>Support more surveys (NGA Living Standards Survey 2018-2019)</li>
+<li>Add more internal data to the package</li>
+<li>Add more documentation to the package</li>
+</ul>
+</div>
 </div>
 
   </div>
