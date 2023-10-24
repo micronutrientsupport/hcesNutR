@@ -18,6 +18,20 @@ this data after installing the package by running
 `hcesNutR::sample_hces()` in your R console. The package is still under
 development and will be updated regularly.
 
+# `hcesNutR` Package
+
+The goal of the hcesNutR project is to create a repository of functions
+and data that will help with the analysis of the Household Consumption
+Expenditure Survey (HCES) data. A good source of HCES data is [the world
+bank microdata repository](https://microdata.worldbank.org/).
+
+The package contain functions that will help with the analysis of HCES
+data. The package also contains the sample data used in this book
+i.e. [r4hces-data/mwi-ihs5-sample-data](dzvoti.github.io/hcesNutR/data/r4hces-data.zip)
+We will use this sample data to demonstrate the use of the functions in
+the package. The package is still under development and will be updated
+regularly.
+
 ## Reporting bugs
 
 Please report any bugs or issues
@@ -25,33 +39,26 @@ Please report any bugs or issues
 
 ## Installation
 
-You can install the development version of hcesR2 from
+You can install the development version of hcesNutR from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("dzvoti/hcesNutR")
-#> Downloading GitHub repo dzvoti/hcesNutR@HEAD
-#> Warning in untar2(tarfile, files, list, exdir, restore_times): skipping pax
-#> global extended headers
-
-#> Warning in untar2(tarfile, files, list, exdir, restore_times): skipping pax
-#> global extended headers
+#> magick  (2.8.0 -> 2.8.1) [CRAN]
 #> ggplot2 (3.4.3 -> 3.4.4) [CRAN]
 #> vroom   (1.6.3 -> 1.6.4) [CRAN]
 #> sp      (2.0-0 -> 2.1-1) [CRAN]
-#> Installing 3 packages: ggplot2, vroom, sp
-#> Installing packages into 'C:/Users/sbzlm3/AppData/Local/Temp/Rtmpszcx1b/temp_libpath8560b945d32'
-#> (as 'lib' is unspecified)
+#> package 'magick' successfully unpacked and MD5 sums checked
 #> package 'ggplot2' successfully unpacked and MD5 sums checked
 #> package 'vroom' successfully unpacked and MD5 sums checked
 #> package 'sp' successfully unpacked and MD5 sums checked
 #> 
 #> The downloaded binary packages are in
-#>  C:\Users\sbzlm3\AppData\Local\Temp\RtmpmI01hN\downloaded_packages
+#>  C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\downloaded_packages
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpmI01hN\remotes51c042095b13\dzvoti-hcesNutR-63d6a82/DESCRIPTION' ...     checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpmI01hN\remotes51c042095b13\dzvoti-hcesNutR-63d6a82/DESCRIPTION' ...   ✔  checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpmI01hN\remotes51c042095b13\dzvoti-hcesNutR-63d6a82/DESCRIPTION' (416ms)
-#>       ─  preparing 'hcesNutR': (606ms)
+#>          checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' ...     checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' ...   ✔  checking for file 'C:\Users\sbzlm3\AppData\Local\Temp\RtmpWAoA6e\remotes34045f267383\dzvoti-hcesNutR-8e55f3a/DESCRIPTION' (512ms)
+#>       ─  preparing 'hcesNutR': (728ms)
 #>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
 #>   Warning:     Warning: unit_names_n_codes_df.Rd:16: unknown macro '\entries'
 #>    Warning: unit_names_n_codes_df.Rd:17: unknown macro '\priority'
@@ -71,85 +78,87 @@ devtools::install_github("dzvoti/hcesNutR")
 #>   ─  building 'hcesNutR_0.1.0.tar.gz'
 #>      
 #> 
-#> Installing package into 'C:/Users/sbzlm3/AppData/Local/Temp/Rtmpszcx1b/temp_libpath8560b945d32'
-#> (as 'lib' is unspecified)
 ```
+
+As we discussed in previous chapters you need to load the package in
+your R session before you can use it. You can load the package by
+running the following code in your R console.
 
 ``` r
 library(hcesNutR)
 ```
 
-## Example
+## Functions in the package
 
-This is a basic example which shows you the use of the functions in the
-package. The example uses the
-[sample_hces.dta](dzvoti.github.io/hcesNutR/data/sample_hces.dta) data
-that is included in the package. You can download the data by running
-`hcesNutR::sample_hces()` in your R console. The data is randomly
-generated to mimic the structure of the [Fifth Integrated Household
-Survey
+You can view the functions in the package by running the following code
+in your R console.
+
+``` r
+ls("package:hcesNutR")
+```
+
+<div class="callout-tip">
+
+You can read the functions and their description on the project website
+at:
+[dzvoti.github.io/hcesNutR/reference/index.html](dzvoti.github.io/hcesNutR/reference/index.html)
+
+</div>
+
+## Sample data
+
+The data used in this example is randomly generated to mimic the
+structure of the [Fifth Integrated Household Survey
 2019-2020](https://microdata.worldbank.org/index.php/catalog/3818/related-materials)
 an HCES of Malawi. The variables and structure of this data is found
 [here](https://microdata.worldbank.org/index.php/catalog/3818/related-materials)
 
-## Import and explore the sample data
+<div class="callout-tip">
+
+All functions in this package take a dataframe/tibble as input data.
+This is by design to allow flexibility on input data. The example used
+here is for use on stata files with `.dta` but the functions should work
+with `.csv` files as well.
+
+</div>
+
+### Import and explore the sample data
+
+Import the sample data from the `r4hces-data/mwi-ihs5-sample-data`
+folder. Use the `read_dta` function from the `haven` package to import
+it.
 
 ``` r
 # Import the data using the haven package from the tidyverse
 sample_hces <-
-  haven::read_dta(here::here("data", "mwi-ihs5-sample-data", "HH_MOD_G1_vMAPS.dta"))
+  haven::read_dta(here::here("data", 
+                             "mwi-ihs5-sample-data",
+                             "HH_MOD_G1_vMAPS.dta"))
 ```
-
-``` r
-# Preview first 5 rows
-sample_hces |>
-head() |>
-  knitr::kable()
-```
-
-| case_id      | HHID                             | hh_g00_1 | hh_g00_2 | hh_g01 | hh_g01_oth | hh_g02 | hh_g03a | hh_g03b | hh_g03b_label | hh_g03b_oth | hh_g03c | hh_g03c_1 | hh_g04a | hh_g04b | hh_g04b_label | hh_g04b_oth | hh_g04c | hh_g04c_1 | hh_g05 | hh_g06a | hh_g06b | hh_g06b_label | hh_g06b_oth | hh_g06c | hh_g06c_1 | hh_g07a | hh_g07b | hh_g07b_label | hh_g07b_oth | hh_g07c | hh_g07c_1 |
-|:-------------|:---------------------------------|---------:|---------:|-------:|:-----------|-------:|--------:|:--------|--------------:|:------------|--------:|----------:|--------:|:--------|--------------:|:------------|--------:|----------:|-------:|--------:|:--------|--------------:|:------------|--------:|----------:|--------:|:--------|--------------:|:------------|--------:|----------:|
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      2 |            |    101 |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      2 |            |    102 |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      2 |            |    103 |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      1 |            |    104 |       1 | 59      |            59 |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      2 |            |    105 |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |        2 |        2 |      2 |            |    106 |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |     NA |      NA |         |            NA |             |      NA |        NA |      NA |         |            NA |             |      NA |        NA |
 
 ### Trim the data
 
 In this example we will use `hcesNutR` functions to demonstrate
 processing of `total` consumption data. The `total` consumption data is
 the data that contains the total consumption of each food item by each
-household. The other consumption columns contain values for consumption
-from sources i.e. gifted, purchased, ownProduced. The workflow for
-processing these is the same as demonstrated below.
+household.
+
+The other consumption columns contain values for consumption from
+sources i.e. gifted, purchased, ownProduced. The workflow for processing
+the “other” consumption data is the same as demonstrated below.
 
 ``` r
 # Trim the data to total consumption
-sample_hces <-
-  sample_hces |> 
-  dplyr::select(case_id:HHID, hh_g01:hh_g03c_1)
-
-# Preview
-sample_hces |>
-  head(5) |>
-  knitr::kable()
+sample_hces <- sample_hces |>
+  dplyr::select(case_id:HHID,
+                hh_g01:hh_g03c_1)
 ```
 
-| case_id      | HHID                             | hh_g01 | hh_g01_oth | hh_g02 | hh_g03a | hh_g03b | hh_g03b_label | hh_g03b_oth | hh_g03c | hh_g03c_1 |
-|:-------------|:---------------------------------|-------:|:-----------|-------:|--------:|:--------|--------------:|:------------|--------:|----------:|
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |            |    101 |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |            |    102 |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |            |    103 |      NA |         |            NA |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      1 |            |    104 |       1 | 59      |            59 |             |      NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |            |    105 |      NA |         |            NA |             |      NA |        NA |
-
-## hcesnutR workflow
+## `hcesnutR` Workflow
 
 ### Column Naming Conventions and Renaming
 
-The sample_hces data is in stata format which contains data with short
+The `sample_hces` data is in stata format which contains data with short
 column name codes that have associated “question” labels that explain
 the contents of the data. To make the column names more interpretable,
 the package provides the `rename_hces` function, which can be used to
@@ -172,36 +181,10 @@ refer to the function’s documentation:
 
 ``` r
 # Rename the variables
-sample_hces <-
-  hcesNutR::rename_hces(sample_hces, country_name = "MWI", survey_name = "IHS5")
-#> 
-#> ...
-#> The following columns were renamed:
-#> 
-#>   hces_standard_name survey_variable_names
-#> 1               hhid                  HHID
-#> 2             consYN                hh_g01
-#> 3           item_oth            hh_g01_oth
-#> 4          item_code                hh_g02
-#> 5         cons_quant               hh_g03a
-#> 6         cons_unitA               hh_g03b
-#> 7          cons_unit         hh_g03b_label
-#> 8      cons_unit_oth           hh_g03b_oth
-#> 9     cons_unit_size               hh_g03c
-
-# View the results
-sample_hces |>
-  head(5) |>
-  knitr::kable()
+sample_hces <- hcesNutR::rename_hces(sample_hces,
+                                     country_name = "MWI",
+                                     survey_name = "IHS5")
 ```
-
-| case_id      | hhid                             | consYN | item_oth | item_code | cons_quant | cons_unitA | cons_unit | cons_unit_oth | cons_unit_size | hh_g03c_1 |
-|:-------------|:---------------------------------|-------:|:---------|----------:|-----------:|:-----------|----------:|:--------------|---------------:|----------:|
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |          |       101 |         NA |            |        NA |               |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |          |       102 |         NA |            |        NA |               |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |          |       103 |         NA |            |        NA |               |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      1 |          |       104 |          1 | 59         |        59 |               |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |      2 |          |       105 |         NA |            |        NA |               |             NA |        NA |
 
 ### Remove unconsumed food items
 
@@ -216,47 +199,10 @@ indicates that the food item was consumed.
 
 ``` r
 # Remove unconsumed food items
-sample_hces <- hcesNutR::remove_unconsumed(sample_hces, consCol = "consYN", consVal = 1)
-#> Removing unconsumed food item records...
-#> Unconsumed food item records removed succesfully
-#> Number of records removed : 12488
-#> Number of records remaining : 1712
-#> 
-#> ...
-#> ...
-
-# Preview the results
-sample_hces
-#> # A tibble: 1,712 × 10
-#>    case_id      hhid          item_oth item_code cons_quant cons_unitA cons_unit
-#>    <chr>        <chr>         <chr>    <dbl+lbl>      <dbl> <chr>      <dbl+lbl>
-#>  1 201011000001 ee2d2915a43d… ""       104 [Mai…        1   59         59 [TABL…
-#>  2 201011000001 ee2d2915a43d… ""       208 [Coc…        8   23         23 [OTHE…
-#>  3 201011000001 ee2d2915a43d… ""       301 [Bea…        2.5 23         23 [OTHE…
-#>  4 201011000001 ee2d2915a43d… ""       307 [Gro…        6   23         23 [OTHE…
-#>  5 201011000001 ee2d2915a43d… ""       311 [Gro…        7.5 23         23 [OTHE…
-#>  6 201011000001 ee2d2915a43d… ""       403 [Tan…        7.5 23         23 [OTHE…
-#>  7 201011000001 ee2d2915a43d… "BIRD"   515 [Oth…        5.5 23         23 [OTHE…
-#>  8 201011000001 ee2d2915a43d… ""       602 [Ban…        9   9B          9 [PIEC…
-#>  9 201011000001 ee2d2915a43d… ""       604 [Pin…        2.5 23         23 [OTHE…
-#> 10 201011000001 ee2d2915a43d… ""       701 [Fre…        3.5 23         23 [OTHE…
-#> # ℹ 1,702 more rows
-#> # ℹ 3 more variables: cons_unit_oth <chr>, cons_unit_size <dbl+lbl>,
-#> #   hh_g03c_1 <dbl+lbl>
-# Preview the results as table
-
-sample_hces |>
-  head(5) |>
-  knitr::kable()
+sample_hces <- hcesNutR::remove_unconsumed(sample_hces,
+                                           consCol = "consYN", 
+                                           consVal = 1)
 ```
-
-| case_id      | hhid                             | item_oth | item_code | cons_quant | cons_unitA | cons_unit | cons_unit_oth   | cons_unit_size | hh_g03c_1 |
-|:-------------|:---------------------------------|:---------|----------:|-----------:|:-----------|----------:|:----------------|---------------:|----------:|
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |          |       104 |        1.0 | 59         |        59 |                 |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |          |       208 |        8.0 | 23         |        23 | MEDIUM PACKET   |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |          |       301 |        2.5 | 23         |        23 | TBE             |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |          |       307 |        6.0 | 23         |        23 | SMALL TINA FLAT |             NA |        NA |
-| 201011000001 | ee2d2915a43d589af42a8b88c279698d |          |       311 |        7.5 | 23         |        23 | JAG             |             NA |        NA |
 
 ### Create two columns from each dbl+lbl column
 
@@ -269,62 +215,29 @@ The function returns a data frame with the new columns.
 ``` r
 # Split dbl+lbl columns
 sample_hces <- hcesNutR::create_dta_labels(sample_hces)
-
-# Preview
-sample_hces
-#> # A tibble: 1,712 × 14
-#>    case_id    hhid  item_oth item_code_code item_code_name cons_quant cons_unitA
-#>    <chr>      <chr> <chr>             <dbl> <chr>               <dbl> <chr>     
-#>  1 201011000… ee2d… ""                  104 Maize grain (…        1   59        
-#>  2 201011000… ee2d… ""                  208 Cocoyam (masi…        8   23        
-#>  3 201011000… ee2d… ""                  301 Bean, white           2.5 23        
-#>  4 201011000… ee2d… ""                  307 Ground bean (…        6   23        
-#>  5 201011000… ee2d… ""                  311 Groundnut (Sh…        7.5 23        
-#>  6 201011000… ee2d… ""                  403 Tanaposi/Rape         7.5 23        
-#>  7 201011000… ee2d… "BIRD"              515 Other (specif…        5.5 23        
-#>  8 201011000… ee2d… ""                  602 Banana                9   9B        
-#>  9 201011000… ee2d… ""                  604 Pineapple             2.5 23        
-#> 10 201011000… ee2d… ""                  701 Fresh milk            3.5 23        
-#> # ℹ 1,702 more rows
-#> # ℹ 7 more variables: cons_unit_code <dbl>, cons_unit_name <chr>,
-#> #   cons_unit_oth <chr>, cons_unit_size_code <dbl>, cons_unit_size_name <chr>,
-#> #   hh_g03c_1_code <dbl>, hh_g03c_1_name <chr>
-
-# Preview the results as table
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+### Concatenate columns
 
-### Data cleaning
-
-Some HCES data surveys split consumption food item or their consumption
+Some HCES data surveys split consumed food items or their consumption
 units into multiple columns. The `concatenate_columns` function cleans
 the data by combining the split columns into one column. The function
 can exclude values from contatenation by specifying the whole or part of
 values to be excluded.
 
-#### Example 1: Concatenate food item names
+#### Concatenate food item names
 
 ``` r
 # Merge food item names
 sample_hces <-
   hcesNutR::concatenate_columns(sample_hces,
-                                c("item_code_name", "item_oth"),
+                                c("item_code_name", 
+                                  "item_oth"),
                                 "SPECIFY",
                                 "item_code_name")
-
-# Preview the results as table
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
-
-#### Example 2: Concatenate food item units
+#### Concatenate food item units
 
 ``` r
 # Merge consumption unit names. For units it is essential to remove parentesis as they are the major cause of duplicate units
@@ -341,16 +254,16 @@ sample_hces <-
     "cons_unit_name",
     TRUE
   )
-
-# Preview the results as table
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<div class="callout-tip">
 
-### Use the `select` and `rename` functions from the dplyr package to subset the columns containing food item name , food item code, food unit name and food unit code
+Use the `select` and `rename` functions from the dplyr package to subset
+the columns containing food item name , food item code, food unit name
+and food unit code. This is to ensure that the names are meaningful and
+consistent with the package’s naming conventions.
+
+</div>
 
 ``` r
 sample_hces <- sample_hces |>
@@ -366,15 +279,11 @@ sample_hces <- sample_hces |>
   dplyr::rename(food_name = item_code_name,
                 food_code = item_code_code,
                 cons_unit_code = cons_unitA)
-
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="100%" />
-\### Match survey food items to standard food items The
-`match_food_names` function is useful for standardising survey food
+### Match survey food items to standard food items
+
+The `match_food_names` function is useful for standardising survey food
 names. This is feasible due to an internal dataset of standard food item
 names matched with their corresponding survey food names for supported
 surveys. Alternatively users can use their own food matching names by
@@ -391,15 +300,7 @@ sample_hces <-
     food_code_col = "food_code",
     overwrite = FALSE
   )
-#> 
-#>  There are 76 out of 1712 rows, which represents 4.44% of the data. The missing values are shown in the pop up view:
-
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
-
-<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" />
 
 ### Match survey consumption units to standard consumption units
 
@@ -421,50 +322,45 @@ sample_hces <-
     matches_csv = NULL,
     overwrite = FALSE
   )
-#> 
-#>  There are 15 out of 1712 rows with unmatched units, which represents 0.88% of the data. The missing values are shown in the pop up view:
-
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
-
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
 
 ### Add regions and districts to the data
 
-Identify the HCES module that contains household identifiers. In some
+Identify the HCES module that contains `household identifiers`. In some
 cases this will already be present in the HCES data and should be
-skipped. From the household identifiers select the ones that are
+skipped. From the `household identifiers` select the ones that are
 required and add to the data. In this example we will add the region and
-district identifiers to the data from the hh_mod_a\_filt.dta file.
+district identifiers to the data from the `hh_mod_a_filt.dta` file.
 
 ``` r
 # Import household identifiers from the hh_mod_a_filt.dta file
 household_identifiers <-
-  haven::read_dta(here::here("data", "mwi-ihs5-sample-data", "hh_mod_a_filt_vMAPS.dta")) |>
+  haven::read_dta(here::here("data",
+                             "mwi-ihs5-sample-data",
+                             "hh_mod_a_filt_vMAPS.dta")) |>
   # subset the identifiers and keep only the ones needed.
-  dplyr::select(case_id, HHID, region) |>
+  dplyr::select(case_id,
+                HHID,
+                region) |>
   dplyr::rename(hhid = HHID)
 
 # Add the identifiers to the data
 sample_hces <-
-  dplyr::left_join(sample_hces, household_identifiers, by = c("hhid", "case_id"))
-
-sample_hces |>
-  head() |>
-  DT::datatable()
+  dplyr::left_join(sample_hces,
+                   household_identifiers,
+                   by = c("hhid", "case_id"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-16-1.png" width="100%" />
-
-### Create a measure id column
+### Create a `measure_id` column
 
 The `create_measure_id` function creates a measure id column that is
 used to identify the consumption measure of each food item. The function
 takes in a data frame and the name of the column that contains the
 consumption information. The function also takes in the value that
 indicates that the food item was consumed.
+
+The `measure_id` is a unique identifier that allows us to join the
+consumption data with the food conversion factors data.
 
 ``` r
 # Create measure id column
@@ -473,16 +369,12 @@ sample_hces <-
     sample_hces,
     country = "MWI",
     survey = "IHS5",
-    cols = c("region", "matched_cons_unit_code", "matched_food_code"),
+    cols = c("region",
+             "matched_cons_unit_code",
+             "matched_food_code"),
     include_ISOs = FALSE
   )
-
-sample_hces |>
-  head(5) |>
-  DT::datatable()
 ```
-
-<img src="man/figures/README-unnamed-chunk-17-1.png" width="100%" />
 
 ### Import food conversion factors.
 
@@ -493,54 +385,46 @@ corresponding
 ``` r
 # Import food conversion factors file
 IHS5_conv_fct <-
-  readr::read_csv(here::here("data","mwi-ihs5-sample-data","IHS5_UNIT_CONVERSION_FACTORS_vMAPS.csv"))
-#> Rows: 2391 Columns: 7
-#> ── Column specification ────────────────────────────────────────────────────────
-#> Delimiter: ","
-#> chr (4): food_item_name, unit_code, unit_name, measure_id
-#> dbl (3): region, food_item_code, factor
-#> 
-#> ℹ Use `spec()` to retrieve the full column specification for this data.
-#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-IHS5_conv_fct |>
-  head(10) |>
-  DT::datatable()
+  readr::read_csv(
+    here::here(
+      "data",
+      "mwi-ihs5-sample-data",
+      "IHS5_UNIT_CONVERSION_FACTORS_vMAPS.csv"
+    )
+  )
 ```
 
-<img src="man/figures/README-unnamed-chunk-18-1.png" width="100%" />
+We need to check if the conversion factors file contain all the expected
+conversion factors for the hces data being processed. The
+`check_conv_fct` function checks if the conversion factors file contains
+all the expected conversion factors for the hces data being processed. T
 
-Check if the conversion factors file contain all the expected conversion
-factors for the hces data being processed.
+<div class="callout-warning">
+
+Remember this data was randomly generated so it is expected that the
+weights will not be realistic. Also not all food items have conversion
+factors so the weight of those food items will be `NA`.
+
+</div>
 
 ``` r
 # Check conversion factors 
-check_conv_fct(hces_df = sample_hces, conv_fct_df = IHS5_conv_fct)
-#> There are 1334 out of 1408 have missing conversion factors.
-#> This represents 94.74% of the data.
-#> Please fix your conversion factors file before trying again.
-#> NOTE: Use View() to see the missing conversion factors.
-#> # A tibble: 1,334 × 15
-#>    case_id    hhid  food_name food_code cons_unit_name cons_unit_code cons_quant
-#>    <chr>      <chr> <chr>         <dbl> <chr>          <chr>               <dbl>
-#>  1 201011000… e6ff… MAIZE UF…       103 KILOGRAMME     1                     6  
-#>  2 201011000… e569… FINGER M…       107 KILOGRAM       23                    2.5
-#>  3 201011000… aaf8… SPAGHETT…       114 KILOGRAM       23                    6.5
-#>  4 201011000… 032c… BEAN, BR…       302 KILOGRAM       23                    1  
-#>  5 201011000… dd9a… FRESH FI…      5031 KILOGRAMME     1                     8.5
-#>  6 201011000… 6bb7… TINNED M…       512 KILOGRAMME     1                     0.5
-#>  7 201011000… 23d0… FREEZES …       906 KILOGRAMME     1                     5  
-#>  8 201011000… e6ff… PEARL MI…       109 HEAP           10                    5  
-#>  9 201011000… b52b… BREAD           111 HEAP           10                    7  
-#> 10 201011000… 11bd… INFANT F…       116 HEAP           10                    3  
-#> # ℹ 1,324 more rows
-#> # ℹ 8 more variables: matched_food_name <chr>, matched_food_code <chr>,
-#> #   food_match_source <chr>, matched_cons_unit_name <chr>,
-#> #   matched_cons_unit_code <chr>, cons_unit_code_source <chr>, region <dbl>,
-#> #   measure_id <chr>
+check_conv_fct(hces_df = sample_hces, 
+               conv_fct_df = IHS5_conv_fct)
 ```
 
-Calculate weight of food items in kilograms.
+### Calculate weight of food items in kilograms.
+
+The `apply_wght_conv_fct` function will take the `hces_df` and
+`conv_fct_df` and calculate the weight of each food item in kilograms.
+
+<div class="callout-warning">
+
+Remember this data was randomly generated so it is expected that the
+weights will not be realistic. Also not all food items have conversion
+factors so the weight of those food items will be `NA`.
+
+</div>
 
 ``` r
 sample_hces <-
@@ -553,83 +437,82 @@ sample_hces <-
     cons_qnty_col = "cons_quant",
     allowDuplicates = TRUE
   )
-
-sample_hces |>
-  head(10) |>
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-20-1.png" width="100%" />
+### Calculate AFE/AME and add to the data
 
-# Calculate AFE/AME and add to the data
+<div class="callout-tip">
 
 ## Assumptions
 
-Merge HH demographic data with AME/AFE factors Men’s weight: 65kg
-(assumption) Women’s weight: 55kg (from DHS) PAL: 1.6X the BMR
+The ame/afe factors are calculated using the following assumptions: -
+Merge HH demographic data with AME/AFE factors - Men’s weight: 65kg
+(assumption) - Women’s weight: 55kg (from DHS) - PAL: 1.6X the BMR
 
-## Import data required
+</div>
+
+#### Import data required
 
 In order to calculate the AFE and AME metrics we require the following
-data: - Household roster with the sex and age of each individual -
-Household health - AFE and AME factors
+data: - Household roster with the sex and age of each individual
+`HH_MOD_B_vMAPS.dta` - Household health `HH_MOD_D_vMAPS.dta` - AFE and
+AME factors `IHS5_AME_FACTORS_vMAPS.csv` and `IHS5_AME_SPEC_vMAPS.csv`
 
 ``` r
 # Import data of the roster and health modules of the IHS5 survey
 ihs5_roster <-
-  haven::read_dta(here::here("data", "mwi-ihs5-sample-data", "HH_MOD_B_vMAPS.dta"))
+  haven::read_dta(here::here("data",
+                             "mwi-ihs5-sample-data",
+                             "HH_MOD_B_vMAPS.dta"))
 ihs5_health <-
-  haven::read_dta(here::here("data", "mwi-ihs5-sample-data", "HH_MOD_D_vMAPS.dta"))
+  haven::read_dta(here::here("data",
+                             "mwi-ihs5-sample-data",
+                             "HH_MOD_D_vMAPS.dta"))
 
 # Import data of the AME/AFE factors and specifications
 ame_factors <-
-  read.csv(here::here(
-    "data",
-    "mwi-ihs5-sample-data",
-    "IHS5_AME_FACTORS_vMAPS.csv"
-  )) |>
+  read.csv(here::here("data",
+                      "mwi-ihs5-sample-data",
+                      "IHS5_AME_FACTORS_vMAPS.csv")) |>
   janitor::clean_names()
 
 ame_spec_factors <-
-  read.csv(here::here("data", "mwi-ihs5-sample-data", "IHS5_AME_SPEC_vMAPS.csv")) |>
+  read.csv(here::here("data",
+                      "mwi-ihs5-sample-data",
+                      "IHS5_AME_SPEC_vMAPS.csv")) |>
   janitor::clean_names() |>
   # Rename the population column to cat and select the relevant columns
   dplyr::rename(cat = population) |>
   dplyr::select(cat, ame_spec, afe_spec)
 ```
 
-## Extra energy requirements for pregnancy
+#### Extra energy requirements for pregnancy
 
 ``` r
-# # Extra energy requirements for pregnancy and Illness
+# Extra energy requirements for pregnancy and Illness
 pregnantPersons <- ihs5_health |>
-    dplyr::filter(hh_d05a == 28 | hh_d05b == 28) |> # NOTE: 28 is the code for pregnancy in this survey
-    dplyr::mutate(ame_preg = 0.11, afe_preg = 0.14) |> # NOTE: where do these values come from, DHS?
-    dplyr::select(HHID, ame_preg, afe_preg)
-
-# Preview
-pregnantPersons |>
-    head() |>
-    DT::datatable()
+  dplyr::filter(hh_d05a == 28 |
+                  hh_d05b == 28) |> 
+  # NOTE: 28 is the code for pregnancy in this survey
+  dplyr::mutate(ame_preg = 0.11, afe_preg = 0.14) |> 
+  dplyr::select(HHID, ame_preg, afe_preg)
 ```
 
-<img src="man/figures/README-unnamed-chunk-22-1.png" width="100%" />
-
-# Process HH roster data
+#### Process HH roster data
 
 ``` r
 # Process the roster data and rename variables to be more intuitive
 aMFe_summaries <- ihs5_roster |>
   # Rename the variables to be more intuitive
   dplyr::rename(sex = hh_b03, age_y = hh_b05a, age_m = hh_b05b) |>
-  dplyr::mutate(age_m_total = (age_y * 12 + age_m)) |> # NOTE: why not just use age as below.
+  dplyr::mutate(age_m_total = (age_y * 12 + age_m)) |> 
   # Add the AME/AFE factors to the roster data
-  dplyr::left_join(ame_factors, by = c("age_y" = "age")) |> # Why use only age here and neglect months e.g 4.9years is close to 5 No??
+  dplyr::left_join(ame_factors, by = c("age_y" = "age")) |> 
   dplyr::mutate(
     ame_base = dplyr::case_when(sex == 1 ~ ame_m, sex == 2 ~ ame_f),
     afe_base = dplyr::case_when(sex == 1 ~ afe_m, sex == 2 ~ afe_f),
     age_u1_cat = dplyr::case_when(
-      # NOTE: Round here will ensure that decimals are not ommited in the calculation.
+      # NOTE: Round here will ensure that decimals are not omited in the calculation.
       round(age_m_total) %in% 0:5 ~ "0-5 months",
       round(age_m_total) %in% 6:8 ~ "6-8 months",
       round(age_m_total) %in% 9:11 ~ "9-11 months"
@@ -666,23 +549,47 @@ aMFe_summaries <- ihs5_roster |>
   ) |>
   dplyr::select(HHID, hh_persons, hh_ame, hh_afe) |>
   dplyr::rename(hhid = HHID)
-
-# Preview
-aMFe_summaries |> head() |> DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-23-1.png" width="100%" />
+#### Enrich Consumption Data with AFE/AME
 
-# Join the AFE/AME data to our Household Consumption and Expenditure survey data
+We will use the `left_join` function from `dplyr` to join the
+consumption data with the `aMFe_summaries` data.
+
+The `left_join` function will join the `aMFe_summaries` data to the
+`sample_hces` data by matching the `hhid` column in both data sets.
+
+The `left_join` function will add the `hh_persons`, `hh_ame` and
+`hh_afe` columns to the `sample_hces` data.
+
+The `hh_persons` column contains the number of people in each household.
+The `hh_ame` and `hh_afe` columns contain the AME and AFE factors for
+each household.
 
 ``` r
 sample_hces <- sample_hces |> 
   dplyr::left_join(aMFe_summaries)
-#> Joining with `by = join_by(hhid)`
-
-sample_hces |> 
-  head(10) |> 
-  DT::datatable()
 ```
 
-<img src="man/figures/README-unnamed-chunk-24-1.png" width="100%" />
+Now we have a “clean” data set that we can use for analysis.
+
+## Summary
+
+This chapter demonstrated the use of the `hcesNutR` package to process
+HCES data. The package contains functions that will help with the
+analysis of HCES data.
+
+The package also contains the sample data used in this book
+i.e. [r4hces-data/mwi-ihs5-sample-data](dzvoti.github.io/hcesNutR/data/r4hces-data.zip)
+We used this sample data to demonstrate the use of the functions in the
+package.
+
+The package is still under development and will be updated
+regularly.Please report any bugs or issues
+[here](www.github.com/dzvoti/hcesNutR/issues).
+
+## Future work
+
+-   Add more functions to the package
+-   Support more surveys (NGA Living Standards Survey 2018-2019)
+-   Add more internal data to the package

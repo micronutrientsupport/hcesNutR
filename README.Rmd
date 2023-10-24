@@ -35,21 +35,21 @@ Please report any bugs or issues [here](www.github.com/dzvoti/hcesNutR/issues).
 
 You can install the development version of hcesNutR from [GitHub](https://github.com/) with:
 
-```{r message=FALSE, warning=FALSE}
+```{r eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("dzvoti/hcesNutR")
 ```
 
 As we discussed in previous chapters you need to load the package in your R session before you can use it. You can load the package by running the following code in your R console.
 
-```{r}
+```{r eval=FALSE}
 library(hcesNutR)
 ```
 
 ## Functions in the package
 You can view the functions in the package by running the following code in your R console.
 
-```{r}
+```{r eval=FALSE}
 ls("package:hcesNutR")
 ```
 
@@ -67,7 +67,7 @@ All functions in this package take a dataframe/tibble as input data. This is by 
 
 ### Import and explore the sample data
 Import the sample data from the `r4hces-data/mwi-ihs5-sample-data` folder. Use the `read_dta` function from the `haven` package to import it.
-```{r}
+```{r eval=FALSE}
 # Import the data using the haven package from the tidyverse
 sample_hces <-
   haven::read_dta(here::here("data", 
@@ -81,7 +81,7 @@ In this example we will use `hcesNutR` functions to demonstrate processing of `t
 
 The other consumption columns contain values for consumption from sources i.e. gifted, purchased, ownProduced. The workflow for processing the "other" consumption data is the same as demonstrated below. 
 
-```{r}
+```{r eval=FALSE}
 # Trim the data to total consumption
 sample_hces <- sample_hces |>
   dplyr::select(case_id:HHID,
@@ -100,7 +100,7 @@ It is important to note that all downstream functions in the `hcesNutR` package 
 
 For more information on how to use the `rename_hces` function, please refer to the function's documentation: [`rename_hces`](https://dzvoti.github.io/hcesNutR/reference/rename_hces.html).
 
-```{r}
+```{r eval=FALSE}
 # Rename the variables
 sample_hces <- hcesNutR::rename_hces(sample_hces,
                                      country_name = "MWI",
@@ -109,7 +109,7 @@ sample_hces <- hcesNutR::rename_hces(sample_hces,
 
 ### Remove unconsumed food items
 HCES surveys administer a standard questionaire to each household where they are asked to conform whether they consumed the food items on their standard list. If a household did not consume a food item, the value of the 'consYN' is set to a constant. The `remove_unconsumed` function removes all food items that were not consumed by the household. The function takes in a data frame and the name of the column that contains the consumption information. The function also takes in the value that indicates that the food item was consumed.
-```{r}
+```{r eval=FALSE}
 # Remove unconsumed food items
 sample_hces <- hcesNutR::remove_unconsumed(sample_hces,
                                            consCol = "consYN", 
@@ -119,7 +119,7 @@ sample_hces <- hcesNutR::remove_unconsumed(sample_hces,
 ### Create two columns from each dbl+lbl column
 The `create_dta_labels` function creates two columns from each dbl+lbl (double plus label) column. The first column contains the numeric values and the second column contains the labels. The function takes in a data frame and finds all columns that contains the double plus label column. The function returns a data frame with the new columns.
 
-```{r}
+```{r eval=FALSE}
 # Split dbl+lbl columns
 sample_hces <- hcesNutR::create_dta_labels(sample_hces)
 ```
@@ -129,7 +129,7 @@ sample_hces <- hcesNutR::create_dta_labels(sample_hces)
 Some HCES data surveys split consumed food items or their consumption units into multiple columns. The `concatenate_columns` function cleans the data by combining the split columns into one column. The function can exclude values from contatenation by specifying the whole or part of values to be excluded. 
 
 #### Concatenate food item names
-```{r}
+```{r eval=FALSE}
 # Merge food item names
 sample_hces <-
   hcesNutR::concatenate_columns(sample_hces,
@@ -141,7 +141,7 @@ sample_hces <-
 ```
 
 #### Concatenate food item units
-```{r}
+```{r eval=FALSE}
 # Merge consumption unit names. For units it is essential to remove parentesis as they are the major cause of duplicate units
 sample_hces <-
   hcesNutR::concatenate_columns(
@@ -163,7 +163,7 @@ sample_hces <-
 Use the `select` and `rename` functions from the dplyr package to subset the columns containing food item name , food item code, food unit name and food unit code. This is to ensure that the names are meaningful and consistent with the package's naming conventions.
 :::
 
-```{r}
+```{r eval=FALSE}
 sample_hces <- sample_hces |>
   dplyr::select(
     case_id,
@@ -182,7 +182,7 @@ sample_hces <- sample_hces |>
 ### Match survey food items to standard food items
 The `match_food_names` function is useful for standardising survey food names. This is feasible due to an internal dataset of standard food item names matched with their corresponding survey food names for supported surveys. Alternatively users can use their own food matching names by passing a csv to the function. See hcesNutR::food_list for csv structure.
 
-```{r}
+```{r eval=FALSE}
 sample_hces <-
   match_food_names_v2(
     sample_hces,
@@ -197,7 +197,7 @@ sample_hces <-
 
 ### Match survey consumption units to standard consumption units
 The `match_food_units_v2` function is useful for standardising survey consumption units. This is feasible due to an internal dataset of standard consumption units matched with their corresponding survey consumption units for supported surveys. Alternatively users can download our template from `hcesNutR::unit_names_n_codes_df` and modify it to use their own consumption unit matching names.
-```{r}
+```{r eval=FALSE}
 sample_hces <-
   match_food_units_v2(
     sample_hces,
@@ -213,7 +213,7 @@ sample_hces <-
 
 ### Add regions and districts to the data
 Identify the HCES module that contains `household identifiers`. In some cases this will already be present in the HCES data and should be skipped. From the `household identifiers` select the ones that are required and add to the data. In this example we will add the region and district identifiers to the data from the `hh_mod_a_filt.dta` file.
-```{r}
+```{r eval=FALSE}
 # Import household identifiers from the hh_mod_a_filt.dta file
 household_identifiers <-
   haven::read_dta(here::here("data",
@@ -239,7 +239,7 @@ The `create_measure_id` function creates a measure id column that is used to ide
 
 The `measure_id` is a unique identifier that allows us to join the consumption data with the food conversion factors data. 
 
-```{r}
+```{r eval=FALSE}
 # Create measure id column
 sample_hces <-
   create_measure_id(
@@ -257,7 +257,7 @@ sample_hces <-
 ### Import food conversion factors.
 The available data comes with a `food_conversion fcators file which has conversion fcators that link the food names and units to their corresponding 
 
-```{r}
+```{r eval=FALSE}
 # Import food conversion factors file
 IHS5_conv_fct <-
   readr::read_csv(
@@ -277,7 +277,7 @@ We need to check if the conversion factors file contain all the expected convers
 Remember this data was randomly generated so it is expected that the weights will not be realistic. Also not all food items have conversion factors so the weight of those food items will be `NA`.
 :::
 
-```{r}
+```{r eval=FALSE}
 # Check conversion factors 
 check_conv_fct(hces_df = sample_hces, 
                conv_fct_df = IHS5_conv_fct)
@@ -290,7 +290,7 @@ The `apply_wght_conv_fct` function will take the `hces_df` and `conv_fct_df` and
 Remember this data was randomly generated so it is expected that the weights will not be realistic. Also not all food items have conversion factors so the weight of those food items will be `NA`.
 :::
 
-```{r}
+```{r eval=FALSE}
 sample_hces <-
   apply_wght_conv_fct(
     hces_df = sample_hces,
@@ -321,7 +321,7 @@ In order to calculate the AFE and AME metrics we require the following data:
 - Household health `HH_MOD_D_vMAPS.dta`
 - AFE and AME factors `IHS5_AME_FACTORS_vMAPS.csv` and `IHS5_AME_SPEC_vMAPS.csv`
 
-```{r}
+```{r eval=FALSE}
 # Import data of the roster and health modules of the IHS5 survey
 ihs5_roster <-
   haven::read_dta(here::here("data",
@@ -350,7 +350,7 @@ ame_spec_factors <-
 ```
 
 #### Extra energy requirements for pregnancy
-```{r}
+```{r eval=FALSE}
 # Extra energy requirements for pregnancy and Illness
 pregnantPersons <- ihs5_health |>
   dplyr::filter(hh_d05a == 28 |
@@ -362,7 +362,7 @@ pregnantPersons <- ihs5_health |>
 ```
 
 #### Process HH roster data
-```{r}
+```{r eval=FALSE}
 # Process the roster data and rename variables to be more intuitive
 aMFe_summaries <- ihs5_roster |>
   # Rename the variables to be more intuitive
@@ -425,7 +425,7 @@ The `left_join` function will add the `hh_persons`, `hh_ame` and `hh_afe` column
 The `hh_persons` column contains the number of people in each household. The `hh_ame` and `hh_afe` columns contain the AME and AFE factors for each household.
 
 
-```{r}
+```{r eval=FALSE}
 sample_hces <- sample_hces |> 
   dplyr::left_join(aMFe_summaries)
 ```
