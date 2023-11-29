@@ -954,3 +954,186 @@ apply_wght_conv_fct <- function(hces_df, conv_fct_df,
   
   return(merged_df)
 }
+
+#' Create Matches CSV
+#'
+#' This function creates a Shiny application that allows users to match non-standard food items to standard ones.
+#' The matches are based on the closest string match. The user can manually adjust the matches in the UI.
+#' The matched data can be added to the R environment or downloaded as a CSV file.
+#'
+#' @return A Shiny application.
+#'
+#' @examples
+#' create_matches_csv()
+#'
+create_matches_csv <- function() {
+  # UI definition
+  ui <- shiny::fluidPage(
+    shiny::titlePanel("HCES Non-standard Food Matcher"),
+    shiny::sidebarLayout(
+      shiny::sidebarPanel(
+        shiny::helpText("Enter the details of the country and survey you want to match food items for."),
+        shiny::selectInput("countryISO3", "Country ISO3 code:", choices = ISOcodes::UN_M.49_Countries$ISO_Alpha_3),
+        shiny::textInput("surveyShortName", "Survey short name:", value = "IHS5"),
+        shiny::br(),
+        shiny::helpText("Select the dataframe containing the standard-food list and codes"),
+        shiny::selectInput("df1Select", "Data frame with standard food list:", choices = ls()),
+        shiny::selectInput("df1ColumnSelect", "Standard food name column:", choices = NULL),
+        shiny::selectInput("foodIdColumnSelect", "Standard food ID column:", choices = NULL),
+        shiny::br(),
+        shiny::helpText("Select the dataframe containing the non-standard-food list. This can be the same as the dataframe selected above."),
+        shiny::selectInput("df2Select", "Data frame with non-standard food list:", choices = ls()),
+        shiny::selectInput("df2ColumnSelect", "Non-standard food column:", choices = NULL),
+        shiny::br(),
+        shiny::helpText("Click the button below to add the matches to the R environment or to download the csv with the matches."),
+        shiny::actionButton("addToEnv", "Add matches to R Environment"),
+        shiny::downloadButton("downloadData", "Write matches to CSV")
+      ),
+      shiny::mainPanel(
+        shiny::tabsetPanel(
+          shiny::tabPanel(
+            "Standard food list",
+            shiny::br(),
+            DT::DTOutput("standardList")
+          ),
+          shiny::tabPanel(
+            "Select Matches",
+            shiny::br(),
+            shiny::uiOutput("dropdown_ui")
+          ),
+          shiny::tabPanel(
+            "Preview of the matched data",
+            shiny::br(),
+            DT::DTOutput("previewTable")
+          )
+        )
+      )
+    )
+  )
+
+  # Server logic
+  server <- function(input, output, session) {
+    # Update column selection choices based on the selected dataframe
+    shiny::observe({
+      shiny::req(input$df1Select)
+      shiny::updateSelectInput(session, "df1ColumnSelect",
+        choices = colnames(get(input$df1Select, envir = .GlobalEnv))
+      )
+      shiny::updateSelectInput(session, "foodIdColumnSelect",
+        choices = colnames(get(input$df1Select, envir = .GlobalEnv))
+      )
+    })
+
+    shiny::observe({
+      shiny::req(input$df2Select)
+      shiny::updateSelectInput(session, "df2ColumnSelect",
+        choices = colnames(get(input$df2Select, envir = .GlobalEnv))
+      )
+    })
+
+    get_closest_match <- function(string, choices) {
+      distances <- stringdist::stringdistmatrix(string, choices)
+      choices[which.min(distances)]
+    }
+
+    output$dropdown_ui <- shiny::renderUI({
+      shiny::req(input$df1Select, input$df2Select, input$df1ColumnSelect, input$df2ColumnSelect)
+
+      countryISO_Name <- ISOcodes::UN_M.49_Countries$ISO_Alpha_3[ISOcodes::UN_M.49_Countries$Name == input$countryISO3]
+
+      df1 <- get(input$df1Select, envir = .GlobalEnv) |>
+        dplyr::select(input$foodIdColumnSelect, input$df1ColumnSelect) |>
+        dplyr::distinct() |>
+        dplyr::arrange(input$df1ColumnSelect)
+
+      df2 <- get(input$df2Select, envir = .GlobalEnv) |>
+        dplyr::select(input$df2ColumnSelect) |>
+        dplyr::filter(.data[[input$df2ColumnSelect]] != "") |>
+        dplyr::group_by(.data[[input$df2ColumnSelect]]) |>
+        dplyr::summarise(entries_count = dplyr::n()) |>
+        dplyr::arrange(desc(entries_count)) |>
+        dplyr::mutate(country = input$countryISO3, survey = input$surveyShortName)
+
+      if (nrow(df1) > 0 && nrow(df2) > 0) {
+        lapply(1:nrow(df2), function(i) {
+          closest_match <- get_closest_match(df2[[input$df2ColumnSelect]][i], df1[[input$df1ColumnSelect]])
+          shiny::div(
+            style = "display: flex; align-items: center; justify-content: space-between; padding: 5px;",
+            strong(df2[[input$df2ColumnSelect]][i]),
+            span("match with:"),
+            shiny::selectInput(
+              inputId = paste0("row", i),
+              label = NULL,
+              choices = df1[[input$df1ColumnSelect]],
+              selected = closest_match
+            )
+          )
+        })
+      } else {
+        return(NULL)
+      }
+    })
+
+    # Matched data processing
+    matched_data <- shiny::reactive({
+      shiny::req(input$df1Select, input$df2Select, input$df1ColumnSelect, input$df2ColumnSelect, input$foodIdColumnSelect)
+
+      df1 <- get(input$df1Select, envir = .GlobalEnv) |>
+        dplyr::select(input$foodIdColumnSelect, input$df1ColumnSelect) |>
+        dplyr::distinct() |>
+        dplyr::arrange(input$df1ColumnSelect)
+
+      df2 <- get(input$df2Select, envir = .GlobalEnv) |>
+        dplyr::select(input$df2ColumnSelect) |>
+        dplyr::filter(.data[[input$df2ColumnSelect]] != "") |>
+        dplyr::group_by(.data[[input$df2ColumnSelect]]) |>
+        dplyr::summarise(entries_count = dplyr::n()) |>
+        dplyr::arrange(desc(entries_count)) |>
+        dplyr::mutate(country = input$countryISO3, survey = input$surveyShortName)
+
+      df2$standard_food_name <- sapply(1:nrow(df2), function(i) input[[paste0("row", i)]])
+
+      merge(df2, df1, by.x = "standard_food_name", by.y = input$df1ColumnSelect, all.x = TRUE) |>
+        dplyr::select(country, survey, input$df2ColumnSelect, input$foodIdColumnSelect, standard_food_name, entries_count)
+    })
+
+    # Data preview
+    output$previewTable <- DT::renderDT({
+      DT::datatable(matched_data() |> filter(!is.na(standard_food_name)), options = list(pageLength = 200))
+    })
+
+    standardList <- shiny::reactive({
+      shiny::req(input$df1Select, input$df1ColumnSelect, input$foodIdColumnSelect)
+      get(input$df1Select, envir = .GlobalEnv) |>
+        dplyr::select(input$foodIdColumnSelect, input$df1ColumnSelect) |>
+        dplyr::distinct() |>
+        dplyr::arrange(input$foodIdColumnSelect) |>
+        # TODO: Fix this so that when unchecked, the rows are removed
+
+        dplyr::mutate(IncludeInMatches = TRUE)
+    })
+
+    output$standardList <- DT::renderDT({
+      DT::datatable(standardList(), options = list(pageLength = 200), editable = TRUE)
+    })
+
+    # Adding matches to R Environment
+    shiny::observeEvent(input$addToEnv, {
+      assign(paste(input$countryISO3, input$surveyShortName, "non_standard_food_matches", sep = "_"), matched_data(), envir = .GlobalEnv)
+      showNotification(paste0("Data added to environment as ", input$countryISO3, "_", input$surveyShortName, "_non_standard_food_matches"))
+    })
+
+    # CSV Download
+    output$downloadData <- shiny::downloadHandler(
+      filename = function() {
+        paste(input$countryISO3, input$surveyShortName, "non_standard_food_matches.csv", sep = "_")
+      },
+      content = function(file) {
+        write.csv(matched_data(), file, row.names = FALSE)
+      }
+    )
+  }
+
+  # Run the Shiny app
+  shiny::shinyApp(ui = ui, server = server)
+}
