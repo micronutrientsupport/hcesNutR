@@ -977,12 +977,12 @@ create_matches_csv <- function() {
         shiny::textInput("surveyShortName", "Survey short name:", value = "IHS5"),
         shiny::br(),
         shiny::helpText("Select the dataframe containing the standard-food list and codes"),
-        shiny::selectInput("df1Select", "Data frame with standard food list:", choices = ls()),
+        shiny::selectInput("df1Select", "Data frame with standard food list:", choices = NULL),
         shiny::selectInput("df1ColumnSelect", "Standard food name column:", choices = NULL),
         shiny::selectInput("foodIdColumnSelect", "Standard food ID column:", choices = NULL),
         shiny::br(),
         shiny::helpText("Select the dataframe containing the non-standard-food list. This can be the same as the dataframe selected above."),
-        shiny::selectInput("df2Select", "Data frame with non-standard food list:", choices = ls()),
+        shiny::selectInput("df2Select", "Data frame with non-standard food list:", choices = NULL),
         shiny::selectInput("df2ColumnSelect", "Non-standard food column:", choices = NULL),
         shiny::br(),
         shiny::helpText("Click the button below to add the matches to the R environment or to download the csv with the matches."),
@@ -1013,6 +1013,23 @@ create_matches_csv <- function() {
 
   # Server logic
   server <- function(input, output, session) {
+     # Update the list of dataframes in the selectInput whenever a new dataframe is added to the environment
+     dataframes <- shiny::reactive({
+       all_objects <- ls(envir = .GlobalEnv)
+       all_objects[sapply(all_objects, function(x) {
+         obj <- get(x, envir = .GlobalEnv)
+         is.data.frame(obj)
+       })]
+     })
+     
+     shiny::observe({
+         shiny::updateSelectInput(session, "df1Select", choices = dataframes())
+       })
+
+       shiny::observe({
+         shiny::updateSelectInput(session, "df2Select", choices = dataframes())
+       })
+
     # Update column selection choices based on the selected dataframe
     shiny::observe({
       shiny::req(input$df1Select)
@@ -1099,7 +1116,7 @@ create_matches_csv <- function() {
 
     # Data preview
     output$previewTable <- DT::renderDT({
-      DT::datatable(matched_data() |> filter(!is.na(standard_food_name)), options = list(pageLength = 200))
+      DT::datatable(matched_data() |> dplyr::filter(!is.na(standard_food_name)), options = list(pageLength = 200))
     })
 
     standardList <- shiny::reactive({
