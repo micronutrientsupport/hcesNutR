@@ -1074,9 +1074,11 @@ create_matches_csv <- function() {
       if (nrow(df1) > 0 && nrow(df2) > 0) {
         lapply(1:nrow(df2), function(i) {
           closest_match <- get_closest_match(df2[[input$df2ColumnSelect]][i], df1[[input$df1ColumnSelect]])
+          entry_count <- df2$entries_count[i]
           shiny::div(
             style = "display: flex; align-items: center; justify-content: space-between; padding: 5px;",
             strong(df2[[input$df2ColumnSelect]][i]),
+            span(paste(entry_count,"entries", sep = " "), style = "margin-left: 10px;"),
             span("match with:"),
             shiny::selectInput(
               inputId = paste0("row", i),
@@ -1111,7 +1113,8 @@ create_matches_csv <- function() {
       df2$standard_food_name <- sapply(1:nrow(df2), function(i) input[[paste0("row", i)]])
 
       merge(df2, df1, by.x = "standard_food_name", by.y = input$df1ColumnSelect, all.x = TRUE) |>
-        dplyr::select(country, survey, input$df2ColumnSelect, input$foodIdColumnSelect, standard_food_name, entries_count)
+        dplyr::select(country, survey, input$df2ColumnSelect, input$foodIdColumnSelect, standard_food_name, entries_count) |>
+        dplyr::arrange(desc(entries_count))
     })
 
     # Data preview
