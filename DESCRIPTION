@@ -1,7 +1,7 @@
 Package: hcesNutR
 Type: Package
 Title: Households Consumption Expenditure Survey (HCES) Nutrition Data Analysis
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(person(given = "Liberty",
                        family = "Mlambo",
                        role = c("aut", "cre"),
@@ -36,6 +36,7 @@ RoxygenNote: 7.2.3
 Imports: 
     base,
     dplyr,
+    DT,
     forcats,
     fuzzyjoin,
     haven,
