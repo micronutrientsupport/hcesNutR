@@ -34,17 +34,15 @@ URL: https://github.com/dzvoti/hcesR2
 BugReports: https://github.com/dzvoti/hcesR2/issues
 RoxygenNote: 7.2.3
 Imports: 
-    base,
+    crayon,
     dplyr,
     DT,
     forcats,
-    fuzzyjoin,
     haven,
-    here,
-    hexSticker,
-    lintr,
-    magick,
-    pkgdown,
-    rlang,
+    ISOcodes,
+      rlang,
     stringdist,
-    sysfonts
+    stringr,
+    here,
+    readr,
+    shiny
