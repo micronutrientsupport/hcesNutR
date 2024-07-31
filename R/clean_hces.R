@@ -932,14 +932,13 @@ apply_wght_conv_fct <- function(hces_df, conv_fct_df,
                                 wt_kg_col = "wt_kg",
                                 cons_qnty_col = "cons_quant",
                                 allowDuplicates = FALSE) {
-  
   # Check if required columns are present in dataframes
   required_cols <- c(measure_id_col, factor_col)
   stopifnot(all(required_cols %in% names(conv_fct_df)))
   stopifnot(measure_id_col %in% names(hces_df))
   stopifnot(cons_qnty_col %in% names(hces_df))
   #  Check if there are duplicates in the measure_id column
-  if(!allowDuplicates){
+  if (!allowDuplicates) {
     if (any(duplicated(conv_fct_df[[measure_id_col]]))) {
       stop("There are duplicates in the measure_id column of the conversion factors dataframe. Please remove them.")
     }
@@ -947,11 +946,11 @@ apply_wght_conv_fct <- function(hces_df, conv_fct_df,
   # Merge dataframes on measure_id
   merged_df <- hces_df |>
     dplyr::left_join(dplyr::distinct(conv_fct_df[, c(measure_id_col, factor_col)]), by = measure_id_col)
-  
+
   # Calculate the weight in kg
   merged_df <- merged_df |>
     dplyr::mutate(!!rlang::sym(wt_kg_col) := !!rlang::sym(cons_qnty_col) * !!rlang::sym(factor_col))
-  
+
   return(merged_df)
 }
 
@@ -964,8 +963,9 @@ apply_wght_conv_fct <- function(hces_df, conv_fct_df,
 #' @return A Shiny application.
 #'
 #' @examples
+#' \dontrun{
 #' create_matches_csv()
-#'
+#' }
 create_matches_csv <- function() {
   # UI definition
   ui <- shiny::fluidPage(
