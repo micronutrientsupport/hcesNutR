@@ -34,7 +34,8 @@ df <- data.frame(
 ) 
 
 # Add value labels
-df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, 
+"rice" = 103, "meat" = 104, "fish" = 105))
 df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
 
 # Print data frame

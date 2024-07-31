@@ -4,6 +4,12 @@
 # hcesNutR <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+![GitHub R package
+version](https://img.shields.io/github/r-package/v/dzvoti/hcesNutR)
 <!-- badges: end -->
 
 The goal of hcesR is to create a package that will help with the

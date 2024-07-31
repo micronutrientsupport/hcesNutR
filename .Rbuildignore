@@ -7,3 +7,4 @@
 ^data-ignore$
 ^R-ignore$
 ^data\\old_files^
+^\.github$
