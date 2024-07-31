@@ -8,3 +8,6 @@
 ^R-ignore$
 ^data\\old_files^
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

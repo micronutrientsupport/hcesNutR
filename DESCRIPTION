@@ -30,7 +30,7 @@ Description: Functions for analysing Nutrition analysis of HCES data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/dzvoti/hcesR2
+URL: https://github.com/dzvoti/hcesR2, https://dzvoti.github.io/hcesNutR/
 BugReports: https://github.com/dzvoti/hcesR2/issues
 RoxygenNote: 7.2.3
 Imports: 
