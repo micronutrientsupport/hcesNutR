@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
 
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+![GitHub R package version](https://img.shields.io/github/r-package/v/dzvoti/hcesNutR)
 <!-- badges: end -->
 
 The goal of hcesR is to create a package that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is [the world bank microdata repository](https://microdata.worldbank.org/). The package will contain functions that will help with the analysis of HCES data. The package also contains a [sample_hces.dta](dzvoti.github.io/hcesNutR/data/sample_hces.dta) used to demonstrate the use of the functions in the package, you can download this data after installing the package by running `hcesNutR::sample_hces()` in your R console. The package is still under development and will be updated regularly.
