@@ -13,7 +13,8 @@ which_labelled(data)
 A character vector of the names of the labelled variables in the input data frame.
 }
 \description{
-This function takes a data frame as input and returns a character vector of the names of the variables in the data frame that are labelled using the `haven` package.
+This function takes a data frame as input and returns a character vector of the names of the 
+variables in the data frame that are labelled using the `haven` package.
 }
 \examples{
 library(haven)
@@ -24,7 +25,8 @@ df <- data.frame(
 ) 
 
 # Add value labels
-df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, 
+"rice" = 103, "meat" = 104, "fish" = 105))
 df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
 
 # Print data frame

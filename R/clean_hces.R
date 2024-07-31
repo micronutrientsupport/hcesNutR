@@ -102,7 +102,8 @@ rename_hces <- function(data,country_name,survey_name) {
 #' ) 
 #' 
 #' # Add value labels
-#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, 
+#' "rice" = 103, "meat" = 104, "fish" = 105))
 #' df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
 #' 
 #' # Print data frame
@@ -142,7 +143,8 @@ split_dta <- function(data, split_var, val_to, lab_to, drop_split_var = TRUE) {
 
 #' Identify labelled variables in a data frame
 #'
-#' This function takes a data frame as input and returns a character vector of the names of the variables in the data frame that are labelled using the `haven` package.
+#' This function takes a data frame as input and returns a character vector of the names of the 
+#' variables in the data frame that are labelled using the `haven` package.
 #'
 #' @param data A data frame to check for labelled variables.
 #'
@@ -158,7 +160,8 @@ split_dta <- function(data, split_var, val_to, lab_to, drop_split_var = TRUE) {
 #' ) 
 #' 
 #' # Add value labels
-#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, "rice" = 103, "meat" = 104, "fish" = 105))
+#' df$food_item <- labelled(df$food_item, c("maize" = 101, "wheat" = 102, 
+#' "rice" = 103, "meat" = 104, "fish" = 105))
 #' df$consYN <- labelled(df$consYN, c("Yes" = 1, "No" = 2))
 #' 
 #' # Print data frame
@@ -282,17 +285,18 @@ create_dta_labels <- function(data) {
     return(data)
 }
 
-# NOTE: All function above where developed before the ANH2023 conference. The functions below were developed after the conference.
 
 #' Concatenate values in multiple columns into a single column
 #'
-#' This function concatenates the values in multiple columns of a data frame into a single column. It filters out blank, NA, and excluded values before concatenating the remaining values with a space in between. 
+#' This function concatenates the values in multiple columns of a data frame into a single column. It filters out blank,
+#'  NA, and excluded values before concatenating the remaining values with a space in between. 
 #' It also removes parenthesis and extra spaces from the concatenated string, unless specified otherwise.
 #'
 #' @param data A data frame containing the columns to concatenate
 #' @param columns A character vector of column names to concatenate
 #' @param exclude_value A character vector of strings to exclude from the concatenated values
-#' @param new_column_name A character string of the name of the new column to create. This column can be one of the existing columns used to concatenate.
+#' @param new_column_name A character string of the name of the new column to create. This column can be one of 
+#' the existing columns used to concatenate.
 #' @param keep_parenthesis A boolean indicating whether to keep parenthesis in the concatenated string (default is TRUE)
 #'
 #' @return A modified data frame with a new column containing the concatenated values
@@ -307,7 +311,9 @@ create_dta_labels <- function(data) {
 #' )
 #'
 #' # Concatenate food item columns in HCES data
-#' hces_data <- concatenate_columns(data = hces_data, columns = c("cons_unit_name", "cons_unit_oth","cons_unit_size_name"), exclude_value = c("SPECIFY", "OTHER"), new_column_name="survey_food_item", keep_parenthesis = FALSE)
+#' hces_data <- concatenate_columns(data = hces_data, columns = c("cons_unit_name", "cons_unit_oth",
+#' "cons_unit_size_name"), exclude_value = c("SPECIFY", "OTHER"), new_column_name="survey_food_item", 
+#' keep_parenthesis = FALSE)
 #'
 #' @import stringr
 #' @importFrom dplyr select mutate
@@ -534,7 +540,8 @@ match_unit_names_v1 <- function(data, country, survey, unit_code_col, unit_name_
 #' @param include_ISOs A logical value indicating whether to include the country and survey strings in the measure ID.
 #' @return A modified data frame with a measure ID column added.
 #' @examples
-#' data <- data.frame(unit_name = c("kg", "g", "lb", "oz"), unit_code = c("KGM", "GRM", "LBR", "ONZ"), region = c("A", "B", "C", "D"))
+#' data <- data.frame(unit_name = c("kg", "g", "lb", "oz"), unit_code = c("KGM", "GRM", "LBR", "ONZ"), 
+#' region = c("A", "B", "C", "D"))
 #' create_measure_id(data, "USA", "NHANES", c("unit_name", "unit_code", "region"), TRUE)
 #' @export
 create_measure_id <- function(data, country, survey, cols, include_ISOs = FALSE) {
@@ -904,7 +911,10 @@ check_conv_fct <- function(hces_df, conv_fct_df) {
 
 #' Apply weight conversion factors to HCES data
 #'
-#' This function applies weight conversion factors to the HCES data based on the conversion factors dataframe. It merges the HCES data and conversion factors dataframe on the `measure_id` column, and calculates the weight in kg for each food item using the conversion factor and consumption quantity. The resulting dataframe contains the original HCES data with additional columns for the conversion factor and weight in kg.
+#' This function applies weight conversion factors to the HCES data based on the conversion factors dataframe. 
+#' It merges the HCES data and conversion factors dataframe on the `measure_id` column, and calculates the weight in kg 
+#' for each food item using the conversion factor and consumption quantity. The resulting dataframe contains the 
+#' original HCES data with additional columns for the conversion factor and weight in kg.
 #'
 #' @param hces_df A dataframe containing the HCES data.
 #' @param conv_fct_df A dataframe containing the conversion factors.
@@ -912,15 +922,20 @@ check_conv_fct <- function(hces_df, conv_fct_df) {
 #' @param measure_id_col The name of the column in both dataframes containing the measure IDs.
 #' @param wt_kg_col The name of the column to store the weight in kg.
 #' @param cons_qnty_col The name of the column in `hces_df` containing the consumption quantity.
-#' @param allowDuplicates A logical value indicating whether to allow duplicates in the measure_id column of the conversion factors dataframe. Default is FALSE.
+#' @param allowDuplicates A logical value indicating whether to allow duplicates in the measure_id column of the 
+#' conversion factors dataframe. Default is FALSE.
 #'
-#' @return A dataframe containing the original HCES data with additional columns for the conversion factor and weight in kg.
+#' @return A dataframe containing the original HCES data with additional columns for the conversion factor and weight 
+#' in kg.
 #'
-#' @note The function checks if the required columns are present in the dataframes and throws an error if they are not. It also checks if there are duplicates in the measure_id column of the conversion factors dataframe and throws an error if there are any.
+#' @note The function checks if the required columns are present in the dataframes and throws an error if they are not. 
+#' It also checks if there are duplicates in the measure_id column of the conversion factors dataframe and throws an 
+#' error if there are any.
 #'
 #' @examples
 #' \dontrun{
-#' apply_wght_conv_fct(hces_df, conv_fct_df, factor_col = "factor", measure_id_col = "measure_id", wt_kg_col = "wt_kg", cons_qnty_col = "cons_quant", allowDuplicates = FALSE)
+#' apply_wght_conv_fct(hces_df, conv_fct_df, factor_col = "factor", measure_id_col = "measure_id", 
+#' wt_kg_col = "wt_kg", cons_qnty_col = "cons_quant", allowDuplicates = FALSE)
 #' }
 #' @importFrom dplyr left_join distinct mutate
 #' @importFrom rlang sym

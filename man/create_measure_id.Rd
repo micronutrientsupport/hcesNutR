@@ -26,6 +26,7 @@ The measure ID is a string that concatenates the values of the selected columns 
 The measure ID can optionally include the country and survey strings.
 }
 \examples{
-data <- data.frame(unit_name = c("kg", "g", "lb", "oz"), unit_code = c("KGM", "GRM", "LBR", "ONZ"), region = c("A", "B", "C", "D"))
+data <- data.frame(unit_name = c("kg", "g", "lb", "oz"), unit_code = c("KGM", "GRM", "LBR", "ONZ"), 
+region = c("A", "B", "C", "D"))
 create_measure_id(data, "USA", "NHANES", c("unit_name", "unit_code", "region"), TRUE)
 }

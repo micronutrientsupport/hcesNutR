@@ -19,7 +19,8 @@ concatenate_columns(
 
 \item{exclude_value}{A character vector of strings to exclude from the concatenated values}
 
-\item{new_column_name}{A character string of the name of the new column to create. This column can be one of the existing columns used to concatenate.}
+\item{new_column_name}{A character string of the name of the new column to create. This column can be one of 
+the existing columns used to concatenate.}
 
 \item{keep_parenthesis}{A boolean indicating whether to keep parenthesis in the concatenated string (default is TRUE)}
 }
@@ -27,7 +28,8 @@ concatenate_columns(
 A modified data frame with a new column containing the concatenated values
 }
 \description{
-This function concatenates the values in multiple columns of a data frame into a single column. It filters out blank, NA, and excluded values before concatenating the remaining values with a space in between. 
+This function concatenates the values in multiple columns of a data frame into a single column. It filters out blank,
+ NA, and excluded values before concatenating the remaining values with a space in between. 
 It also removes parenthesis and extra spaces from the concatenated string, unless specified otherwise.
 }
 \examples{
@@ -40,6 +42,8 @@ cons_unit_size_name = c("SMALL", "HEAPED", NA, "LARGE")
 )
 
 # Concatenate food item columns in HCES data
-hces_data <- concatenate_columns(data = hces_data, columns = c("cons_unit_name", "cons_unit_oth","cons_unit_size_name"), exclude_value = c("SPECIFY", "OTHER"), new_column_name="survey_food_item", keep_parenthesis = FALSE)
+hces_data <- concatenate_columns(data = hces_data, columns = c("cons_unit_name", "cons_unit_oth",
+"cons_unit_size_name"), exclude_value = c("SPECIFY", "OTHER"), new_column_name="survey_food_item", 
+keep_parenthesis = FALSE)
 
 }
