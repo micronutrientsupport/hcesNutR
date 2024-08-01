@@ -53,18 +53,18 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of hcesR is to create a package that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is <a href="https://microdata.worldbank.org/" class="external-link">the world bank microdata repository</a>. The package will contain functions that will help with the analysis of HCES data. The package also contains a <a href="dzvoti.github.io/hcesNutR/data/sample_hces.dta">sample_hces.dta</a> used to demonstrate the use of the functions in the package, you can download this data after installing the package by running <code>hcesNutR::sample_hces()</code> in your R console. The package is still under development and will be updated regularly.</p>
+<p>The goal of hcesR is to create a package that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is <a href="https://microdata.worldbank.org/" class="external-link">the world bank microdata repository</a>. The package will contain functions that will help with the analysis of HCES data. The package also contains a <a href="micronutrient.github.io/hcesNutR/data/sample_hces.dta">sample_hces.dta</a> used to demonstrate the use of the functions in the package, you can download this data after installing the package by running <code>hcesNutR::sample_hces()</code> in your R console. The package is still under development and will be updated regularly.</p>
 </div>
 <div class="section level1">
 <h1 id="hcesnutr-package">
 <code>hcesNutR</code> Package<a class="anchor" aria-label="anchor" href="#hcesnutr-package"></a>
 </h1>
 <p>The goal of the hcesNutR project is to create a repository of functions and data that will help with the analysis of the Household Consumption Expenditure Survey (HCES) data. A good source of HCES data is <a href="https://microdata.worldbank.org/" class="external-link">the world bank microdata repository</a>.</p>
-<p>The package contain functions that will help with the analysis of HCES data. The package also contains the sample data used in this book i.e. <a href="dzvoti.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We will use this sample data to demonstrate the use of the functions in the package. The package is still under development and will be updated regularly.</p>
+<p>The package contain functions that will help with the analysis of HCES data. The package also contains the sample data used in this book i.e. <a href="micronutrient.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We will use this sample data to demonstrate the use of the functions in the package. The package is still under development and will be updated regularly.</p>
 <div class="section level2">
 <h2 id="reporting-bugs">Reporting bugs<a class="anchor" aria-label="anchor" href="#reporting-bugs"></a>
 </h2>
-<p>Please report any bugs or issues <a href="www.github.com/dzvoti/hcesNutR/issues">here</a>.</p>
+<p>Please report any bugs or issues <a href="www.github.com/micronutrient/hcesNutR/issues">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -72,7 +72,7 @@
 <p>You can install the development version of hcesNutR from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dzvoti/hcesNutR"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"micronutrient/hcesNutR"</span><span class="op">)</span></span></code></pre></div>
 <p>As we discussed in previous chapters you need to load the package in your R session before you can use it. You can load the package by running the following code in your R console.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dzvoti/hcesR2" class="external-link">hcesNutR</a></span><span class="op">)</span></span></code></pre></div>
@@ -84,7 +84,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:hcesNutR"</span><span class="op">)</span></span></code></pre></div>
 <div class="callout-tip">
-<p>You can read the functions and their description on the project website at: <a href="dzvoti.github.io/hcesNutR/reference/index.html">dzvoti.github.io/hcesNutR/reference/index.html</a></p>
+<p>You can read the functions and their description on the project website at: <a href="micronutrient.github.io/hcesNutR/reference/index.html">micronutrient.github.io/hcesNutR/reference/index.html</a></p>
 </div>
 </div>
 <div class="section level2">
@@ -127,7 +127,7 @@
 <p>The <code>sample_hces</code> data is in stata format which contains data with short column name codes that have associated “question” labels that explain the contents of the data. To make the column names more interpretable, the package provides the <code>rename_hces</code> function, which can be used to rename the column codes to standard hces names used downstream.</p>
 <p>The <code>rename_hces</code> function uses column names from the <code>standard_name_mappings_pairs</code> dataset within the package. Alternatively, a user can create their own name pairs or manually rename their columns to the <code>standard</code> names.</p>
 <p>It is important to note that all downstream functions in the <code>hcesNutR</code> package work with standard names and will not work with the short column names. Therefore, it is recommended to use the <code><a href="reference/rename_hces.html">rename_hces()</a></code> function to ensure that the column names are consistent with the package’s naming conventions.</p>
-<p>For more information on how to use the <code>rename_hces</code> function, please refer to the function’s documentation: <a href="https://dzvoti.github.io/hcesNutR/reference/rename_hces.html"><code>rename_hces</code></a>.</p>
+<p>For more information on how to use the <code>rename_hces</code> function, please refer to the function’s documentation: <a href="https://micronutrient.github.io/hcesNutR/reference/rename_hces.html" class="external-link"><code>rename_hces</code></a>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Rename the variables</span></span>
 <span><span class="va">sample_hces</span> <span class="op">&lt;-</span> <span class="fu">hcesNutR</span><span class="fu">::</span><span class="fu"><a href="reference/rename_hces.html">rename_hces</a></span><span class="op">(</span><span class="va">sample_hces</span>,</span>
@@ -440,8 +440,8 @@
 <h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
 <p>This chapter demonstrated the use of the <code>hcesNutR</code> package to process HCES data. The package contains functions that will help with the analysis of HCES data.</p>
-<p>The package also contains the sample data used in this book i.e. <a href="dzvoti.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We used this sample data to demonstrate the use of the functions in the package.</p>
-<p>The package is still under development and will be updated regularly.Please report any bugs or issues <a href="www.github.com/dzvoti/hcesNutR/issues">here</a>.</p>
+<p>The package also contains the sample data used in this book i.e. <a href="micronutrient.github.io/hcesNutR/data/r4hces-data.zip">r4hces-data/mwi-ihs5-sample-data</a> We used this sample data to demonstrate the use of the functions in the package.</p>
+<p>The package is still under development and will be updated regularly.Please report any bugs or issues <a href="www.github.com/micronutrient/hcesNutR/issues">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="future-work">Future work<a class="anchor" aria-label="anchor" href="#future-work"></a>
@@ -494,7 +494,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/micronutrient/hcesNutR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/micronutrient/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 </ul>
 </div>
