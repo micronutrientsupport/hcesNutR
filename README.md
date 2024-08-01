@@ -5,11 +5,11 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dzvoti/hcesNutR/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/micronutrient/hcesNutR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/micronutrient/hcesNutR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![GitHub R package
-version](https://img.shields.io/github/r-package/v/dzvoti/hcesNutR)
+version](https://img.shields.io/github/r-package/v/micronutrient/hcesNutR)
 <!-- badges: end -->
 
 The goal of hcesR is to create a package that will help with the
@@ -18,7 +18,7 @@ good source of HCES data is [the world bank microdata
 repository](https://microdata.worldbank.org/). The package will contain
 functions that will help with the analysis of HCES data. The package
 also contains a
-[sample_hces.dta](dzvoti.github.io/hcesNutR/data/sample_hces.dta) used
+[sample_hces.dta](micronutrient.github.io/hcesNutR/data/sample_hces.dta) used
 to demonstrate the use of the functions in the package, you can download
 this data after installing the package by running
 `hcesNutR::sample_hces()` in your R console. The package is still under
@@ -33,7 +33,7 @@ bank microdata repository](https://microdata.worldbank.org/).
 
 The package contain functions that will help with the analysis of HCES
 data. The package also contains the sample data used in this book
-i.e. [r4hces-data/mwi-ihs5-sample-data](dzvoti.github.io/hcesNutR/data/r4hces-data.zip)
+i.e. [r4hces-data/mwi-ihs5-sample-data](micronutrient.github.io/hcesNutR/data/r4hces-data.zip)
 We will use this sample data to demonstrate the use of the functions in
 the package. The package is still under development and will be updated
 regularly.
@@ -41,7 +41,7 @@ regularly.
 ## Reporting bugs
 
 Please report any bugs or issues
-[here](www.github.com/dzvoti/hcesNutR/issues).
+[here](www.github.com/micronutrient/hcesNutR/issues).
 
 ## Installation
 
@@ -50,7 +50,7 @@ You can install the development version of hcesNutR from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("dzvoti/hcesNutR")
+devtools::install_github("micronutrient/hcesNutR")
 ```
 
 As we discussed in previous chapters you need to load the package in
@@ -74,7 +74,7 @@ ls("package:hcesNutR")
 
 You can read the functions and their description on the project website
 at:
-[dzvoti.github.io/hcesNutR/reference/index.html](dzvoti.github.io/hcesNutR/reference/index.html)
+[micronutrient.github.io/hcesNutR/reference/index.html](micronutrient.github.io/hcesNutR/reference/index.html)
 
 </div>
 
@@ -150,7 +150,7 @@ conventions.
 
 For more information on how to use the `rename_hces` function, please
 refer to the function’s documentation:
-[`rename_hces`](https://dzvoti.github.io/hcesNutR/reference/rename_hces.html).
+[`rename_hces`](https://micronutrient.github.io/hcesNutR/reference/rename_hces.html).
 
 ``` r
 # Rename the variables
@@ -553,13 +553,13 @@ HCES data. The package contains functions that will help with the
 analysis of HCES data.
 
 The package also contains the sample data used in this book
-i.e. [r4hces-data/mwi-ihs5-sample-data](dzvoti.github.io/hcesNutR/data/r4hces-data.zip)
+i.e. [r4hces-data/mwi-ihs5-sample-data](micronutrient.github.io/hcesNutR/data/r4hces-data.zip)
 We used this sample data to demonstrate the use of the functions in the
 package.
 
 The package is still under development and will be updated
 regularly.Please report any bugs or issues
-[here](www.github.com/dzvoti/hcesNutR/issues).
+[here](www.github.com/micronutrient/hcesNutR/issues).
 
 ## Future work
 
